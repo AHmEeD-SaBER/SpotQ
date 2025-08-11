@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.theme.SpotQTheme
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun Separator(modifier: Modifier = Modifier) {

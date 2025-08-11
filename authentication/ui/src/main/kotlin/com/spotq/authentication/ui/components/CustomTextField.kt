@@ -12,13 +12,14 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.theme.AppTypography
-import com.spotq.core_ui.utils.Constants
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.utils.Constants
+import com.example.core_ui.R as CoreUiR
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.core_ui.theme.SpotQTheme
@@ -46,6 +47,7 @@ fun CustomTextField(
         )
         OutlinedTextField(
             value = value,
+            textStyle = AppTypography.bt4,
             onValueChange = onValueChange,
             isError = isError,
             shape = RoundedCornerShape(dimensionResource(CoreUiR.dimen.text_field_corner_radius)),
@@ -57,10 +59,7 @@ fun CustomTextField(
                 )
             },
             modifier = Modifier
-                .fillMaxWidth()
-                .let { mod ->
-                    if (height != null) mod.height(height) else mod
-                },
+                .fillMaxWidth(),
             colors = androidx.compose.material3.OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = MaterialTheme.colorScheme.primary,
                 unfocusedBorderColor = MaterialTheme.colorScheme.tertiary.copy(alpha = Constants.ALPHA_MEDIUM),
@@ -68,7 +67,6 @@ fun CustomTextField(
                 disabledBorderColor = MaterialTheme.colorScheme.tertiary.copy(alpha = Constants.ALPHA_MEDIUM),
                 focusedContainerColor = MaterialTheme.colorScheme.surface,
                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                errorContainerColor = MaterialTheme.colorScheme.surface
             ),
             supportingText = if (isError && errorMessage != null) {
                 { Text(text = errorMessage) }

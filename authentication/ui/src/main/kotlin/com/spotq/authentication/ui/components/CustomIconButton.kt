@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import com.spotq.core_ui.utils.Constants
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.utils.Constants
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun CustomIconButton(

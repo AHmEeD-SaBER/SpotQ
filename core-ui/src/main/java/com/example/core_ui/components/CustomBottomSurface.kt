@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
-import com.spotq.core_ui.R
+import com.example.core_ui.R
 
 @Composable
 fun CustomBottomSurface(

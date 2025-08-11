@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.theme.SpotQTheme
-import com.spotq.core_ui.utils.Constants.ANIMATION_DURATION_MEDIUM
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.utils.Constants.ANIMATION_DURATION_MEDIUM
+import com.example.core_ui.R as CoreUiR
 
 data class OnboardingData(
     val title: String,

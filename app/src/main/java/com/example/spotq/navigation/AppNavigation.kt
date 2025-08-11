@@ -1,5 +1,6 @@
 package com.example.spotq.navigation
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,12 +14,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.splash.SplashScreen
+import com.example.spotq.ui.main.MainContract
+import com.example.spotq.ui.main.MainViewModel
 import com.spotq.authentication.ui.login.LoginContract
 import com.spotq.authentication.ui.login.LoginScreen
 import com.spotq.authentication.ui.login.LoginViewModel
@@ -50,18 +54,46 @@ sealed class Screen {
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    onAuthenticationCompleted: () -> Unit = {}
+    mainState: MainContract.State,
+    onSplashFinished: () -> Unit = {},
+    onAuthComplete: () -> Unit = {}
 ) {
     NavHost(
         navController = navController,
         startDestination = Screen.Splash
     ) {
+
+
         composable<Screen.Splash> {
             SplashScreen(
-                onSplashFinished = {
-                    // This will be handled by MainActivity through MainViewModel
-                }
+                onSplashFinished = onSplashFinished
+
             )
+            LaunchedEffect(mainState.currentDestination) {
+                when (mainState.currentDestination) {
+                    MainContract.Destination.ONBOARDING -> {
+                        navController.navigate(Screen.Onboarding) {
+                            popUpTo<Screen.Splash> { inclusive = true }
+                        }
+                    }
+
+                    MainContract.Destination.AUTH -> {
+                        navController.navigate(Screen.Login) {
+                            popUpTo<Screen.Splash> { inclusive = true }
+                        }
+                    }
+
+                    MainContract.Destination.MAIN -> {
+                        navController.navigate(Screen.Main) {
+                            popUpTo<Screen.Splash> { inclusive = true }
+                        }
+                    }
+
+                    else -> {
+                        // Stay on splash while loading/determining destination
+                    }
+                }
+            }
         }
 
         composable<Screen.Onboarding> {
@@ -80,31 +112,39 @@ fun AppNavigation(
 
             LoginScreen(
                 state = state,
-                onEvent = loginViewModel::setEvent
+                onEvent = loginViewModel::setEvent,
+                modifier = Modifier,
             )
 
             // Handle login effects
+            val context = LocalContext.current
             LaunchedEffect(loginViewModel) {
                 loginViewModel.effect.collect { effect ->
                     when (effect) {
                         is LoginContract.Effect.NavigateToMain -> {
-                            onAuthenticationCompleted() // Notify MainActivity
+                            onAuthComplete()
                             navController.navigate(Screen.Main) {
                                 popUpTo<Screen.Login> { inclusive = true }
                             }
                         }
+
                         is LoginContract.Effect.NavigateToSignup -> {
                             navController.navigate(Screen.Signup)
                         }
+
                         is LoginContract.Effect.NavigateToForgotPassword -> {
                             // Handle forgot password navigation
                         }
+
                         is LoginContract.Effect.ShowError -> {
-                            // Handle error display (e.g., show snackbar)
+                            Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
                         }
+
                         is LoginContract.Effect.ShowSuccess -> {
                             // Handle success message
                         }
+
+                        LoginContract.Effect.None -> TODO()
                     }
                 }
             }
@@ -120,21 +160,25 @@ fun AppNavigation(
             )
 
             // Handle signup effects
+            val context = LocalContext.current
             LaunchedEffect(signupViewModel) {
                 signupViewModel.effect.collect { effect ->
                     when (effect) {
                         is SignupContract.Effect.NavigateToMain -> {
-                            onAuthenticationCompleted() // Notify MainActivity
+                            onAuthComplete()
                             navController.navigate(Screen.Main) {
                                 popUpTo<Screen.Signup> { inclusive = true }
                             }
                         }
+
                         is SignupContract.Effect.NavigateToLogin -> {
-                            navController.popBackStack()
+                            navController.navigate(Screen.Login)
                         }
+
                         is SignupContract.Effect.ShowError -> {
-                            // Handle error display
+                            Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
                         }
+
                         is SignupContract.Effect.ShowSuccess -> {
                             // Handle success message
                         }

@@ -4,7 +4,7 @@
             "outputFile": "com.spotq.authentication.data.test.data-mergeDebugAndroidTestResources-22:/values-mk/values-mk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\8810251d83e1ab1a6ab35d2212f502d6\\transformed\\core-1.16.0\\res\\values-mk\\values-mk.xml",
+                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\8d96b019d4251691d4cbac59147cb8cb\\transformed\\core-1.16.0\\res\\values-mk\\values-mk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

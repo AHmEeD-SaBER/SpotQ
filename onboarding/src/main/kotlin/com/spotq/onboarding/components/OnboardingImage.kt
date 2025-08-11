@@ -7,7 +7,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.theme.SpotQTheme
-import com.spotq.core_ui.R
+import com.example.core_ui.R
 
 @Composable
 fun OnboardingImage(modifier: Modifier = Modifier, drawableRes: Int) {

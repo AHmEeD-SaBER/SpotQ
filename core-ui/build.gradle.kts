@@ -9,7 +9,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.spotq.core_ui"
+    namespace = "com.example.core_ui"
     compileSdk = Versions.compileSdk
 
     defaultConfig {

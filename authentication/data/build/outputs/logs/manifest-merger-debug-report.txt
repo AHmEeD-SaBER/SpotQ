@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml:2:13-83
-INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml:2:13-83
+ADDED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml:2:1-72
+INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml:2:1-72
 	package
-		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml
+		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml:2:23-81
+		ADDED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
-INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml reason: use-sdk injection requested
-INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml
-INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml
+INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml
+INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml
+		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8970549997682844123.xml
+		INJECTED from E:\Courses\Kotlin\SpotQ\authentication\data\src\main\AndroidManifest.xml

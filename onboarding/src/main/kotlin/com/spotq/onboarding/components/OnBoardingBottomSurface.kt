@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.components.CustomBottomSurface
 import com.example.core_ui.components.CustomButton
 import com.example.core_ui.theme.SpotQTheme
-import com.spotq.core_ui.R
+import com.example.core_ui.R
 
 @Composable
 fun OnboardingBottomSurface(

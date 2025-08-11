@@ -23,7 +23,7 @@ import com.spotq.authentication.ui.components.CustomTextField
 import com.spotq.authentication.ui.components.DontOrHaveAccount
 import com.spotq.authentication.ui.components.PageHeader
 import com.spotq.authentication.ui.components.Separator
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun SignupScreen(
@@ -33,8 +33,7 @@ fun SignupScreen(
 ) {
     PageLayout(
         modifier = modifier,
-        imageRes = R.drawable.login_res, // Using login_res since signup_res might not exist
-        imageContentDescription = "Signup illustration",
+        imageRes = R.drawable.signup_res,
         bottomContent = {
             CustomBottomSurface(
                 modifier = Modifier

@@ -25,66 +25,18 @@ class MainActivity : ComponentActivity() {
             SpotQTheme {
                 val navController = rememberNavController()
                 val mainViewModel: MainViewModel = hiltViewModel()
-                val mainState by mainViewModel.uiState.collectAsState()
-
-                // Handle main app navigation based on MainViewModel state
-                LaunchedEffect(mainState.currentDestination) {
-                    when (mainState.currentDestination) {
-                        MainContract.Destination.ONBOARDING -> {
-                            navController.navigate(Screen.Onboarding) {
-                                popUpTo<Screen.Splash> { inclusive = true }
-                            }
-                        }
-                        MainContract.Destination.AUTH -> {
-                            navController.navigate(Screen.Login) {
-                                popUpTo<Screen.Splash> { inclusive = true }
-                            }
-                        }
-                        MainContract.Destination.MAIN -> {
-                            navController.navigate(Screen.Main) {
-                                popUpTo<Screen.Splash> { inclusive = true }
-                            }
-                        }
-                        else -> {
-                            // Stay on splash or loading
-                        }
-                    }
-                }
-
-                // Handle MainViewModel effects
-                LaunchedEffect(mainViewModel) {
-                    mainViewModel.effect.collect { effect ->
-                        when (effect) {
-                            is MainContract.Effect.NavigateToOnboarding -> {
-                                navController.navigate(Screen.Onboarding) {
-                                    popUpTo<Screen.Splash> { inclusive = true }
-                                }
-                            }
-                            is MainContract.Effect.NavigateToAuth -> {
-                                navController.navigate(Screen.Login) {
-                                    popUpTo<Screen.Splash> { inclusive = true }
-                                }
-                            }
-                            is MainContract.Effect.NavigateToMainScreen -> {
-                                navController.navigate(Screen.Main) {
-                                    popUpTo<Screen.Splash> { inclusive = true }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Initialize the app state
-                LaunchedEffect(Unit) {
-                    mainViewModel.setEvent(MainContract.Event.CheckInitialState)
-                }
-
+                val state by mainViewModel.uiState.collectAsState()
                 AppNavigation(
                     navController = navController,
-                    onAuthenticationCompleted = {
-                        mainViewModel.setEvent(MainContract.Event.AuthenticationCompleted)
-                    }
+                    mainState = state,
+                    onSplashFinished = {
+                        mainViewModel.setEvent(MainContract.Event.CheckInitialState)
+                    },
+                    onAuthComplete = {
+                        MainContract.Event.AuthenticationCompleted
+                    },
                 )
+
             }
         }
     }

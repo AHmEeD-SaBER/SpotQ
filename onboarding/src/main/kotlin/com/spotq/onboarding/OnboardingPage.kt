@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.components.PageLayout
 import com.example.core_ui.theme.SpotQTheme
 import com.spotq.onboarding.components.OnboardingBottomSurface
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun OnboardingPage(

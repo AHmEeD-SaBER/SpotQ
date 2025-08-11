@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.theme.AppTypography
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun PageHeader(modifier: Modifier = Modifier, title: String, subtitle: String) {

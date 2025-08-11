@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.theme.SpotQTheme
-import com.spotq.core_ui.R
+import com.example.core_ui.R
 
 @Composable
 fun CustomButton(

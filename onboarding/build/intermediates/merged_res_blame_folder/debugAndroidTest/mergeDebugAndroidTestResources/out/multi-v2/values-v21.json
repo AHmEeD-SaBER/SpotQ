@@ -4,7 +4,7 @@
             "outputFile": "com.spotq.onboarding.test.onboarding-mergeDebugAndroidTestResources-56:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\8810251d83e1ab1a6ab35d2212f502d6\\transformed\\core-1.16.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\8d96b019d4251691d4cbac59147cb8cb\\transformed\\core-1.16.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\4299726625dc6b270e37bedf3ba213b8\\transformed\\core-1.7.0\\res\\values-v21\\values.xml",
+                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\e7fd0bebb4e97c56fe7fa86af03871d5\\transformed\\core-1.7.0\\res\\values-v21\\values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",

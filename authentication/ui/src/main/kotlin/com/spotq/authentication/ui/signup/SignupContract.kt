@@ -12,6 +12,7 @@ class SignupContract {
         val nameError: String? = null,
         val emailError: String? = null,
         val passwordError: String? = null,
+        val isNameValid: Boolean = true,
         val isFormValid: Boolean = false,
         val isPasswordVisible: Boolean = false
     ) : UiState
@@ -24,6 +25,7 @@ class SignupContract {
         object SignupClicked : Event()
         object NavigateToLogin : Event()
         object ClearErrors : Event()
+        object ValidateForm : Event()
     }
 
     sealed class Effect : UiEffect {

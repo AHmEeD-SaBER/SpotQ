@@ -5,6 +5,7 @@ import com.example.core_ui.base.BaseViewModel
 import com.spotq.authentication.domain.model.AuthResult
 import com.spotq.authentication.domain.model.SignUpRequest
 import com.spotq.authentication.domain.usecases.signup.ISignUpUseCase
+import com.spotq.authentication.ui.utils.ValidationUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,53 +24,70 @@ class SignupViewModel @Inject constructor(
             is SignupContract.Event.NameChanged -> {
                 handleNameChanged(event.name)
             }
+
             is SignupContract.Event.EmailChanged -> {
                 handleEmailChanged(event.email)
             }
+
             is SignupContract.Event.PasswordChanged -> {
                 handlePasswordChanged(event.password)
             }
+
             is SignupContract.Event.TogglePasswordVisibility -> {
                 handleTogglePasswordVisibility()
             }
+
             is SignupContract.Event.SignupClicked -> {
                 handleSignupClicked()
             }
+
             is SignupContract.Event.NavigateToLogin -> {
                 handleNavigateToLogin()
             }
+
             is SignupContract.Event.ClearErrors -> {
                 handleClearErrors()
             }
+
+            SignupContract.Event.ValidateForm -> handleValidateForm()
         }
     }
 
+
+
     private fun handleNameChanged(name: String) {
+        val nameValidation = ValidationUtils.validateName(name)
         setState {
             copy(
                 name = name,
-                nameError = null,
-                isFormValid = validateForm(name, email, password)
+                nameError = if (nameValidation.isValid) null else nameValidation.errorMessage,
+                isFormValid = ValidationUtils.isSignUpFormValid(name, email, password)
             )
         }
     }
 
     private fun handleEmailChanged(email: String) {
+        val emailValidation = ValidationUtils.validateEmail(email)
         setState {
             copy(
                 email = email,
-                emailError = null,
-                isFormValid = validateForm(name, email, password)
+                emailError = if (email.isNotBlank() && !emailValidation.isValid) {
+                    emailValidation.errorMessage
+                } else null,
+                isFormValid = ValidationUtils.isSignUpFormValid(name, email, password)
             )
         }
     }
 
     private fun handlePasswordChanged(password: String) {
+        val passwordValidation = ValidationUtils.validatePassword(password)
         setState {
             copy(
                 password = password,
-                passwordError = null,
-                isFormValid = validateForm(name, email, password)
+                passwordError = if (password.isNotBlank() && !passwordValidation.isValid) {
+                    passwordValidation.errorMessage
+                } else null,
+                isFormValid = ValidationUtils.isSignUpFormValid(name, email, password)
             )
         }
     }
@@ -98,12 +116,14 @@ class SignupViewModel @Inject constructor(
                         is AuthResult.Loading -> {
                             setState { copy(isLoading = true) }
                         }
+
                         is AuthResult.Success -> {
                             setState { copy(isLoading = false) }
 
                             setEffect { SignupContract.Effect.ShowSuccess("Account created successfully!") }
                             setEffect { SignupContract.Effect.NavigateToMain }
                         }
+
                         is AuthResult.Error -> {
                             setState { copy(isLoading = false) }
                             setEffect {
@@ -139,66 +159,28 @@ class SignupViewModel @Inject constructor(
         }
     }
 
-    private fun validateForm(
-        name: String,
-        email: String,
-        password: String
-    ): Boolean {
-        return name.isNotBlank() &&
-               email.isNotBlank() &&
-               android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
-               password.isNotBlank() &&
-               password.length >= 6
-    }
-
     private fun validateAndSetErrors(): Boolean {
         val currentState = uiState.value
-        var isValid = true
-
-        val nameError = when {
-            currentState.name.isBlank() -> {
-                isValid = false
-                "Name is required"
-            }
-            currentState.name.length < 2 -> {
-                isValid = false
-                "Name must be at least 2 characters"
-            }
-            else -> null
-        }
-
-        val emailError = when {
-            currentState.email.isBlank() -> {
-                isValid = false
-                "Email is required"
-            }
-            !android.util.Patterns.EMAIL_ADDRESS.matcher(currentState.email).matches() -> {
-                isValid = false
-                "Please enter a valid email address"
-            }
-            else -> null
-        }
-
-        val passwordError = when {
-            currentState.password.isBlank() -> {
-                isValid = false
-                "Password is required"
-            }
-            currentState.password.length < 6 -> {
-                isValid = false
-                "Password must be at least 6 characters"
-            }
-            else -> null
-        }
+        val emailValidation = ValidationUtils.validateEmail(currentState.email)
+        val passwordValidation = ValidationUtils.validatePassword(currentState.password)
+        val nameValidation = ValidationUtils.validateName(currentState.name)
 
         setState {
             copy(
-                nameError = nameError,
-                emailError = emailError,
-                passwordError = passwordError
+                nameError = if (!nameValidation.isValid) nameValidation.errorMessage else null,
+                emailError = if (!emailValidation.isValid) emailValidation.errorMessage else null,
+                passwordError = if (!passwordValidation.isValid) passwordValidation.errorMessage else null,
+                isFormValid = emailValidation.isValid && passwordValidation.isValid
             )
         }
 
-        return isValid
+        return currentState.isFormValid &&
+                nameValidation.isValid &&
+                emailValidation.isValid &&
+                passwordValidation.isValid
+    }
+
+    private fun handleValidateForm() {
+        validateAndSetErrors()
     }
 }

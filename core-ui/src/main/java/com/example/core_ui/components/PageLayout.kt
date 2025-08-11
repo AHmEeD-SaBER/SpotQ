@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.spotq.core_ui.R
+import com.example.core_ui.R
 
 @Composable
 fun PageLayout(

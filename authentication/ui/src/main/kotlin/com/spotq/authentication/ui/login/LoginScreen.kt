@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -24,18 +25,17 @@ import com.spotq.authentication.ui.components.DontOrHaveAccount
 import com.spotq.authentication.ui.components.PageHeader
 import com.spotq.authentication.ui.components.Separator
 import com.spotq.authentication.ui.login.components.ForgetPassword
-import com.spotq.core_ui.R as CoreUiR
+import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
     state: LoginContract.State,
-    onEvent: (LoginContract.Event) -> Unit
+    onEvent: (LoginContract.Event) -> Unit,
 ) {
     PageLayout(
         modifier = modifier,
         imageRes = R.drawable.login_res,
-        imageContentDescription = "Login illustration",
     ) {
         CustomBottomSurface(
             modifier = modifier
@@ -52,7 +52,10 @@ fun LoginScreen(
                     title = stringResource(CoreUiR.string.login_title),
                     subtitle = stringResource(CoreUiR.string.login_subtitle)
                 )
+
                 Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_md)))
+
+                // Email TextField
                 CustomTextField(
                     label = stringResource(CoreUiR.string.label_email),
                     value = state.email,
@@ -61,20 +64,29 @@ fun LoginScreen(
                     isError = state.emailError != null,
                     errorMessage = state.emailError
                 )
+
                 Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm)))
+
+                // Password TextField
                 CustomTextField(
                     label = stringResource(CoreUiR.string.label_password),
                     value = state.password,
                     placeholder = stringResource(CoreUiR.string.placeholder_password),
                     onValueChange = { onEvent(LoginContract.Event.PasswordChanged(it)) },
                     isError = state.passwordError != null,
-                    errorMessage = state.passwordError
+                    errorMessage = state.passwordError,
+                    isPasswordField = true,
+                    isPasswordVisible = state.isPasswordVisible,
+                    onPasswordVisibilityToggle = { onEvent(LoginContract.Event.TogglePasswordVisibility) }
                 )
+
                 Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm)))
+
                 ForgetPassword(
                     modifier = Modifier.align(Alignment.End),
                     onClick = { onEvent(LoginContract.Event.ForgotPasswordClicked) }
                 )
+
                 CustomButton(
                     text = stringResource(CoreUiR.string.action_login),
                     onClick = { onEvent(LoginContract.Event.LoginClicked) },
@@ -84,10 +96,13 @@ fun LoginScreen(
                     isLoading = state.isLoading,
                     enabled = state.isFormValid && !state.isLoading
                 )
+
                 Spacer(
                     modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm))
                 )
+
                 Separator()
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
@@ -102,11 +117,11 @@ fun LoginScreen(
                         icon = R.drawable.x_logo,
                         contentDescription = stringResource(CoreUiR.string.login_with_x),
                         onClick = {},
-
-                        )
-
+                    )
                 }
+
                 Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm)))
+
                 DontOrHaveAccount(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     leading = stringResource(CoreUiR.string.dont_have_account),
@@ -129,7 +144,23 @@ fun LoginScreenPreview() {
                 emailError = null,
                 passwordError = null
             ),
-            onEvent = {}
+            onEvent = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginScreenWithErrorsPreview() {
+    SpotQTheme {
+        LoginScreen(
+            state = LoginContract.State(
+                email = "invalid-email",
+                password = "123",
+                emailError = "Please enter a valid email address",
+                passwordError = "Password must be at least 6 characters"
+            ),
+            onEvent = {},
         )
     }
 }

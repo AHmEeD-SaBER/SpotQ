@@ -23,8 +23,8 @@ import kotlinx.coroutines.delay
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
-import com.spotq.core_ui.utils.Constants
-import com.spotq.core_ui.R as CoreR
+import com.example.core_ui.utils.Constants
+import com.example.core_ui.R as CoreR
 import com.example.core_ui.theme.SpotQTheme
 
 @Composable

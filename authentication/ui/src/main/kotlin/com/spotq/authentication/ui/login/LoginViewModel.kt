@@ -3,8 +3,10 @@ package com.spotq.authentication.ui.login
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
 import com.spotq.authentication.domain.model.AuthResult
+import com.spotq.authentication.domain.model.AuthResponse
 import com.spotq.authentication.domain.model.LoginRequest
 import com.spotq.authentication.domain.usecases.login.ILoginUseCase
+import com.spotq.authentication.ui.utils.ValidationUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,25 +43,36 @@ class LoginViewModel @Inject constructor(
             is LoginContract.Event.ClearErrors -> {
                 handleClearErrors()
             }
+            is LoginContract.Event.ValidateForm -> {
+                handleValidateForm()
+            }
         }
     }
 
     private fun handleEmailChanged(email: String) {
+        val emailValidation = ValidationUtils.validateEmail(email)
+
         setState {
             copy(
                 email = email,
-                emailError = null,
-                isFormValid = validateForm(email, password)
+                emailError = if (email.isNotBlank() && !emailValidation.isValid) {
+                    emailValidation.errorMessage
+                } else null,
+                isFormValid = ValidationUtils.isLoginFormValid(email, password)
             )
         }
     }
 
     private fun handlePasswordChanged(password: String) {
+        val passwordValidation = ValidationUtils.validatePassword(password)
+
         setState {
             copy(
                 password = password,
-                passwordError = null,
-                isFormValid = validateForm(email, password)
+                passwordError = if (password.isNotBlank() && !passwordValidation.isValid) {
+                    passwordValidation.errorMessage
+                } else null,
+                isFormValid = ValidationUtils.isLoginFormValid(email, password)
             )
         }
     }
@@ -71,7 +84,9 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun handleLoginClicked() {
-        if (!validateAndSetErrors()) return
+        if (!validateFormAndShowErrors()) {
+            return
+        }
 
         setState { copy(isLoading = true) }
 
@@ -83,31 +98,34 @@ class LoginViewModel @Inject constructor(
                         password = uiState.value.password
                     )
                 ).collect { result ->
-                    when (result) {
-                        is AuthResult.Loading -> {
-                            setState { copy(isLoading = true) }
-                        }
-                        is AuthResult.Success -> {
-                            setState { copy(isLoading = false) }
-
-                            setEffect { LoginContract.Effect.ShowSuccess("Login successful!") }
-                            setEffect { LoginContract.Effect.NavigateToMain }
-                        }
-                        is AuthResult.Error -> {
-                            setState { copy(isLoading = false) }
-                            setEffect {
-                                LoginContract.Effect.ShowError(
-                                    result.exception.message ?: "Login failed. Please try again."
-                                )
-                            }
-                        }
-                    }
+                    handleAuthResult(result)
                 }
             } catch (e: Exception) {
                 setState { copy(isLoading = false) }
                 setEffect {
                     LoginContract.Effect.ShowError(
                         e.message ?: "An unexpected error occurred"
+                    )
+                }
+            }
+        }
+    }
+
+    private fun handleAuthResult(result: AuthResult<AuthResponse>) {
+        when (result) {
+            is AuthResult.Loading -> {
+                setState { copy(isLoading = true) }
+            }
+            is AuthResult.Success -> {
+                setState { copy(isLoading = false) }
+                setEffect { LoginContract.Effect.ShowSuccess("Welcome back, ${result.data.user.name}!") }
+                setEffect { LoginContract.Effect.NavigateToMain }
+            }
+            is AuthResult.Error -> {
+                setState { copy(isLoading = false) }
+                setEffect {
+                    LoginContract.Effect.ShowError(
+                        result.exception.message ?: "Login failed. Please try again."
                     )
                 }
             }
@@ -131,48 +149,24 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun validateForm(email: String, password: String): Boolean {
-        return email.isNotBlank() &&
-               android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
-               password.isNotBlank() &&
-               password.length >= 6
+    private fun handleValidateForm() {
+        validateFormAndShowErrors()
     }
 
-    private fun validateAndSetErrors(): Boolean {
+    private fun validateFormAndShowErrors(): Boolean {
         val currentState = uiState.value
-        var isValid = true
 
-        val emailError = when {
-            currentState.email.isBlank() -> {
-                isValid = false
-                "Email is required"
-            }
-            !android.util.Patterns.EMAIL_ADDRESS.matcher(currentState.email).matches() -> {
-                isValid = false
-                "Please enter a valid email address"
-            }
-            else -> null
-        }
-
-        val passwordError = when {
-            currentState.password.isBlank() -> {
-                isValid = false
-                "Password is required"
-            }
-            currentState.password.length < 6 -> {
-                isValid = false
-                "Password must be at least 6 characters"
-            }
-            else -> null
-        }
+        val emailValidation = ValidationUtils.validateEmail(currentState.email)
+        val passwordValidation = ValidationUtils.validatePassword(currentState.password)
 
         setState {
             copy(
-                emailError = emailError,
-                passwordError = passwordError
+                emailError = if (!emailValidation.isValid) emailValidation.errorMessage else null,
+                passwordError = if (!passwordValidation.isValid) passwordValidation.errorMessage else null,
+                isFormValid = emailValidation.isValid && passwordValidation.isValid
             )
         }
 
-        return isValid
+        return emailValidation.isValid && passwordValidation.isValid
     }
 }
