@@ -1,1 +1,26 @@
-/build
+# Module build files
+build/
+
+# Generated files
+generated/
+
+# KSP generated files
+build/generated/ksp/
+
+# Hilt generated files
+build/generated/hilt/
+
+# Kotlin compiled files
+*.kotlin_module
+
+# Android lint
+lint/
+
+# Local test results
+test-results/
+
+# Coverage reports
+coverage/
+
+# Gradle cache
+.gradle/
