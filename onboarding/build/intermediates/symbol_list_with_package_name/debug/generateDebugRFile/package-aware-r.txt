@@ -1,0 +1,10 @@
+com.spotq.onboarding
+drawable onboarding_1
+drawable onboarding_2
+drawable onboarding_3
+string onboarding_1_description
+string onboarding_1_title
+string onboarding_2_description
+string onboarding_2_title
+string onboarding_3_description
+string onboarding_3_title

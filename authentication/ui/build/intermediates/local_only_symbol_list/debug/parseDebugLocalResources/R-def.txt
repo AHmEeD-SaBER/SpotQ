@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+drawable google_logo
+drawable login_res
+drawable signup_res
+drawable x_logo

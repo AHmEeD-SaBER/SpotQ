@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+drawable onboarding_1
+drawable onboarding_2
+drawable onboarding_3
+string onboarding_1_description
+string onboarding_1_title
+string onboarding_2_description
+string onboarding_2_title
+string onboarding_3_description
+string onboarding_3_title

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_1_title">Plan Your Trip</string>
+    <string name="onboarding_1_description">Create your dream trip with ease. Choose a destination, find the perfect place to stay, and create an itinerary that suits your preferences.</string>
+    <string name="onboarding_2_title">Enable Location Services</string>
+    <string name="onboarding_2_description">Turn on location access to get personalized recommendations for popular spots and hidden gems near you.</string>
+    <string name="onboarding_3_title">Explore Local Attractions</string>
+    <string name="onboarding_3_description">Discover the beauty of local places you may never have visited. Experience local life and enjoy authentic experiences in each destination.</string>
+</resources>

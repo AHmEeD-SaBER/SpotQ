@@ -1,0 +1,1 @@
+com.spotq.authentication.data

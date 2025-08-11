@@ -1,0 +1,5 @@
+com.spotq.authentication.ui
+drawable google_logo
+drawable login_res
+drawable signup_res
+drawable x_logo
