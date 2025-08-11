@@ -346,6 +346,7 @@ string error_required_field
 string error_server
 string error_timeout
 string forget_password
+string hide_password
 string image_content_description
 string in_progress
 string indeterminate
@@ -447,6 +448,7 @@ string placeholder_select_option
 string range_end
 string range_start
 string selected
+string show_password
 string sign_up
 string signup_subtitle
 string signup_title

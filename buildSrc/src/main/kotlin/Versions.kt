@@ -14,6 +14,7 @@ object Versions {
     const val targetSdk = 36
     const val minSdk = 24
 
+
     // Java version
     const val javaVersion = "11"
 
@@ -28,5 +29,6 @@ object Versions {
     const val splashScreen = "1.0.1"
     const val coroutines = "1.8.0"
     const val materialIcons = "1.7.5"
-    const val serialization = "1.9.0"  // Compatible with Kotlin 2.2.0
+    const val serialization = "1.9.0"
+    const val location = "21.0.1"
 }

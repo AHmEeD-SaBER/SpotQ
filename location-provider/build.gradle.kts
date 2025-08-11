@@ -33,10 +33,15 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(Core.coreKtx)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Testing libraries
+    testImplementation(Test.junit)
+    testImplementation(Test.mockk)
+    androidTestImplementation(Test.androidxJunit)
+    androidTestImplementation(Test.espressoCore)
+
+    implementation(Location.location)
+    implementation(Coroutines.core)
+    implementation(Coroutines.android)
 }
