@@ -63,8 +63,7 @@ class MainViewModel @Inject constructor(
     private fun checkInitialState() {
         viewModelScope.launch {
             val isFirstTimeLaunch = userPreferencesRepository.isFirstTimeLaunch()
-            // TODO: Add auth check through use case if needed
-            val isUserAuthenticated = false // Simplified for now
+            val isUserAuthenticated = userPreferencesRepository.isUserAuthenticated()
 
             when {
                 isFirstTimeLaunch -> {
@@ -75,21 +74,9 @@ class MainViewModel @Inject constructor(
                             currentDestination = MainContract.Destination.ONBOARDING
                         )
                     }
-                    setEffect { MainContract.Effect.NavigateToOnboarding }
                 }
 
-                !isUserAuthenticated -> {
-                    setState {
-                        copy(
-                            isLoading = false,
-                            isUserAuthenticated = false,
-                            currentDestination = MainContract.Destination.AUTH
-                        )
-                    }
-                    setEffect { MainContract.Effect.NavigateToAuth }
-                }
-
-                else -> {
+                isUserAuthenticated -> {
                     setState {
                         copy(
                             isLoading = false,
@@ -97,7 +84,16 @@ class MainViewModel @Inject constructor(
                             currentDestination = MainContract.Destination.MAIN
                         )
                     }
-                    setEffect { MainContract.Effect.NavigateToMainScreen }
+                }
+
+                else -> {
+                    setState {
+                        copy(
+                            isLoading = false,
+                            isUserAuthenticated = false,
+                            currentDestination = MainContract.Destination.AUTH
+                        )
+                    }
                 }
             }
         }
@@ -112,33 +108,29 @@ class MainViewModel @Inject constructor(
                     currentDestination = MainContract.Destination.AUTH
                 )
             }
-            setEffect { MainContract.Effect.NavigateToAuth }
         }
     }
 
     private fun handleAuthenticationCompleted() {
         viewModelScope.launch {
-            // No need to manually set auth status - it's already handled by auth module
+            userPreferencesRepository.setUserAuthenticated(true)
             setState {
                 copy(
                     isUserAuthenticated = true,
                     currentDestination = MainContract.Destination.MAIN
                 )
             }
-            setEffect { MainContract.Effect.NavigateToMainScreen }
         }
     }
 
     private fun handleLogout() {
         viewModelScope.launch {
-            // TODO: Add logout through use case if needed
             setState {
                 copy(
                     isUserAuthenticated = false,
                     currentDestination = MainContract.Destination.AUTH
                 )
             }
-            setEffect { MainContract.Effect.NavigateToAuth }
         }
     }
 
@@ -146,13 +138,11 @@ class MainViewModel @Inject constructor(
         setState {
             copy(currentDestination = MainContract.Destination.AUTH)
         }
-        setEffect { MainContract.Effect.NavigateToAuth }
     }
 
     private fun navigateToMain() {
         setState {
             copy(currentDestination = MainContract.Destination.MAIN)
         }
-        setEffect { MainContract.Effect.NavigateToMainScreen }
     }
 }

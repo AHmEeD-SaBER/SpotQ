@@ -3,6 +3,7 @@ object Modules {
     const val splash = ":splash"
     const val coreUi = ":core-ui"
     const val onboarding = ":onboarding"
+    const val location_provider = ":location-provider"
 
     // Authentication modules
     const val authentication = ":authentication"

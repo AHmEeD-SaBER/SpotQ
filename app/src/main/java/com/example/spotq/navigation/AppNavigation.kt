@@ -56,7 +56,8 @@ fun AppNavigation(
     navController: NavHostController,
     mainState: MainContract.State,
     onSplashFinished: () -> Unit = {},
-    onAuthComplete: () -> Unit = {}
+    onAuthComplete: () -> Unit = {},
+    onOnboardingComplete: () -> Unit = {},
 ) {
     NavHost(
         navController = navController,
@@ -99,6 +100,7 @@ fun AppNavigation(
         composable<Screen.Onboarding> {
             OnboardingScreen(
                 onOnboardingComplete = {
+                    onOnboardingComplete()
                     navController.navigate(Screen.Login) {
                         popUpTo<Screen.Onboarding> { inclusive = true }
                     }
@@ -112,7 +114,7 @@ fun AppNavigation(
 
             LoginScreen(
                 state = state,
-                onEvent = loginViewModel::setEvent,
+                onEvent = loginViewModel::handleEvent,
                 modifier = Modifier,
             )
 
@@ -156,7 +158,7 @@ fun AppNavigation(
 
             SignupScreen(
                 state = state,
-                onEvent = signupViewModel::setEvent
+                onEvent = signupViewModel::handleEvent
             )
 
             // Handle signup effects

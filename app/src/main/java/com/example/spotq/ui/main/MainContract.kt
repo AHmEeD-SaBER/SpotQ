@@ -25,9 +25,9 @@ class MainContract {
 
     // UI Effects
     sealed class Effect : UiEffect {
-        object NavigateToOnboarding : Effect()
-        object NavigateToAuth : Effect()
-        object NavigateToMainScreen : Effect()
+//        object NavigateToOnboarding : Effect()
+//        object NavigateToAuth : Effect()
+//        object NavigateToMainScreen : Effect()
     }
 
     // Destinations

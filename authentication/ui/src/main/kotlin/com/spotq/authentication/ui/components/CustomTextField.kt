@@ -12,7 +12,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,7 +34,7 @@ fun CustomTextField(
     errorMessage: String? = null,
     isPasswordField: Boolean = false,
     isPasswordVisible: Boolean = false,
-    onPasswordVisibilityToggle: (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     height: Dp? = dimensionResource(CoreUiR.dimen.text_field_height)
 ) {
     Column(modifier) {
@@ -82,26 +81,7 @@ fun CustomTextField(
             } else {
                 androidx.compose.foundation.text.KeyboardOptions.Default
             },
-            trailingIcon = if (isPasswordField && onPasswordVisibilityToggle != null) {
-                {
-                    androidx.compose.material3.IconButton(
-                        onClick = onPasswordVisibilityToggle
-                    ) {
-                        androidx.compose.material3.Icon(
-                            imageVector = if (isPasswordVisible) {
-                                androidx.compose.material.icons.Icons.Filled.Visibility
-                            } else {
-                                androidx.compose.material.icons.Icons.Filled.VisibilityOff
-                            },
-                            contentDescription = if (isPasswordVisible) {
-                                "Hide password"
-                            } else {
-                                "Show password"
-                            }
-                        )
-                    }
-                }
-            } else null
+            trailingIcon = trailingIcon
         )
     }
 }

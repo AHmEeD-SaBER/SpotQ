@@ -30,11 +30,14 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     mainState = state,
                     onSplashFinished = {
-                        mainViewModel.setEvent(MainContract.Event.CheckInitialState)
+                        mainViewModel.handleEvent(MainContract.Event.CheckInitialState)
                     },
                     onAuthComplete = {
-                        MainContract.Event.AuthenticationCompleted
+                        mainViewModel.handleEvent(MainContract.Event.AuthenticationCompleted)
                     },
+                    onOnboardingComplete = {
+                        mainViewModel.handleEvent(MainContract.Event.OnboardingCompleted)
+                    }
                 )
 
             }

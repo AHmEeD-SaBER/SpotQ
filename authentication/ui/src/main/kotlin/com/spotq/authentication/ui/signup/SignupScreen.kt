@@ -7,6 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -81,7 +86,20 @@ fun SignupScreen(
                         errorMessage = state.passwordError,
                         isPasswordField = true,
                         isPasswordVisible = state.isPasswordVisible,
-                        onPasswordVisibilityToggle = { onEvent(SignupContract.Event.TogglePasswordVisibility) }
+                        trailingIcon = {
+                            IconButton(onClick = { onEvent(SignupContract.Event.TogglePasswordVisibility) }) {
+                                Icon(
+                                    imageVector = if (state.isPasswordVisible)
+                                        Icons.Filled.Visibility
+                                    else
+                                        Icons.Filled.VisibilityOff,
+                                    contentDescription = if (state.isPasswordVisible)
+                                        stringResource(CoreUiR.string.hide_password)
+                                    else
+                                        stringResource(CoreUiR.string.show_password),
+                                )
+                            }
+                        }
                     )
 
                     CustomButton(

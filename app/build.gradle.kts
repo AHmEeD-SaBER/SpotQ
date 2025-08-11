@@ -65,6 +65,7 @@ dependencies {
     implementation(project(Modules.splash))
     implementation(project(Modules.coreUi))
     implementation(project(Modules.onboarding))
+    implementation(project(Modules.location_provider))
 
     // Authentication modules
     implementation(project(Modules.authenticationUi))
