@@ -17,6 +17,7 @@ import com.example.core_ui.components.CustomBottomSurface
 import com.example.core_ui.components.CustomButton
 import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.R
+import com.example.core_ui.utils.Constants
 
 @Composable
 fun OnboardingBottomSurface(
@@ -25,13 +26,13 @@ fun OnboardingBottomSurface(
     description: String,
     buttonText: String = stringResource(id = R.string.action_next),
     currentPage: Int = 0,
-    totalPages: Int = 3,
+    totalPages: Int = Constants.ONBOARDING_PAGES_COUNT,
     onButtonClick: () -> Unit = {}
 ) {
     CustomBottomSurface(
         modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.5f)
+            .fillMaxHeight(Constants.ONBOARDING_BOTTOM_SURFACE_HEIGHT)
     ) {
         Column(
             modifier = Modifier.padding(dimensionResource(R.dimen.padding_xl)),

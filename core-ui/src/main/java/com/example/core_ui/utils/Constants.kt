@@ -4,7 +4,11 @@ package com.example.core_ui.utils
  * Constants object containing shared constant values across the app
  */
 object Constants {
-    
+
+    const val ONBOARDING_PAGES_COUNT = 3
+    const val AUTH_BOTTOM_SURFACE_HEIGHT = 0.8f
+    const val ONBOARDING_BOTTOM_SURFACE_HEIGHT = 0.55f
+
     // App Information
     const val APP_NAME = "SpotQ"
     const val APP_VERSION = "1.0.0"

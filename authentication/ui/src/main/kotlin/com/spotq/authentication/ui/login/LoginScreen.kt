@@ -25,6 +25,7 @@ import com.example.core_ui.components.CustomBottomSurface
 import com.example.core_ui.components.CustomButton
 import com.example.core_ui.components.PageLayout
 import com.example.core_ui.theme.SpotQTheme
+import com.example.core_ui.utils.Constants
 import com.spotq.authentication.ui.R
 import com.spotq.authentication.ui.components.CustomIconButton
 import com.spotq.authentication.ui.components.CustomTextField
@@ -47,7 +48,7 @@ fun LoginScreen(
         CustomBottomSurface(
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.8f)
+                .fillMaxHeight(Constants.AUTH_BOTTOM_SURFACE_HEIGHT),
         ) {
             Column(
                 modifier = Modifier.padding(
