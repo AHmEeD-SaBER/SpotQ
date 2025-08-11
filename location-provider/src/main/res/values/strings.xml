@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="location_disabled">Location Disabled</string>
+    <string name="location_error">Location Error</string>
+    <string name="location_permission_denied">Location Permission Denied</string>
+</resources>

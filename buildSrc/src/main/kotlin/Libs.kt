@@ -61,3 +61,7 @@ object Coil {
 object Serialization {
     const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serialization}"
 }
+
+object Location {
+    const val location = "com.google.android.gms:play-services-location:${Versions.location}"
+}

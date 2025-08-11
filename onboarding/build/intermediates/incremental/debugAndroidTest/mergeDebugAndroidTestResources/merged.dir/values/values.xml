@@ -242,6 +242,7 @@
     <string name="error_server">Server error. Please try again later.</string>
     <string name="error_timeout">Request timeout. Please try again.</string>
     <string name="forget_password">Forgot Password</string>
+    <string name="hide_password">Hide password</string>
     <string name="image_content_description">Image</string>
     <string name="in_progress">In progress</string>
     <string name="indeterminate">Partially checked</string>
@@ -347,6 +348,7 @@
     <string name="range_end">"Range end"</string>
     <string name="range_start">"Range start"</string>
     <string name="selected">Selected</string>
+    <string name="show_password">Show password</string>
     <string name="sign_up">Sign Up</string>
     <string name="signup_subtitle">Create an account, it’s free</string>
     <string name="signup_title">Sign Up</string>
