@@ -54,7 +54,6 @@ class SignupViewModel @Inject constructor(
     }
 
 
-
     private fun handleNameChanged(name: String) {
         val nameValidation = ValidationUtils.validateName(name)
         setState {
@@ -93,8 +92,9 @@ class SignupViewModel @Inject constructor(
     }
 
     private fun handleTogglePasswordVisibility() {
+        val currentState = uiState.value
         setState {
-            copy(isPasswordVisible = !isPasswordVisible)
+            copy(isPasswordVisible = !currentState.isPasswordVisible)
         }
     }
 

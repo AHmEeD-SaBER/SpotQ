@@ -1,5 +1,6 @@
 package com.spotq.authentication.ui.login
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
 import com.spotq.authentication.domain.model.AuthResult
@@ -78,9 +79,11 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun handleTogglePasswordVisibility() {
+        Log.d("LoginViewModel", "Before toggle: ${uiState.value.isPasswordVisible}")
         setState {
-            copy(isPasswordVisible = !isPasswordVisible)
+            copy(isPasswordVisible = !this.isPasswordVisible)
         }
+        Log.d("LoginViewModel", "After toggle: ${uiState.value.isPasswordVisible}")
     }
 
     private fun handleLoginClicked() {

@@ -149,4 +149,6 @@
     <string name="signup_with_google">Sign up with Google</string>
     <string name="signup_with_x">Sign up with X</string>
     <string name="already_have_account">Already have an account?</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
 </resources>
