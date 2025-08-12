@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_no_network_title">No Internet Connection</string>
+    <string name="error_no_network_subtitle">Please check your internet connection and try again</string>
+    <string name="error_no_data_title">No Data Found</string>
+    <string name="error_no_data_subtitle">We couldn\\\'t find any places in this area. Try expanding your search radius or selecting a different category</string>
+    <string name="error_unknown_title">Something Went Wrong</string>
+    <string name="error_unknown_subtitle">An unexpected error occurred. Please try again later</string>
+</resources>

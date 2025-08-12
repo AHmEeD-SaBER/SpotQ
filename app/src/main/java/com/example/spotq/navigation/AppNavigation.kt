@@ -1,29 +1,21 @@
 package com.example.spotq.navigation
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.ui.PlacesScreen
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
-import com.example.spotq.ui.main.MainViewModel
+import com.example.ui.PlacesViewModel
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordScreen
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordViewModel
@@ -52,12 +44,14 @@ sealed class Screen {
     data object Signup : Screen()
 
     @Serializable
-    data object Main : Screen()
+    data object Places : Screen()
 
     @Serializable
     data object ForgotPassword : Screen()
+
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun AppNavigation(
     navController: NavHostController,
@@ -92,7 +86,7 @@ fun AppNavigation(
                     }
 
                     MainContract.Destination.MAIN -> {
-                        navController.navigate(Screen.Main) {
+                        navController.navigate(Screen.Places) {
                             popUpTo<Screen.Splash> { inclusive = true }
                         }
                     }
@@ -130,7 +124,7 @@ fun AppNavigation(
                     when (effect) {
                         is LoginContract.Effect.NavigateToMain -> {
                             onAuthComplete()
-                            navController.navigate(Screen.Main) {
+                            navController.navigate(Screen.Places) {
                                 popUpTo<Screen.Login> { inclusive = true }
                             }
                         }
@@ -220,7 +214,7 @@ fun AppNavigation(
                     when (effect) {
                         is SignupContract.Effect.NavigateToMain -> {
                             onAuthComplete()
-                            navController.navigate(Screen.Main) {
+                            navController.navigate(Screen.Places) {
                                 popUpTo<Screen.Signup> { inclusive = true }
                             }
                         }
@@ -249,25 +243,15 @@ fun AppNavigation(
             }
         }
 
-        composable<Screen.Main> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Welcome to SpotQ!",
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "Main Screen - Authentication Successful",
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-            }
+        composable<Screen.Places> {
+            val placesViewModel: PlacesViewModel = hiltViewModel()
+            val state by placesViewModel.uiState.collectAsState()
+
+            PlacesScreen(
+                state = state,
+                onEvent = placesViewModel::handleEvent
+            )
+
         }
     }
 }
