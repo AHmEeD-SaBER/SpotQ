@@ -4,6 +4,7 @@ object Modules {
     const val coreUi = ":core-ui"
     const val onboarding = ":onboarding"
     const val location_provider = ":location-provider"
+    const val coreData = ":core-data"
 
     // Authentication modules
     const val authentication = ":authentication"

@@ -64,6 +64,7 @@ dependencies {
     // Module dependencies
     implementation(project(Modules.splash))
     implementation(project(Modules.coreUi))
+    implementation(project(Modules.coreData))
     implementation(project(Modules.onboarding))
     implementation(project(Modules.location_provider))
 

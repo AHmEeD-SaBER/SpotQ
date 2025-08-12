@@ -1,9 +1,9 @@
-package com.spotq.authentication.data.di
+package com.example.core_data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.spotq.authentication.data.local.database.AuthDatabase
-import com.spotq.authentication.data.local.dao.UserDao
+import com.example.core_data.database.AppDataBase
+import com.example.core_data.database.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,13 +16,13 @@ import javax.inject.Singleton
 object DataBaseModule {
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext appContext: Context): AuthDatabase =
+    fun provideDatabase(@ApplicationContext appContext: Context): AppDataBase =
         Room.databaseBuilder(
             appContext,
-            AuthDatabase::class.java,
-            AuthDatabase.DATABASE_NAME
+            AppDataBase::class.java,
+            AppDataBase.DATABASE_NAME
         ).build()
 
     @Provides
-    fun provideUserDao(database: AuthDatabase): UserDao = database.userDao()
+    fun provideUserDao(database: AppDataBase): UserDao = database.userDao()
 }
