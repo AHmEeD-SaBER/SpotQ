@@ -72,5 +72,16 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
         }
     }
 
+    override suspend fun isEmailExists(email: String): Flow<Boolean> {
+        return kotlinx.coroutines.flow.flow {
+            try {
+                val userEntity = localDataSource.getUserByEmail(email).singleOrNull()
+                emit(userEntity != null)
+            } catch (e: Exception) {
+                emit(false)
+            }
+        }
+    }
+
 
 }

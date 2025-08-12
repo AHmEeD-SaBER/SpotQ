@@ -11,6 +11,7 @@ import com.spotq.authentication.ui.utils.ValidationUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.core_ui.R
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -43,9 +44,6 @@ class LoginViewModel @Inject constructor(
             }
             is LoginContract.Event.ClearErrors -> {
                 handleClearErrors()
-            }
-            is LoginContract.Event.ValidateForm -> {
-                handleValidateForm()
             }
         }
     }
@@ -106,9 +104,7 @@ class LoginViewModel @Inject constructor(
             } catch (e: Exception) {
                 setState { copy(isLoading = false) }
                 setEffect {
-                    LoginContract.Effect.ShowError(
-                        e.message ?: "An unexpected error occurred"
-                    )
+                    LoginContract.Effect.ShowError(R.string.unexpected_error)
                 }
             }
         }
@@ -121,15 +117,13 @@ class LoginViewModel @Inject constructor(
             }
             is AuthResult.Success -> {
                 setState { copy(isLoading = false) }
-                setEffect { LoginContract.Effect.ShowSuccess("Welcome back, ${result.data.user.name}!") }
+                setEffect { LoginContract.Effect.ShowSuccess(R.string.login_success) }
                 setEffect { LoginContract.Effect.NavigateToMain }
             }
             is AuthResult.Error -> {
                 setState { copy(isLoading = false) }
                 setEffect {
-                    LoginContract.Effect.ShowError(
-                        result.exception.message ?: "Login failed. Please try again."
-                    )
+                    LoginContract.Effect.ShowError(R.string.login_failed)
                 }
             }
         }
@@ -152,9 +146,6 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun handleValidateForm() {
-        validateFormAndShowErrors()
-    }
 
     private fun validateFormAndShowErrors(): Boolean {
         val currentState = uiState.value

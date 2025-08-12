@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -23,6 +24,9 @@ import androidx.navigation.compose.composable
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
 import com.example.spotq.ui.main.MainViewModel
+import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
+import com.spotq.authentication.ui.forgotpassword.ForgotPasswordScreen
+import com.spotq.authentication.ui.forgotpassword.ForgotPasswordViewModel
 import com.spotq.authentication.ui.login.LoginContract
 import com.spotq.authentication.ui.login.LoginScreen
 import com.spotq.authentication.ui.login.LoginViewModel
@@ -49,6 +53,9 @@ sealed class Screen {
 
     @Serializable
     data object Main : Screen()
+
+    @Serializable
+    data object ForgotPassword : Screen()
 }
 
 @Composable
@@ -91,7 +98,6 @@ fun AppNavigation(
                     }
 
                     else -> {
-                        // Stay on splash while loading/determining destination
                     }
                 }
             }
@@ -118,7 +124,6 @@ fun AppNavigation(
                 modifier = Modifier,
             )
 
-            // Handle login effects
             val context = LocalContext.current
             LaunchedEffect(loginViewModel) {
                 loginViewModel.effect.collect { effect ->
@@ -131,22 +136,70 @@ fun AppNavigation(
                         }
 
                         is LoginContract.Effect.NavigateToSignup -> {
-                            navController.navigate(Screen.Signup)
+                            navController.navigate(Screen.Signup) {
+                                popUpTo<Screen.Login> { inclusive = false }
+                            }
                         }
 
                         is LoginContract.Effect.NavigateToForgotPassword -> {
-                            // Handle forgot password navigation
+                            navController.navigate(Screen.ForgotPassword) {
+                                popUpTo<Screen.Login> { inclusive = false }
+                            }
                         }
 
                         is LoginContract.Effect.ShowError -> {
-                            Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                         is LoginContract.Effect.ShowSuccess -> {
-                            // Handle success message
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                         LoginContract.Effect.None -> TODO()
+                    }
+                }
+            }
+        }
+
+        composable<Screen.ForgotPassword> {
+            val forgotPasswordViewModel: ForgotPasswordViewModel = hiltViewModel()
+            val state by forgotPasswordViewModel.uiState.collectAsState()
+            ForgotPasswordScreen(
+                state = state,
+                onEvent = forgotPasswordViewModel::handleEvent
+            )
+            val context = LocalContext.current
+            LaunchedEffect(forgotPasswordViewModel) {
+                forgotPasswordViewModel.effect.collect { effect ->
+                    when (effect) {
+                        ForgotPasswordContract.Effect.NavigateToLogin -> {
+                            navController.navigate(Screen.Login)
+                        }
+
+                        ForgotPasswordContract.Effect.None -> TODO()
+                        is ForgotPasswordContract.Effect.ShowError -> {
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        is ForgotPasswordContract.Effect.ShowSuccess -> {
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
@@ -161,7 +214,6 @@ fun AppNavigation(
                 onEvent = signupViewModel::handleEvent
             )
 
-            // Handle signup effects
             val context = LocalContext.current
             LaunchedEffect(signupViewModel) {
                 signupViewModel.effect.collect { effect ->
@@ -178,11 +230,19 @@ fun AppNavigation(
                         }
 
                         is SignupContract.Effect.ShowError -> {
-                            Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                         is SignupContract.Effect.ShowSuccess -> {
-                            // Handle success message
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.messageRes),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
@@ -190,7 +250,6 @@ fun AppNavigation(
         }
 
         composable<Screen.Main> {
-            // Simple main screen placeholder - replace with your actual main screen
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center

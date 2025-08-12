@@ -9,4 +9,5 @@ import kotlinx.coroutines.flow.Flow
 interface IAuthRepository {
     suspend fun login(loginRequest: LoginRequest): Flow<AuthResult<AuthResponse>>
     suspend fun signUp(signUpRequest: SignUpRequest): Flow<AuthResult<AuthResponse>>
+    suspend fun isEmailExists(email: String): Flow<Boolean>
 }

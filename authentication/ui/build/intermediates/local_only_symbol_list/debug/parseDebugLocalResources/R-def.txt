@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+drawable forgot_password_res
 drawable google_logo
 drawable login_res
 drawable signup_res

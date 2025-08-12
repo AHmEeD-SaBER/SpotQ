@@ -22,7 +22,6 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
     val effect = _effect.receiveAsFlow()
 
 
-
     abstract fun handleEvent(event: Event)
 
 
@@ -35,6 +34,7 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
         val effectValue = builder()
         viewModelScope.launch { _effect.send(effectValue) }
     }
+
 
     private val currentState: State
         get() = uiState.value

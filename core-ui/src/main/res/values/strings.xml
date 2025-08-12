@@ -48,6 +48,7 @@
     <string name="label_location">Location</string>
     <string name="label_full_name">Full Name</string>
 
+
     <!-- Status Messages -->
     <string name="status_loading">Loading…</string>
     <string name="status_success">Success</string>
@@ -59,6 +60,16 @@
     <string name="status_connecting">Connecting…</string>
     <string name="status_completed">Completed</string>
     <string name="status_pending">Pending</string>
+    <string name="login_success">Welcome back!</string>
+    <string name="login_failed">Login failed. Please try again.</string>
+    <string name="signup_success">Account created successfully!</string>
+    <string name="signup_failed">Signup failed. Please try again.</string>
+    <string name="forgot_password_success">Password reset email sent successfully.</string>
+    <string name="forgot_password_email_not_exist">Email does not exist.</string>
+    <string name="forgot_password_invalid_form">Please fix the errors before submitting.</string>
+    <string name="unexpected_error">An unexpected error occurred</string>
+
+
 
     <!-- Error Messages -->
     <string name="error_generic">Something went wrong</string>
@@ -151,4 +162,6 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="hide_password">Hide password</string>
     <string name="show_password">Show password</string>
+    <string name="forget_password_subtitle">Please enter your email for sending password reset mail</string>
+    <string name="action_send">Send</string>
 </resources>
