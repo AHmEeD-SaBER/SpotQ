@@ -1,4 +1,5 @@
 com.spotq.authentication.ui
+drawable forgot_password_res
 drawable google_logo
 drawable login_res
 drawable signup_res

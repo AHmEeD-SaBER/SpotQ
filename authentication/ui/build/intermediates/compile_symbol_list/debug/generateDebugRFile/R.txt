@@ -1,3 +1,4 @@
+int drawable forgot_password_res 0x0
 int drawable google_logo 0x0
 int drawable login_res 0x0
 int drawable signup_res 0x0

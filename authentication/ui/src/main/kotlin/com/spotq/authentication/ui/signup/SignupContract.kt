@@ -25,13 +25,12 @@ class SignupContract {
         object SignupClicked : Event()
         object NavigateToLogin : Event()
         object ClearErrors : Event()
-        object ValidateForm : Event()
     }
 
     sealed class Effect : UiEffect {
         object NavigateToMain : Effect()
         object NavigateToLogin : Effect()
-        data class ShowError(val message: String) : Effect()
-        data class ShowSuccess(val message: String) : Effect()
+        data class ShowError(val messageRes: Int) : Effect()
+        data class ShowSuccess(val messageRes: Int) : Effect()
     }
 }

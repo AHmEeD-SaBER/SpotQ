@@ -24,7 +24,6 @@ class LoginContract {
         object NavigateToSignup : Event()
         object ForgotPasswordClicked : Event()
         object ClearErrors : Event()
-        object ValidateForm : Event()
     }
 
     // UI Effects
@@ -32,8 +31,8 @@ class LoginContract {
         object NavigateToMain : Effect()
         object NavigateToSignup : Effect()
         object NavigateToForgotPassword : Effect()
-        data class ShowError(val message: String) : Effect()
-        data class ShowSuccess(val message: String) : Effect()
+        data class ShowError(val messageRes: Int) : Effect()
+        data class ShowSuccess(val messageRes: Int) : Effect()
         data object None : Effect()
     }
 }

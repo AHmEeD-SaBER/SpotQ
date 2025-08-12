@@ -9,6 +9,7 @@ import com.spotq.authentication.ui.utils.ValidationUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.core_ui.R
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
@@ -49,7 +50,6 @@ class SignupViewModel @Inject constructor(
                 handleClearErrors()
             }
 
-            SignupContract.Event.ValidateForm -> handleValidateForm()
         }
     }
 
@@ -116,20 +116,15 @@ class SignupViewModel @Inject constructor(
                         is AuthResult.Loading -> {
                             setState { copy(isLoading = true) }
                         }
-
                         is AuthResult.Success -> {
                             setState { copy(isLoading = false) }
-
-                            setEffect { SignupContract.Effect.ShowSuccess("Account created successfully!") }
+                            setEffect { SignupContract.Effect.ShowSuccess(R.string.signup_success) }
                             setEffect { SignupContract.Effect.NavigateToMain }
                         }
-
                         is AuthResult.Error -> {
                             setState { copy(isLoading = false) }
                             setEffect {
-                                SignupContract.Effect.ShowError(
-                                    result.exception.message ?: "Signup failed. Please try again."
-                                )
+                                SignupContract.Effect.ShowError(R.string.signup_failed)
                             }
                         }
                     }
@@ -137,9 +132,7 @@ class SignupViewModel @Inject constructor(
             } catch (e: Exception) {
                 setState { copy(isLoading = false) }
                 setEffect {
-                    SignupContract.Effect.ShowError(
-                        e.message ?: "An unexpected error occurred"
-                    )
+                    SignupContract.Effect.ShowError(R.string.unexpected_error)
                 }
             }
         }
@@ -180,7 +173,4 @@ class SignupViewModel @Inject constructor(
                 passwordValidation.isValid
     }
 
-    private fun handleValidateForm() {
-        validateAndSetErrors()
-    }
 }
