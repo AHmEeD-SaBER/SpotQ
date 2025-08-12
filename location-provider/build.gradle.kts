@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 kotlin {
@@ -44,4 +45,8 @@ dependencies {
     implementation(Location.location)
     implementation(Coroutines.core)
     implementation(Coroutines.android)
+
+    // Dependency Injection - Hilt
+    implementation(Hilt.android)
+    ksp(Hilt.compiler)
 }

@@ -64,4 +64,5 @@ object Serialization {
 
 object Location {
     const val location = "com.google.android.gms:play-services-location:${Versions.location}"
+    const val permission = "com.google.accompanist:accompanist-permissions:${Versions.accompanistPermissions}"
 }

@@ -15,11 +15,11 @@ class MainViewModel @Inject constructor(
     override fun setInitialState(): MainContract.State {
         return MainContract.State()
     }
-    init {
-        viewModelScope.launch {
-            userPreferencesRepository.resetAllPreferences()
-        }
-    }
+//    init {
+//        viewModelScope.launch {
+//            userPreferencesRepository.resetAllPreferences()
+//        }
+//    }
 
     override fun handleEvent(event: MainContract.Event) {
         when (event) {

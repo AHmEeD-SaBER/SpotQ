@@ -1,4 +1,4 @@
-package com.yourpackage.location
+package com.example.location_provider
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -9,14 +9,15 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.CancellationTokenSource
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
+import javax.inject.Inject
 import kotlin.coroutines.resume
-import com.example.location_provider.R
 
-class LocationProvider(private val context: Context) {
+class LocationProvider @Inject constructor(@ApplicationContext private val context: Context) {
 
     private val fusedLocationClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(context)

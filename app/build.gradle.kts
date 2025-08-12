@@ -27,6 +27,9 @@ android {
             useSupportLibrary = true
         }
     }
+    buildFeatures {
+        compose = true
+    }
 
     buildTypes {
         release {
@@ -67,11 +70,17 @@ dependencies {
     implementation(project(Modules.coreData))
     implementation(project(Modules.onboarding))
     implementation(project(Modules.location_provider))
+    implementation(project(Modules.errors))
 
     // Authentication modules
     implementation(project(Modules.authenticationUi))
     implementation(project(Modules.authenticationDomain))
     implementation(project(Modules.authenticationData))
+
+    // Places modules
+    implementation(project(Modules.placesUi))
+    implementation(project(Modules.placesDomain))
+    implementation(project(Modules.placesData))
 
     // Core Android libraries
     implementation(Core.coreKtx)
@@ -100,17 +109,6 @@ dependencies {
     implementation(Hilt.android)
     ksp(Hilt.compiler)
 
-    // Room Database
-    implementation(Room.runtime)
-    implementation(Room.ktx)
-    ksp(Room.compiler)
-
-    // Network - Retrofit
-    implementation(Retrofit.core)
-    implementation(Retrofit.converterGson)
-
-    // Image Loading - Coil
-    implementation(Coil.compose)
 
     // Testing libraries
     testImplementation(Test.junit)
@@ -123,4 +121,6 @@ dependencies {
     // Debug libraries
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
+
+    implementation(Location.permission)
 }

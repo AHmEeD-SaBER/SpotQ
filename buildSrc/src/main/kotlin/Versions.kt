@@ -31,4 +31,5 @@ object Versions {
     const val materialIcons = "1.7.5"
     const val serialization = "1.9.0"
     const val location = "21.0.1"
+    const val accompanistPermissions = "0.34.0"
 }
