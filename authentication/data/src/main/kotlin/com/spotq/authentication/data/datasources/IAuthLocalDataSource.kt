@@ -1,6 +1,6 @@
 package com.spotq.authentication.data.datasources
 
-import com.spotq.authentication.data.models.UserEntity
+import com.example.core_data.database.UserEntity
 import kotlinx.coroutines.flow.Flow
 
 interface IAuthLocalDataSource {

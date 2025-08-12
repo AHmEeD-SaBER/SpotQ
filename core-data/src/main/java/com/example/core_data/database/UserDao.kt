@@ -1,10 +1,9 @@
-package com.spotq.authentication.data.local.dao
+package com.example.core_data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.spotq.authentication.data.models.UserEntity
 
 @Dao
 interface UserDao {

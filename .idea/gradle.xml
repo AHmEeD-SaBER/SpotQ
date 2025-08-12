@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/authentication/domain" />
             <option value="$PROJECT_DIR$/authentication/ui" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/core-data" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/location-provider" />
             <option value="$PROJECT_DIR$/onboarding" />

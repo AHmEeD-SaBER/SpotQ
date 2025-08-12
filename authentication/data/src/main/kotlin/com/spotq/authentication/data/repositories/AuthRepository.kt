@@ -1,7 +1,7 @@
 package com.spotq.authentication.data.repositories
 
 import com.spotq.authentication.data.datasources.IAuthLocalDataSource
-import com.spotq.authentication.data.models.UserEntity
+import com.example.core_data.database.UserEntity
 import com.spotq.authentication.domain.model.AuthResponse
 import com.spotq.authentication.domain.model.AuthResult
 import com.spotq.authentication.domain.model.LoginRequest
@@ -48,7 +48,7 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
                 val userEntity = localDataSource.getUserByEmail(signUpRequest.email).singleOrNull()
 
                 if (userEntity == null) {
-                    val newUserEntity = UserEntity(
+                    val newUserEntity = com.example.core_data.database.UserEntity(
                         name = signUpRequest.name,
                         email = signUpRequest.email,
                         password = signUpRequest.password

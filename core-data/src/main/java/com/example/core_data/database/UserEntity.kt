@@ -1,4 +1,4 @@
-package com.spotq.authentication.data.models
+package com.example.core_data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

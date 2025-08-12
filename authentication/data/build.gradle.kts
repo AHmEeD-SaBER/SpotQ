@@ -35,7 +35,8 @@ android {
 
 dependencies {
     // Domain module dependency
-    implementation(project(":authentication:domain"))
+    implementation(project(Modules.authenticationDomain))
+    implementation(project(Modules.coreData))
 
     // Core dependencies
     implementation(Core.coreKtx)

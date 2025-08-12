@@ -1,9 +1,8 @@
 package com.spotq.authentication.data.datasources
 
-import com.spotq.authentication.data.local.dao.UserDao
-import com.spotq.authentication.data.models.UserEntity
+import com.example.core_data.database.UserDao
+import com.example.core_data.database.UserEntity
 import kotlinx.coroutines.flow.Flow
-import java.util.UUID
 import javax.inject.Inject
 
 class AuthLocalDataSource @Inject constructor(
