@@ -24,7 +24,7 @@ object Constants {
     object ApiConfig {
         const val API_KEY = "5ae2e3f221c38a28845f05b6be254ba34e94ac2508766822355eaca7"
         const val DEFAULT_FORMAT = "json"
-        const val DEFAULT_RADIUS = 1000000
+        const val DEFAULT_RADIUS = 100000000
         const val DEFAULT_LIMIT = 100
         const val DEFAULT_LATITUDE = 0.0
         const val DEFAULT_LONGITUDE = 0.0

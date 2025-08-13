@@ -28,7 +28,7 @@ fun DistanceContainer(
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         icon()
         Text(
-            text = distance,
+            text = "${distance} km",
             modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_xs)),
             style = style
         )
