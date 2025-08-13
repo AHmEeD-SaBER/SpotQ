@@ -4,19 +4,21 @@ import android.Manifest
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.core_ui.components.CustomAppBar
+import com.example.core_ui.theme.AppTypography
+import com.example.core_ui.theme.SpotQTheme
 import com.example.domain.dto.PlaceDto
+import com.example.ui.components.PlacesScreenContent
+import com.example.core_ui.R.string as coreUiString
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlacesScreen(
     state: PlacesContract.State,
@@ -43,7 +45,7 @@ fun PlacesScreen(
     }
 
     LaunchedEffect(state.hasPermission) {
-        if (!state.hasPermission && state.error == com.example.location_provider.R.string.location_permission_denied) {
+        if (!state.hasPermission && !state.isLoadingLocation) {
             permissionLauncher.launch(
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -56,27 +58,38 @@ fun PlacesScreen(
     Scaffold(
         topBar = {
             state.locationName?.let { locationName ->
-                TopAppBar(
+                CustomAppBar(
                     title = {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.LocationOn,
-                                contentDescription = "Location",
-                                tint = MaterialTheme.colorScheme.onSurface
+                        Column {
+                            Text(
+                                text = "Your Location",
+                                style = AppTypography.bt8
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = locationName,
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Medium
+                                style = AppTypography.bt3
                             )
                         }
-                    }
-                )
+                    },
+                    actions = {
+                        IconButton(onClick = { }) {
+                            Icon(
+                                painter = painterResource(R.drawable.settings_icon),
+                                contentDescription = stringResource(coreUiString.cd_settings)
+                            )
+                        }
+                    },
+                    showSearchBar = true
+                ) {
+                    com.example.ui.components.SearchBar(
+                        modifier = Modifier,
+                        value = "",
+                        onSearch = {
+                        }
+                    )
+                }
             }
+
         }
     ) { padding ->
         Box(
@@ -91,35 +104,42 @@ fun PlacesScreen(
                         CircularProgressIndicator()
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = if (state.isLoadingLocation) "Getting your location..." else "Loading places...",
-                            style = MaterialTheme.typography.bodyMedium
+                            text = if (state.isLoadingLocation) stringResource(coreUiString.cd_loading_location) else stringResource(
+                                coreUiString.cd_loading_places
+                            ),
+                            style = AppTypography.bt4
                         )
                     }
                 }
+
                 state.error != null && !state.hasPermission -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Location permission required")
+                        Text(text = stringResource(state.error))
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(onClick = { onEvent(PlacesContract.Events.CheckPermissions) }) {
-                            Text("Grant Permission")
+                            Text(
+                                stringResource(coreUiString.cd_grant_permission),
+                                style = AppTypography.bt4
+                            )
                         }
                     }
                 }
+
                 state.error != null -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Error: ${state.error}")
+                        Text(text = stringResource(state.error))
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(onClick = { onEvent(PlacesContract.Events.Retry) }) {
                             Text("Retry")
                         }
                     }
                 }
+
                 else -> {
-                    PlacesList(
-                        places = state.places,
-                        onPlaceClick = { place ->
-                            onEvent(PlacesContract.Events.PlaceClicked(place))
-                        }
+                    PlacesScreenContent(
+                        modifier = Modifier.fillMaxSize(),
+                        state = state,
+                        onEvent = onEvent
                     )
                 }
             }
@@ -127,36 +147,41 @@ fun PlacesScreen(
     }
 }
 
+@Preview
 @Composable
-fun PlacesList(
-    places: List<PlaceDto>,
-    onPlaceClick: (PlaceDto) -> Unit
-) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp)
-    ) {
-        items(places) { place ->
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                onClick = { onPlaceClick(place) }
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        text = place.name ?: "Unknown Place",
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    place.kinds?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                }
-            }
-        }
+fun PlacesScreenPreview() {
+    val samplePlaces = listOf(
+        PlaceDto(
+            xid = "1", name = "Central Park", kinds = "Park",
+            latitude = 1.0,
+            longitude = 1.0,
+            rate = 3,
+        ),
+        PlaceDto(
+            xid = "2", name = "Statue of Liberty", kinds = "Monument",
+            latitude = 2.0,
+            longitude = 2.0,
+            rate = 4
+        ),
+        PlaceDto(
+            xid = "3", name = "Empire State Building", kinds = "Building",
+            latitude = 3.0,
+            longitude = 3.0,
+            rate = 5
+        )
+    )
+
+    SpotQTheme {
+        PlacesScreen(
+            state = PlacesContract.State(
+                isLoading = false,
+                isLoadingLocation = false,
+                hasPermission = true,
+                error = null,
+                locationName = "New York",
+                places = samplePlaces
+            ),
+            onEvent = {}
+        )
     }
 }

@@ -14,4 +14,6 @@ interface IPlacesRemoteDataSource {
     suspend fun getPlaceDetails(
         xid: String
     ): Flow<com.example.core_data.network.models.place_details.PlaceDetailsResponse>
+
+
 }

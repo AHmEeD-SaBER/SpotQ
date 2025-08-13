@@ -7,7 +7,7 @@ object Versions {
     const val espressoCore = "3.7.0"
     const val lifecycleRuntimeKtx = "2.9.2"
     const val activityCompose = "1.10.1"
-    const val composeBom = "2024.09.00"
+    const val composeBom = "2025.07.00"
 
     // Android SDK versions
     const val compileSdk = 36

@@ -104,16 +104,27 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
             return@suspendCancellableCoroutine
         }
 
-        try {
-            val cancellationTokenSource = CancellationTokenSource()
+        val cancellationTokenSource = CancellationTokenSource()
 
+        try {
             fusedLocationClient.getCurrentLocation(priority, cancellationTokenSource.token)
                 .addOnSuccessListener { location ->
-                    location?.let {
-                        continuation.resume(
-                            LocationResult.Success(location.toLocationData())
-                        )
-                    } ?: continuation.resume(LocationResult.LocationDisabled)
+                    if (location != null) {
+                        continuation.resume(LocationResult.Success(location.toLocationData()))
+                    } else {
+                        // Fallback to last known location
+                        fusedLocationClient.lastLocation
+                            .addOnSuccessListener { lastLocation ->
+                                if (lastLocation != null) {
+                                    continuation.resume(LocationResult.Success(lastLocation.toLocationData()))
+                                } else {
+                                    continuation.resume(LocationResult.LocationDisabled)
+                                }
+                            }
+                            .addOnFailureListener {
+                                continuation.resume(LocationResult.Error(R.string.location_error))
+                            }
+                    }
                 }
                 .addOnFailureListener {
                     continuation.resume(LocationResult.Error(R.string.location_error))
@@ -126,6 +137,7 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
             continuation.resume(LocationResult.Error(R.string.location_permission_denied))
         }
     }
+
 
     /**
      * Get continuous location updates

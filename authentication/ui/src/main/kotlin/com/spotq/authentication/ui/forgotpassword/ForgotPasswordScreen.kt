@@ -16,7 +16,7 @@ import com.example.core_ui.components.PageLayout
 import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.utils.Constants
 import com.spotq.authentication.ui.R
-import com.spotq.authentication.ui.components.CustomTextField
+import com.example.core_ui.components.CustomTextField
 import com.spotq.authentication.ui.components.PageHeader
 import com.example.core_ui.R as CoreUiR
 

@@ -15,10 +15,10 @@
     <dimen name="button_height_large">56dp</dimen>
     <dimen name="button_height_medium">48dp</dimen>
     <dimen name="button_height_small">32dp</dimen>
-    <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="card_corner_radius_large">16dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_elevation_large">8dp</dimen>
+    <dimen name="card_horizontal_corner_radius">20dp</dimen>
     <dimen name="compat_button_inset_horizontal_material">4dp</dimen>
     <dimen name="compat_button_inset_vertical_material">6dp</dimen>
     <dimen name="compat_button_padding_horizontal_material">8dp</dimen>
@@ -30,6 +30,9 @@
     <dimen name="divider_height_thick">2dp</dimen>
     <dimen name="dotted_indicator_height">12dp</dimen>
     <dimen name="dotted_indicator_width">12dp</dimen>
+    <dimen name="horizontal_card_height">277dp</dimen>
+    <dimen name="horizontal_card_image_height">195dp</dimen>
+    <dimen name="horizontal_card_width">240dp</dimen>
     <dimen name="icon_size_lg">48dp</dimen>
     <dimen name="icon_size_md">32dp</dimen>
     <dimen name="icon_size_sm">24dp</dimen>
@@ -73,6 +76,7 @@
     <dimen name="padding_xl">32dp</dimen>
     <dimen name="padding_xs">4dp</dimen>
     <dimen name="padding_xxl">48dp</dimen>
+    <dimen name="padding_xxs">1dp</dimen>
     <dimen name="padding_xxxl">64dp</dimen>
     <dimen name="progress_indicator_size">24dp</dimen>
     <dimen name="progress_indicator_size_large">48dp</dimen>
@@ -86,7 +90,8 @@
     <dimen name="spacing_xxl">48dp</dimen>
     <dimen name="splash_logo_offset">15dp</dimen>
     <dimen name="surface_corner_radius">45dp</dimen>
-    <dimen name="text_field_corner_radius">35dp</dimen>
+    <dimen name="tag_corner_radius">6dp</dimen>
+    <dimen name="text_field_corner_radius">20dp</dimen>
     <dimen name="text_field_height">45dp</dimen>
     <dimen name="text_size_headline">45sp</dimen>
     <dimen name="text_size_lg">18sp</dimen>
@@ -131,6 +136,7 @@
     <item name="accessibility_custom_action_8" type="id"/>
     <item name="accessibility_custom_action_9" type="id"/>
     <item name="androidx_compose_ui_view_composition_context" type="id"/>
+    <item name="coil_request_manager" type="id"/>
     <item name="compose_view_saveable_id_tag" type="id"/>
     <item name="consume_window_insets_tag" type="id"/>
     <item name="fragment_container_view_tag" type="id"/>
@@ -193,6 +199,7 @@
     <string name="action_save">Save</string>
     <string name="action_search">Search</string>
     <string name="action_select_all">Select All</string>
+    <string name="action_send">Send</string>
     <string name="action_share">Share</string>
     <string name="action_signup">Sign Up</string>
     <string name="action_skip">Skip</string>
@@ -202,6 +209,7 @@
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">SpotQ</string>
     <string name="app_version">1.0.0</string>
+    <string name="autofill">Autofill</string>
     <string name="brand_q">Q</string>
     <string name="brand_spot">Spot</string>
     <string name="call_notification_answer_action">Answer</string>
@@ -213,7 +221,10 @@
     <string name="call_notification_screening_text">Screening an incoming call</string>
     <string name="cd_back">Go back</string>
     <string name="cd_close">Close</string>
+    <string name="cd_grant_permission">Grant Permission</string>
     <string name="cd_loading">Loading indicator</string>
+    <string name="cd_loading_location">Getting your location...</string>
+    <string name="cd_loading_places">Loading places...</string>
     <string name="cd_logo">App logo</string>
     <string name="cd_menu">Menu</string>
     <string name="cd_more_options">More options</string>
@@ -242,6 +253,10 @@
     <string name="error_server">Server error. Please try again later.</string>
     <string name="error_timeout">Request timeout. Please try again.</string>
     <string name="forget_password">Forgot Password</string>
+    <string name="forget_password_subtitle">Please enter your email for sending password reset mail</string>
+    <string name="forgot_password_email_not_exist">Email does not exist.</string>
+    <string name="forgot_password_invalid_form">Please fix the errors before submitting.</string>
+    <string name="forgot_password_success">Password reset email sent successfully.</string>
     <string name="hide_password">Hide password</string>
     <string name="image_content_description">Image</string>
     <string name="in_progress">In progress</string>
@@ -258,7 +273,10 @@
     <string name="label_time">Time</string>
     <string name="label_title">Title</string>
     <string name="label_username">Username</string>
+    <string name="location_permission_denied">Location permissions are required to show places.</string>
+    <string name="login_failed">Login failed. Please try again.</string>
     <string name="login_subtitle">Please enter a valid account</string>
+    <string name="login_success">Welcome back!</string>
     <string name="login_title">Login</string>
     <string name="login_with_google">Login With Google</string>
     <string name="login_with_x">Login With X</string>
@@ -306,10 +324,15 @@
     <string name="m3c_dropdown_menu_collapsed">Collapsed</string>
     <string name="m3c_dropdown_menu_expanded">Expanded</string>
     <string name="m3c_dropdown_menu_toggle">Toggle dropdown menu</string>
+    <string name="m3c_floating_toolbar_collapse">Collapse toolbar</string>
+    <string name="m3c_floating_toolbar_expand">Expand toolbar</string>
     <string name="m3c_search_bar_search">Search</string>
     <string name="m3c_snackbar_dismiss">Dismiss</string>
+    <string name="m3c_snackbar_pane_title">Alert</string>
     <string name="m3c_suggestions_available">Suggestions below</string>
+    <string name="m3c_time_input_dialog_title">Enter Time</string>
     <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_dialog_title">Select Time</string>
     <string name="m3c_time_picker_hour">Hour</string>
     <string name="m3c_time_picker_hour_24h_suffix">%1$d hours</string>
     <string name="m3c_time_picker_hour_selection">Select hour</string>
@@ -321,8 +344,13 @@
     <string name="m3c_time_picker_minute_text_field">for minutes</string>
     <string name="m3c_time_picker_period_toggle_description">Select AM or PM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_toggle_keyboard">Switch to text input mode for the time input</string>
+    <string name="m3c_time_picker_toggle_touch">Switch to clock mode for the time input</string>
     <string name="m3c_tooltip_long_press_label">Show tooltip</string>
     <string name="m3c_tooltip_pane_description">Tooltip</string>
+    <string name="m3c_wide_navigation_rail_close_rail">"Close rail"</string>
+    <string name="m3c_wide_navigation_rail_pane_title">"Navigation rail"</string>
+    <string name="mc2_snackbar_pane_title">Alert</string>
     <string name="nav_about">About</string>
     <string name="nav_help">Help</string>
     <string name="nav_home">Home</string>
@@ -339,15 +367,20 @@
     <string name="placeholder_password">••••••••</string>
     <string name="placeholder_search">Search…</string>
     <string name="placeholder_select_option">Select an option</string>
+    <string name="popular_nearby">Popular Nearby</string>
     <string name="range_end">"Range end"</string>
     <string name="range_start">"Range start"</string>
+    <string name="see_all">See all</string>
     <string name="selected">Selected</string>
     <string name="show_password">Show password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="signup_failed">Signup failed. Please try again.</string>
     <string name="signup_subtitle">Create an account, it’s free</string>
+    <string name="signup_success">Account created successfully!</string>
     <string name="signup_title">Sign Up</string>
     <string name="signup_with_google">Sign up with Google</string>
     <string name="signup_with_x">Sign up with X</string>
+    <string name="snackbar_pane_title">Alert</string>
     <string name="splash_welcome">Welcome to SpotQ</string>
     <string name="state_empty">Empty</string>
     <string name="state_off">Off</string>
@@ -378,6 +411,7 @@
     <string name="time_yesterday">Yesterday</string>
     <string name="tooltip_description">tooltip</string>
     <string name="tooltip_label">show tooltip</string>
+    <string name="unexpected_error">An unexpected error occurred</string>
     <string name="unit_days">days</string>
     <string name="unit_hours">hours</string>
     <string name="unit_minutes">minutes</string>
@@ -389,6 +423,7 @@
         <item name="android:windowClipToOutline">false</item>
     </style>
     <style name="EdgeToEdgeFloatingDialogTheme" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowLayoutInDisplayCutoutMode" ns1:targetApi="27">@integer/m3c_window_layout_in_display_cutout_mode</item>
         <item name="android:windowClipToOutline">false</item>
         <item name="android:windowIsFloating">false</item>
@@ -407,6 +442,7 @@
     <style name="FloatingDialogWindowTheme">
         <item name="android:windowClipToOutline">false</item>
         <item name="android:dialogTheme">@style/FloatingDialogTheme</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>
     <style name="TextAppearance.Compat.Notification.Info">
@@ -441,6 +477,38 @@
         <attr format="string" name="data"/>
         <attr format="string" name="dataPattern"/>
         <attr format="string" name="targetPackage"/>
+    </declare-styleable>
+    <declare-styleable name="AnimatedStateListDrawableCompat">
+        
+        <attr name="android:visible"/>
+        
+        <attr name="android:variablePadding"/>
+        
+        <attr name="android:constantSize"/>
+        
+        <attr name="android:dither"/>
+        
+        <attr name="android:enterFadeDuration"/>
+        
+        <attr name="android:exitFadeDuration"/>
+        
+        
+    </declare-styleable>
+    <declare-styleable name="AnimatedStateListDrawableItem">
+        
+        <attr name="android:drawable"/>
+        
+        <attr name="android:id"/>
+    </declare-styleable>
+    <declare-styleable name="AnimatedStateListDrawableTransition">
+        
+        <attr name="android:fromId"/>
+        
+        <attr name="android:toId"/>
+        
+        <attr name="android:drawable"/>
+        
+        <attr name="android:reversible"/>
     </declare-styleable>
     <declare-styleable name="Capability">
         
@@ -600,5 +668,25 @@
         <attr name="android:id"/>
         <attr format="string" name="route"/>
         <attr name="android:label"/>
+    </declare-styleable>
+    <declare-styleable name="StateListDrawable">
+        
+        <attr name="android:visible"/>
+        
+        <attr name="android:variablePadding"/>
+        
+        <attr name="android:constantSize"/>
+        
+        <attr name="android:dither"/>
+        
+        <attr name="android:enterFadeDuration"/>
+        
+        <attr name="android:exitFadeDuration"/>
+        
+        
+    </declare-styleable>
+    <declare-styleable name="StateListDrawableItem">
+        
+        <attr name="android:drawable"/>
     </declare-styleable>
 </resources>

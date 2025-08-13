@@ -108,6 +108,9 @@
     <string name="cd_back">Go back</string>
     <string name="cd_more_options">More options</string>
     <string name="cd_loading">Loading indicator</string>
+    <string name="cd_loading_location">Getting your location...</string>
+    <string name="cd_loading_places">Loading places...</string>
+    <string name="cd_grant_permission">Grant Permission</string>
 
     <!-- Units and Formats -->
     <string name="unit_seconds">seconds</string>
@@ -165,4 +168,6 @@
     <string name="show_password">Show password</string>
     <string name="forget_password_subtitle">Please enter your email for sending password reset mail</string>
     <string name="action_send">Send</string>
+    <string name="popular_nearby">Popular Nearby</string>
+    <string name="see_all">See all</string>
 </resources>

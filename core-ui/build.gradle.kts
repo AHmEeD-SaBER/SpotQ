@@ -61,6 +61,8 @@ dependencies {
     implementation(Compose.uiToolingPreview)
     implementation(Compose.material3)
 
+    implementation(Coil.compose)
+
     // Debug dependencies for Compose tooling
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)

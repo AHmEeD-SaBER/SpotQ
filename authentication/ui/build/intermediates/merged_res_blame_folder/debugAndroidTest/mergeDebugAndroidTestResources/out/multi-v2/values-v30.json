@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.spotq.authentication.ui.test.ui-mergeDebugAndroidTestResources-60:/values-v30/values-v30.xml",
+            "outputFile": "com.spotq.authentication.ui.test.ui-mergeDebugAndroidTestResources-63:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\4b8529482aa029a4e4d66900e9f02978\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\8.13\\transforms\\071b5ae8a87d8542387c2672ce73dd01\\transformed\\material3\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

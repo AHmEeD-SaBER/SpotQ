@@ -8,19 +8,20 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.core_ui.components.CustomBottomSurface
 import com.example.core_ui.components.CustomButton
 import com.example.core_ui.components.PageLayout
@@ -28,7 +29,7 @@ import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.utils.Constants
 import com.spotq.authentication.ui.R
 import com.spotq.authentication.ui.components.CustomIconButton
-import com.spotq.authentication.ui.components.CustomTextField
+import com.example.core_ui.components.CustomTextField
 import com.spotq.authentication.ui.components.DontOrHaveAccount
 import com.spotq.authentication.ui.components.PageHeader
 import com.spotq.authentication.ui.components.Separator
@@ -50,11 +51,14 @@ fun LoginScreen(
                 .fillMaxWidth()
                 .fillMaxHeight(Constants.AUTH_BOTTOM_SURFACE_HEIGHT),
         ) {
+            val scrollState = rememberScrollState()
             Column(
-                modifier = Modifier.padding(
-                    horizontal = dimensionResource(CoreUiR.dimen.padding_xl),
-                    vertical = dimensionResource(CoreUiR.dimen.padding_xxl)
-                )
+                modifier = Modifier
+                    .padding(
+                        horizontal = dimensionResource(CoreUiR.dimen.padding_xl),
+                        vertical = dimensionResource(CoreUiR.dimen.padding_xxl)
+                    )
+                    .verticalScroll(scrollState)
             ) {
                 PageHeader(
                     title = stringResource(CoreUiR.string.login_title),
@@ -70,7 +74,7 @@ fun LoginScreen(
                     placeholder = stringResource(CoreUiR.string.placeholder_email),
                     onValueChange = { onEvent(LoginContract.Event.EmailChanged(it)) },
                     isError = state.emailError != null,
-                    errorMessage = state.emailError
+                    errorMessage = state.emailError,
                 )
 
                 Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm)))
@@ -152,6 +156,7 @@ fun LoginScreen(
                     trailing = stringResource(CoreUiR.string.sign_up),
                     onClick = { onEvent(LoginContract.Event.NavigateToSignup) },
                 )
+                Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_md)))
             }
         }
     }

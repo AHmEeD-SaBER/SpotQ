@@ -1,6 +1,7 @@
 package com.example.core_ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -28,7 +29,7 @@ fun CustomButton(
     Button(
         onClick = onClick,
         enabled = enabled && !isLoading,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().height(dimensionResource(R.dimen.button_height_large)),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.tertiary,
             contentColor = MaterialTheme.colorScheme.onTertiary,
@@ -38,7 +39,6 @@ fun CustomButton(
     ) {
         if (!isLoading)
             Text(
-                modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_sm)),
                 text = text,
                 color = MaterialTheme.colorScheme.surface,
                 style = AppTypography.bt4.copy(fontWeight = FontWeight.Bold, fontSize = 14.sp),
