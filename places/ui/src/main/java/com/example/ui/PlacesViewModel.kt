@@ -56,10 +56,8 @@ class PlacesViewModel @Inject constructor(
         setState { copy(hasPermission = hasPermission) }
 
         if (hasPermission) {
-            // If permission is granted, load places
             handleLoadPlaces()
         } else {
-            // If no permission, trigger permission request
             setEffect { PlacesContract.Effects.RequestLocationPermission }
         }
     }
@@ -103,14 +101,6 @@ class PlacesViewModel @Inject constructor(
             // Add city/locality
             address.locality?.let { append(it) }
 
-            // Add admin area (state/province) if different from locality
-            address.adminArea?.let { adminArea ->
-                if (address.locality != adminArea) {
-                    if (isNotEmpty()) append(", ")
-                    append(adminArea)
-                }
-            }
-
             // Add country
             address.countryName?.let { country ->
                 if (isNotEmpty()) append(", ")
@@ -135,7 +125,6 @@ class PlacesViewModel @Inject constructor(
                 is LocationProvider.LocationResult.Success -> {
                     val location = locationResult.location
 
-                    // Get location name
                     val locationName = getLocationName(location.latitude, location.longitude)
 
                     setState {

@@ -66,12 +66,11 @@ class PlacesRepository @Inject constructor(
             }
         }
 
-        val sortedPlaces = placesWithDetails.sortedBy { it.distance }
-        Log.d("PlacesRepository", "Sorted places: $sortedPlaces")
-        if (sortedPlaces.isEmpty()) {
+        Log.d("PlacesRepository", "Sorted places: $placesWithDetails")
+        if (placesWithDetails.isEmpty()) {
             emit(Result.failure(CustomError.NoData()))
         } else {
-            emit(Result.success(sortedPlaces))
+            emit(Result.success(placesWithDetails))
         }
     }.catch { e ->
         emit(Result.failure(e))

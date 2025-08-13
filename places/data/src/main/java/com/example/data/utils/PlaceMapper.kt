@@ -13,7 +13,6 @@ object PlaceMapper {
         userLatitude: Double,
         userLongitude: Double
     ): PlaceDto {
-        val categories = place.kinds?.split(",")?.map { it.trim() } ?: emptyList()
         val placeLat = place.point?.lat ?: 0.0
         val placeLon = place.point?.lon ?: 0.0
 
@@ -23,6 +22,13 @@ object PlaceMapper {
             placeLat = placeLat,
             placeLon = placeLon
         )
+        val categories = place.kinds
+            ?.split(",")
+            ?.map { it.trim() }
+            ?: emptyList()
+
+        val firstKind = categories.firstOrNull() ?: "Unknown"
+
 
         return PlaceDto(
             xid = place.xid ?: "",
@@ -30,9 +36,10 @@ object PlaceMapper {
             latitude = placeLat,
             longitude = placeLon,
             rate = place.rate ?: 0,
-            kinds = place.kinds ?: "",
+            kinds = firstKind,
 
-            imageUrl = placeDetails?.preview?.source,
+            imageUrl = placeDetails?.preview?.source?.takeIf { isDirectImageUrl(it) },
+
             description = placeDetails?.wikipediaExtracts?.text,
             fullAddress = placeDetails?.address?.let { buildFullAddress(it) },
             shortAddress = placeDetails?.address?.let { buildShortAddress(it) },
@@ -67,4 +74,12 @@ object PlaceMapper {
         )
         return parts.joinToString(", ")
     }
+
+    private fun isDirectImageUrl(url: String?): Boolean {
+        if (url.isNullOrBlank()) return false
+        val lower = url.lowercase()
+        return (lower.contains("upload.wikimedia.org") ||
+                lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".png"))
+    }
+
 }

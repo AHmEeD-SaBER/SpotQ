@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -25,7 +27,7 @@ import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.utils.Constants
 import com.spotq.authentication.ui.R
 import com.spotq.authentication.ui.components.CustomIconButton
-import com.spotq.authentication.ui.components.CustomTextField
+import com.example.core_ui.components.CustomTextField
 import com.spotq.authentication.ui.components.DontOrHaveAccount
 import com.spotq.authentication.ui.components.PageHeader
 import com.spotq.authentication.ui.components.Separator
@@ -46,11 +48,14 @@ fun SignupScreen(
                     .fillMaxWidth()
                     .fillMaxHeight(Constants.AUTH_BOTTOM_SURFACE_HEIGHT)
             ) {
+                val scrollState = rememberScrollState()
                 Column(
                     modifier = Modifier.padding(
                         horizontal = dimensionResource(CoreUiR.dimen.padding_xl),
                         vertical = dimensionResource(CoreUiR.dimen.padding_xxl)
+
                     )
+                        .verticalScroll(scrollState)
                 ) {
                     PageHeader(
                         title = stringResource(CoreUiR.string.signup_title),
@@ -108,12 +113,12 @@ fun SignupScreen(
                         onClick = { onEvent(SignupContract.Event.SignupClicked) },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = dimensionResource(CoreUiR.dimen.padding_xl)),
+                            .padding(top = dimensionResource(CoreUiR.dimen.padding_lg)),
                         isLoading = state.isLoading,
                         enabled = state.isFormValid && !state.isLoading
                     )
                     Spacer(
-                        modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_sm))
+                        modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_xs))
                     )
 
                     Separator()
@@ -142,6 +147,7 @@ fun SignupScreen(
                         trailing = stringResource(CoreUiR.string.login_title),
                         onClick = { onEvent(SignupContract.Event.NavigateToLogin) },
                     )
+                    Spacer(modifier = Modifier.padding(vertical = dimensionResource(CoreUiR.dimen.padding_md)))
                 }
             }
         }

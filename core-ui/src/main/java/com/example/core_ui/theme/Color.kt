@@ -13,3 +13,4 @@ val BackgroundDark = Color(0xFF000000)
 // Button colors
 val ButtonLight = Black
 val ButtonDark = Turquoise
+val Yellow = Color(0xFFEFD700)

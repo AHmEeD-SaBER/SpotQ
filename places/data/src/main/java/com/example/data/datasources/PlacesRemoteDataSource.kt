@@ -6,7 +6,9 @@ import com.example.core_data.network.models.places.PlacesResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class PlacesRemoteDataSource @Inject constructor(private val api: PlacesApi) :
+class PlacesRemoteDataSource @Inject constructor(
+    private val placesApi: PlacesApi,
+) :
     IPlacesRemoteDataSource {
     override suspend fun getPlaces(
         latitude: Double,
@@ -16,7 +18,7 @@ class PlacesRemoteDataSource @Inject constructor(private val api: PlacesApi) :
         limit: Int?,
     ): Flow<PlacesResponse> {
         return kotlinx.coroutines.flow.flow {
-            val response = api.getPlaces(
+            val response = placesApi.getPlaces(
                 latitude = latitude,
                 longitude = longitude,
                 kinds = kinds,
@@ -29,9 +31,10 @@ class PlacesRemoteDataSource @Inject constructor(private val api: PlacesApi) :
 
     override suspend fun getPlaceDetails(xid: String): Flow<PlaceDetailsResponse> {
         return kotlinx.coroutines.flow.flow {
-            val response = api.getPlaceDetails(xid = xid)
+            val response = placesApi.getPlaceDetails(xid = xid)
             emit(response)
         }
     }
+
 
 }

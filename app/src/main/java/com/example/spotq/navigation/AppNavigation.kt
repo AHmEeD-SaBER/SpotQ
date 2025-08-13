@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import com.example.ui.PlacesScreen
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
+import com.example.ui.PlacesContract
 import com.example.ui.PlacesViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
@@ -51,7 +52,6 @@ sealed class Screen {
 
 }
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun AppNavigation(
     navController: NavHostController,
@@ -251,6 +251,25 @@ fun AppNavigation(
                 state = state,
                 onEvent = placesViewModel::handleEvent
             )
+            val context = LocalContext.current
+
+            LaunchedEffect(placesViewModel) {
+                placesViewModel.effect.collect { effect ->
+                    when (effect) {
+                        is PlacesContract.Effects.NavigateToPlaceDetails -> {}
+                        is PlacesContract.Effects.RequestLocationPermission -> { // handled at the screen
+                        }
+
+                        is PlacesContract.Effects.ShowError -> {
+                            Toast.makeText(
+                                context,
+                                context.getString(effect.title) + " " + context.getString(effect.subtitle),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
 
         }
     }

@@ -30,7 +30,7 @@ object Compose {
     const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
     const val uiTestManifest = "androidx.compose.ui:ui-test-manifest"
     const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4"
-    const val material3 = "androidx.compose.material3:material3"
+    const val material3 = "androidx.compose.material3:material3:1.4.0-alpha18"
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.materialIcons}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
 }

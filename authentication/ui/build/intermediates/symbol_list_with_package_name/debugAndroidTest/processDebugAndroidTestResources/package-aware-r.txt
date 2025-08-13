@@ -62,10 +62,10 @@ dimen button_corner_radius_large
 dimen button_height_large
 dimen button_height_medium
 dimen button_height_small
-dimen card_corner_radius
 dimen card_corner_radius_large
 dimen card_elevation
 dimen card_elevation_large
+dimen card_horizontal_corner_radius
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -77,6 +77,9 @@ dimen divider_height
 dimen divider_height_thick
 dimen dotted_indicator_height
 dimen dotted_indicator_width
+dimen horizontal_card_height
+dimen horizontal_card_image_height
+dimen horizontal_card_width
 dimen icon_size_lg
 dimen icon_size_md
 dimen icon_size_sm
@@ -120,6 +123,7 @@ dimen padding_sm
 dimen padding_xl
 dimen padding_xs
 dimen padding_xxl
+dimen padding_xxs
 dimen padding_xxxl
 dimen progress_indicator_size
 dimen progress_indicator_size_large
@@ -133,6 +137,7 @@ dimen spacing_xs
 dimen spacing_xxl
 dimen splash_logo_offset
 dimen surface_corner_radius
+dimen tag_corner_radius
 dimen text_field_corner_radius
 dimen text_field_height
 dimen text_size_headline
@@ -142,6 +147,8 @@ dimen text_size_sm
 dimen text_size_xl
 dimen text_size_xs
 dimen text_size_xxl
+drawable abc_vector_test
+drawable forgot_password_res
 drawable google_logo
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -212,6 +219,7 @@ id androidx_compose_ui_view_composition_context
 id async
 id blocking
 id chronometer
+id coil_request_manager
 id compose_view_saveable_id_tag
 id consume_window_insets_tag
 id dialog_button
@@ -298,6 +306,7 @@ string action_retry
 string action_save
 string action_search
 string action_select_all
+string action_send
 string action_share
 string action_signup
 string action_skip
@@ -307,6 +316,7 @@ string already_have_account
 string androidx_startup
 string app_name
 string app_version
+string autofill
 string brand_q
 string brand_spot
 string call_notification_answer_action
@@ -318,7 +328,10 @@ string call_notification_ongoing_text
 string call_notification_screening_text
 string cd_back
 string cd_close
+string cd_grant_permission
 string cd_loading
+string cd_loading_location
+string cd_loading_places
 string cd_logo
 string cd_menu
 string cd_more_options
@@ -347,6 +360,10 @@ string error_required_field
 string error_server
 string error_timeout
 string forget_password
+string forget_password_subtitle
+string forgot_password_email_not_exist
+string forgot_password_invalid_form
+string forgot_password_success
 string hide_password
 string image_content_description
 string in_progress
@@ -363,7 +380,10 @@ string label_tags
 string label_time
 string label_title
 string label_username
+string location_permission_denied
+string login_failed
 string login_subtitle
+string login_success
 string login_title
 string login_with_google
 string login_with_x
@@ -407,10 +427,15 @@ string m3c_dialog
 string m3c_dropdown_menu_collapsed
 string m3c_dropdown_menu_expanded
 string m3c_dropdown_menu_toggle
+string m3c_floating_toolbar_collapse
+string m3c_floating_toolbar_expand
 string m3c_search_bar_search
 string m3c_snackbar_dismiss
+string m3c_snackbar_pane_title
 string m3c_suggestions_available
+string m3c_time_input_dialog_title
 string m3c_time_picker_am
+string m3c_time_picker_dialog_title
 string m3c_time_picker_hour
 string m3c_time_picker_hour_24h_suffix
 string m3c_time_picker_hour_selection
@@ -422,8 +447,13 @@ string m3c_time_picker_minute_suffix
 string m3c_time_picker_minute_text_field
 string m3c_time_picker_period_toggle_description
 string m3c_time_picker_pm
+string m3c_time_picker_toggle_keyboard
+string m3c_time_picker_toggle_touch
 string m3c_tooltip_long_press_label
 string m3c_tooltip_pane_description
+string m3c_wide_navigation_rail_close_rail
+string m3c_wide_navigation_rail_pane_title
+string mc2_snackbar_pane_title
 string nav_about
 string nav_help
 string nav_home
@@ -440,15 +470,20 @@ string placeholder_name
 string placeholder_password
 string placeholder_search
 string placeholder_select_option
+string popular_nearby
 string range_end
 string range_start
+string see_all
 string selected
 string show_password
 string sign_up
+string signup_failed
 string signup_subtitle
+string signup_success
 string signup_title
 string signup_with_google
 string signup_with_x
+string snackbar_pane_title
 string splash_welcome
 string state_empty
 string state_off
@@ -479,6 +514,7 @@ string time_tomorrow
 string time_yesterday
 string tooltip_description
 string tooltip_label
+string unexpected_error
 string unit_days
 string unit_hours
 string unit_minutes
@@ -501,6 +537,9 @@ style WhiteBackgroundTheme
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 styleable ActivityNavigator android_name action data dataPattern targetPackage
+styleable AnimatedStateListDrawableCompat android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
+styleable AnimatedStateListDrawableItem android_id android_drawable
+styleable AnimatedStateListDrawableTransition android_drawable android_toId android_fromId android_reversible
 styleable Capability queryPatterns shortcutMatchRequired
 styleable ColorStateListItem android_color android_alpha android_lStar alpha lStar
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFallbackQuery fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily
@@ -516,3 +555,5 @@ styleable NavGraphNavigator startDestination
 styleable NavHost navGraph
 styleable NavInclude graph
 styleable Navigator android_label android_id route
+styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
+styleable StateListDrawableItem android_drawable
