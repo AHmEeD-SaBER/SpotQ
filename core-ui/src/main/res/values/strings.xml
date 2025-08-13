@@ -68,6 +68,7 @@
     <string name="forgot_password_email_not_exist">Email does not exist.</string>
     <string name="forgot_password_invalid_form">Please fix the errors before submitting.</string>
     <string name="unexpected_error">An unexpected error occurred</string>
+    <string name="location_permission_denied">Location permissions are required to show places.</string>
 
 
 

@@ -11,7 +11,9 @@ class PlacesContract {
         val isLoadingLocation: Boolean = false,
         val error: Int? = null,
         val places: List<PlaceDto> = emptyList(),
-        val userLocation: Pair<Double, Double>? = null // (lat, lon)
+        val userLocation: Pair<Double, Double>? = null,
+        val locationName: String? = null,
+        val hasPermission: Boolean = false
     ) : UiState
 
     sealed class Events : UiEvent {
@@ -25,6 +27,7 @@ class PlacesContract {
         data class PlaceClicked(val place: PlaceDto) : Events() // Use xid instead of Int
         data object Retry : Events()
         data object RequestLocationPermission : Events()
+        data object CheckPermissions : Events()
     }
 
     sealed class Effects : UiEffect {
