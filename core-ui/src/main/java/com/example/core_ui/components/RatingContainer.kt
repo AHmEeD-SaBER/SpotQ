@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.R
 
 @Composable
@@ -26,4 +27,14 @@ fun RatingContainer(
     }
 
 
+}
+
+@Preview
+@Composable
+fun RatingContainerPreview() {
+    RatingContainer(
+        rate = 4,
+        icon = { /* Replace with your icon composable */ },
+        style = TextStyle.Default
+    )
 }
