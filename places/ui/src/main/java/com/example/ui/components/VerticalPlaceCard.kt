@@ -78,13 +78,12 @@ fun VerticalPlaceCard(
 
 
         ) {
-            place.imageUrl?.let {
-                Log.d("HorizontalPlaceCard", "Image URL: $it")
-                PlaceImage(
-                    image = it, contentScale = ContentScale.Crop
-                )
-            }
+
+            PlaceImage(
+                image = place.imageUrl, contentScale = ContentScale.Crop
+            )
         }
+
         Box(
             modifier = Modifier.padding(
                 vertical = dimensionResource(R.dimen.padding_sm),

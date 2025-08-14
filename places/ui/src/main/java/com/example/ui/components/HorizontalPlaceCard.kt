@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,14 +67,17 @@ fun HorizontalPlaceCard(modifier: Modifier = Modifier, place: PlaceDto, onClick:
                     dimensionResource(R.dimen.horizontal_card_image_width)
                 )
         ) {
-            place.imageUrl?.let {
-                PlaceImage(
-                    image = it,
-                )
-            }
+            PlaceImage(
+                image = place.imageUrl, contentScale = ContentScale.Crop
+            )
         }
 
-        Box(modifier = Modifier.fillMaxSize().padding(start = dimensionResource(R.dimen.padding_sm)).weight(1f)) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = dimensionResource(R.dimen.padding_sm))
+                .weight(1f)
+        ) {
             Column(
                 modifier = Modifier.fillMaxHeight(),
                 verticalArrangement = Arrangement.SpaceEvenly
@@ -98,7 +102,12 @@ fun HorizontalPlaceCard(modifier: Modifier = Modifier, place: PlaceDto, onClick:
 
             }
             RatingContainer(
-                modifier = Modifier.align(Alignment.BottomEnd).padding(vertical =  dimensionResource(R.dimen.padding_sm), horizontal = dimensionResource(R.dimen.padding_md)),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        vertical = dimensionResource(R.dimen.padding_sm),
+                        horizontal = dimensionResource(R.dimen.padding_md)
+                    ),
                 rate = place.rate,
                 style = AppTypography.bt8,
                 icon = {

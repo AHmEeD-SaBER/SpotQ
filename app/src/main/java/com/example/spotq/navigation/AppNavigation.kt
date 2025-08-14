@@ -16,7 +16,6 @@ import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
 import com.example.ui.PlacesContract
 import com.example.ui.PlacesViewModel
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordScreen
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordViewModel
@@ -80,13 +79,13 @@ fun AppNavigation(
                     }
 
                     MainContract.Destination.AUTH -> {
-                        navController.navigate(Screen.Login) {
+                        navController.navigate(Screen.Login){
                             popUpTo<Screen.Splash> { inclusive = true }
                         }
                     }
 
                     MainContract.Destination.MAIN -> {
-                        navController.navigate(Screen.Places) {
+                        navController.navigate(Screen.Places){
                             popUpTo<Screen.Splash> { inclusive = true }
                         }
                     }
@@ -220,7 +219,7 @@ fun AppNavigation(
                         }
 
                         is SignupContract.Effect.NavigateToLogin -> {
-                            navController.navigate(Screen.Login)
+                            navController.popBackStack()
                         }
 
                         is SignupContract.Effect.ShowError -> {

@@ -1,5 +1,6 @@
 package com.example.core_ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -15,9 +16,10 @@ import coil.compose.AsyncImage
 @Composable
 fun PlaceImage(
     modifier: Modifier = Modifier,
-    image: String,
+    image: String?,
     contentScale: ContentScale = ContentScale.Crop
 ) {
+    Log.d("PlaceImage", "Loading image: $image")
     AsyncImage(
         model = image,
         contentDescription = null,
