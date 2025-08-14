@@ -2,14 +2,13 @@ package com.example.data.repositories
 
 import android.util.Log
 import com.example.errors.CustomError
-import com.example.data.datasources.IPlacesRemoteDataSource
+import com.example.data.datasources.palces.IPlacesRemoteDataSource
 import com.example.domain.dto.PlaceDto
 import com.example.domain.repositories.IPlacesRepository
 import com.example.core_data.utils.INetworkMonitor
 import com.example.data.utils.PlaceMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -52,21 +51,14 @@ class PlacesRepository @Inject constructor(
                             )
                             placesWithDetails.add(placeDto)
                         }
-                    } catch (e: Exception) {
-                        // Fallback: without details
-                        val placeDto = PlaceMapper.mapToPlaceDto(
-                            place = place,
-                            placeDetails = null,
-                            userLatitude = latitude,
-                            userLongitude = longitude
-                        )
-                        placesWithDetails.add(placeDto)
+                    } catch (_: Exception) {
+
                     }
                 }
             }
         }
 
-        val sortedPlaces = placesWithDetails.sortedByDescending { it.distance}
+        val sortedPlaces = placesWithDetails.sortedByDescending { it.distance }
 
         Log.d("PlacesRepository", "Sorted places: $sortedPlaces")
         if (sortedPlaces.isEmpty()) {
@@ -77,4 +69,5 @@ class PlacesRepository @Inject constructor(
     }.catch { e ->
         emit(Result.failure(e))
     }
+
 }

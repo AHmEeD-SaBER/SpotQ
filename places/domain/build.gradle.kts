@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
+    kotlin("plugin.serialization") version Versions.kotlin
+    id("kotlin-parcelize")
+
 }
 kotlin {
     jvmToolchain(11)
@@ -44,4 +47,6 @@ dependencies {
 
     // Testing
     testImplementation(Test.junit)
+    // Serialization for type-safe navigation
+    implementation(Serialization.json)
 }

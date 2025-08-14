@@ -116,11 +116,14 @@ class SignupViewModel @Inject constructor(
                         is AuthResult.Loading -> {
                             setState { copy(isLoading = true) }
                         }
+
                         is AuthResult.Success -> {
                             setState { copy(isLoading = false) }
                             setEffect { SignupContract.Effect.ShowSuccess(R.string.signup_success) }
-                            setEffect { SignupContract.Effect.NavigateToMain }
+                            val userId = result.data.user.id
+                            setEffect { SignupContract.Effect.NavigateToMain(userId) }
                         }
+
                         is AuthResult.Error -> {
                             setState { copy(isLoading = false) }
                             setEffect {

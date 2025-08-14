@@ -30,6 +30,10 @@
             <option value="$PROJECT_DIR$/core-data" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/errors" />
+            <option value="$PROJECT_DIR$/favorites" />
+            <option value="$PROJECT_DIR$/favorites/data" />
+            <option value="$PROJECT_DIR$/favorites/domain" />
+            <option value="$PROJECT_DIR$/favorites/ui" />
             <option value="$PROJECT_DIR$/location-provider" />
             <option value="$PROJECT_DIR$/onboarding" />
             <option value="$PROJECT_DIR$/places" />

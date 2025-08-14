@@ -118,7 +118,8 @@ class LoginViewModel @Inject constructor(
             is AuthResult.Success -> {
                 setState { copy(isLoading = false) }
                 setEffect { LoginContract.Effect.ShowSuccess(R.string.login_success) }
-                setEffect { LoginContract.Effect.NavigateToMain }
+                val userId = result.data.user.id
+                setEffect { LoginContract.Effect.NavigateToMain(userId) }
             }
             is AuthResult.Error -> {
                 setState { copy(isLoading = false) }

@@ -28,7 +28,8 @@ class SignupContract {
     }
 
     sealed class Effect : UiEffect {
-        object NavigateToMain : Effect()
+
+        data class NavigateToMain(val userId: Int) : Effect()
         object NavigateToLogin : Effect()
         data class ShowError(val messageRes: Int) : Effect()
         data class ShowSuccess(val messageRes: Int) : Effect()

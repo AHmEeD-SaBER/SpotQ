@@ -1,5 +1,12 @@
 package com.example.domain.dto
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
+
+@Parcelize
+@Serializable
 data class PlaceDto(
     // Basic info
     val xid: String,
@@ -18,9 +25,9 @@ data class PlaceDto(
 
     // Calculated fields
     val distance: Double = 0.0,
-    val categories: List<String> = emptyList(),
+    val categories: @Serializable List<String> = emptyList(),
     val hasImage: Boolean = false,
     val hasDescription: Boolean = false,
     val formattedDistance: String = "",
     val mainCategory: String = ""
-)
+) : Parcelable

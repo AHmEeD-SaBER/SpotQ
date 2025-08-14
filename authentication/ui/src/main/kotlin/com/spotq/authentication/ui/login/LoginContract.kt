@@ -28,7 +28,7 @@ class LoginContract {
 
     // UI Effects
     sealed class Effect : UiEffect {
-        object NavigateToMain : Effect()
+        data class NavigateToMain(val userId: Int) : Effect()
         object NavigateToSignup : Effect()
         object NavigateToForgotPassword : Effect()
         data class ShowError(val messageRes: Int) : Effect()

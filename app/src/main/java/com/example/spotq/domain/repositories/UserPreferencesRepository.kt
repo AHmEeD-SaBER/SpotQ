@@ -12,4 +12,6 @@ interface UserPreferencesRepository {
     suspend fun getUserName(): String?
     suspend fun getUserEmail(): String?
     suspend fun clearUserData()
+    suspend fun setUserId(userId: Int)
+    suspend fun getUserId(): Int?
 }

@@ -43,7 +43,7 @@
     <string name="label_title">Title</string>
     <string name="label_date">Date</string>
     <string name="label_time">Time</string>
-    <string name="label_category">Category</string>
+    <string name="label_category">Categories</string>
     <string name="label_tags">Tags</string>
     <string name="label_location">Location</string>
     <string name="label_full_name">Full Name</string>
@@ -171,4 +171,7 @@
     <string name="popular_nearby">Popular Nearby</string>
     <string name="see_all">See all</string>
     <string name="recommended_places">Recommended</string>
+    <string name="cd_add_to_favorites">Add To Favorites</string>
+    <string name="cd_remove_from_favorites">Remove From Favorites</string>
+    <string name="label_full_address">Full Address</string>
 </resources>

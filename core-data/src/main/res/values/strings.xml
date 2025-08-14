@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="added_to_favorites">Added To Favorites</string>
+    <string name="error_adding_to_favorites">Unexpected Error</string>
+    <string name="removed_from_favorites">Removed From Favorites</string>
+</resources>

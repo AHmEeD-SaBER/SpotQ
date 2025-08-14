@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.R
 import com.example.core_ui.theme.AppTypography
@@ -17,10 +18,10 @@ import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.utils.Constants
 
 @Composable
-fun CustomTag(modifier: Modifier = Modifier, text: String) {
+fun CustomTag(modifier: Modifier = Modifier, text: String, style: TextStyle = AppTypography.bt9) {
 
     Box(
-        modifier
+        Modifier
             .background(
                 MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(
                     dimensionResource(R.dimen.tag_corner_radius)
@@ -39,8 +40,9 @@ fun CustomTag(modifier: Modifier = Modifier, text: String) {
     )
     {
         Text(
+            modifier = modifier,
             text = text,
-            style = AppTypography.bt9,
+            style =style,
 
 
             )

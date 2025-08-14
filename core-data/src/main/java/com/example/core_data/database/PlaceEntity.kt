@@ -3,6 +3,7 @@ package com.example.core_data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 
 @Entity(tableName = "places")
 data class PlaceEntity(
