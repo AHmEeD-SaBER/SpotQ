@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import kotlinx.coroutines.delay
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.core_ui.theme.AppTypography
 import kotlinx.coroutines.launch
 import com.example.core_ui.utils.Constants
 import com.example.core_ui.R as CoreR
@@ -37,7 +38,10 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
         launch {
             offsetX.animateTo(
                 targetValue = -20f,
-                animationSpec = tween(durationMillis = Constants.ANIMATION_DURATION_LONG.toInt(), easing = EaseOut)
+                animationSpec = tween(
+                    durationMillis = Constants.ANIMATION_DURATION_LONG.toInt(),
+                    easing = EaseOut
+                )
             )
         }
         showText = true
@@ -58,7 +62,7 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
             AnimatedVisibility(visible = showText) {
                 Text(
                     text = stringResource(id = CoreR.string.brand_spot),
-                    style = MaterialTheme.typography.headlineLarge.copy(
+                    style = AppTypography.h7.copy(
                         fontSize = dimensionResource(id = CoreR.dimen.text_size_headline).value.sp,
                         fontWeight = FontWeight.Black
                     ),
