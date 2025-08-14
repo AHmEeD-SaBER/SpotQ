@@ -11,11 +11,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.ui.PlacesScreen
+import com.example.ui.places.PlacesScreen
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
-import com.example.ui.PlacesContract
-import com.example.ui.PlacesViewModel
+import com.example.ui.places.PlacesContract
+import com.example.ui.places.PlacesViewModel
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordScreen
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordViewModel

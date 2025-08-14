@@ -24,5 +24,14 @@ object DataBaseModule {
         ).build()
 
     @Provides
+    @Singleton
     fun provideUserDao(database: AppDataBase): UserDao = database.userDao()
+
+    @Provides
+    @Singleton
+    fun providePlacesDao(database: AppDataBase) = database.placesDao()
+
+    @Provides
+    @Singleton
+    fun provideFavoritesDao(database: AppDataBase) = database.favoritesDao()
 }

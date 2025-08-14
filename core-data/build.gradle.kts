@@ -43,6 +43,7 @@ dependencies {
     // Room Database
     implementation(Room.runtime)
     implementation(Room.ktx)
+    implementation(libs.androidx.room.common.jvm)
     ksp(Room.compiler)
 
     // Retrofit for API calls

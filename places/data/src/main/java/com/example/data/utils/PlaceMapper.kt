@@ -1,11 +1,56 @@
 package com.example.data.utils
 
+import com.example.core_data.database.PlaceEntity
 import com.example.core_data.network.models.places.Place
 import com.example.core_data.network.models.place_details.PlaceDetailsResponse
 import com.example.core_data.network.models.place_details.Address
 import com.example.domain.dto.PlaceDto
 
 object PlaceMapper {
+
+    fun entityToDto(entity: PlaceEntity): PlaceDto = PlaceDto(
+        xid = entity.xid,
+        name = entity.name,
+        latitude = entity.latitude,
+        longitude = entity.longitude,
+        rate = entity.rate,
+        kinds = entity.kinds,
+
+        imageUrl = entity.imageUrl,
+        description = entity.description,
+        fullAddress = entity.fullAddress,
+        shortAddress = entity.shortAddress,
+        websiteUrl = entity.websiteUrl,
+
+        distance = entity.distance,
+        categories = entity.categories,
+        hasImage = entity.hasImage,
+        hasDescription = entity.hasDescription,
+        formattedDistance = entity.formattedDistance,
+        mainCategory = entity.mainCategory
+    )
+
+    fun dtoToEntity(dto: PlaceDto): PlaceEntity = PlaceEntity(
+        xid = dto.xid,
+        name = dto.name,
+        latitude = dto.latitude,
+        longitude = dto.longitude,
+        rate = dto.rate,
+        kinds = dto.kinds,
+
+        imageUrl = dto.imageUrl,
+        description = dto.description,
+        fullAddress = dto.fullAddress,
+        shortAddress = dto.shortAddress,
+        websiteUrl = dto.websiteUrl,
+
+        distance = dto.distance,
+        categories = dto.categories,
+        hasImage = dto.hasImage,
+        hasDescription = dto.hasDescription,
+        formattedDistance = dto.formattedDistance,
+        mainCategory = dto.mainCategory
+    )
 
     fun mapToPlaceDto(
         place: Place,

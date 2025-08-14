@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.ui.places
 
 import com.example.core_ui.base.UiEffect
 import com.example.core_ui.base.UiEvent
