@@ -9,7 +9,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.R
 import com.example.domain.dto.PlaceDto
-import com.example.ui.PlacesContract
+import com.example.ui.places.PlacesContract
 
 @Composable
 fun HorizontalList(modifier: Modifier = Modifier, items: List<PlaceDto>, onEvent: (PlacesContract.Events) -> Unit = {}) {

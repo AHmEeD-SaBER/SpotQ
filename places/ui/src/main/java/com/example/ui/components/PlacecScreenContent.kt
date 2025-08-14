@@ -1,12 +1,10 @@
 package com.example.ui.components
 
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -14,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.components.SectionHeader
 import com.example.core_ui.theme.AppTypography
-import com.example.ui.PlacesContract
+import com.example.ui.places.PlacesContract
 import com.example.core_ui.R as coreUiR
 
 @Composable

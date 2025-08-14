@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.ui.places
 
 import android.location.Address
 import android.location.Geocoder

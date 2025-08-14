@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,7 +28,10 @@ fun SectionHeader(
                 Text(
                     text = trailing,
                     style = trailingStyle,
-                    modifier = Modifier.clickable { onEvent() })
+                    modifier = Modifier.clickable { onEvent() },
+                    color = MaterialTheme.colorScheme.primary
+                )
+
             }
         }
     }
