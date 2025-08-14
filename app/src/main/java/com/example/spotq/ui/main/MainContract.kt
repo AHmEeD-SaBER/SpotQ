@@ -9,7 +9,8 @@ class MainContract {
         val isLoading: Boolean = true,
         val isUserAuthenticated: Boolean = false,
         val shouldShowOnboarding: Boolean = false,
-        val currentDestination: Destination = Destination.SPLASH
+        val currentDestination: Destination = Destination.SPLASH,
+        val userId: Int? = null,
     ) : UiState
 
     // UI Events
@@ -17,7 +18,7 @@ class MainContract {
         object SplashFinished : Event()
         object CheckInitialState : Event()
         object OnboardingCompleted : Event()
-        object AuthenticationCompleted : Event()
+        data class AuthenticationCompleted(val userId: Int) : Event()
         object NavigateToAuth : Event()
         object NavigateToMain : Event()
         object Logout : Event()

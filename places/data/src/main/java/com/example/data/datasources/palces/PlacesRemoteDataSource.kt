@@ -1,4 +1,4 @@
-package com.example.data.datasources
+package com.example.data.datasources.palces
 
 import com.example.core_data.network.PlacesApi
 import com.example.core_data.network.models.place_details.PlaceDetailsResponse

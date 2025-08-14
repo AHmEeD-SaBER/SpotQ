@@ -32,8 +32,8 @@ class MainActivity : ComponentActivity() {
                     onSplashFinished = {
                         mainViewModel.handleEvent(MainContract.Event.CheckInitialState)
                     },
-                    onAuthComplete = {
-                        mainViewModel.handleEvent(MainContract.Event.AuthenticationCompleted)
+                    onAuthComplete = { userid ->
+                        mainViewModel.handleEvent(MainContract.Event.AuthenticationCompleted(userId = userid))
                     },
                     onOnboardingComplete = {
                         mainViewModel.handleEvent(MainContract.Event.OnboardingCompleted)

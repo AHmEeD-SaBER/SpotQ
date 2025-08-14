@@ -1,10 +1,11 @@
 package com.example.data.di
 
-import com.example.data.datasources.IPlacesRemoteDataSource
-import com.example.data.datasources.PlacesRemoteDataSource
+import com.example.data.datasources.palces.IPlacesRemoteDataSource
+import com.example.data.datasources.palces.PlacesRemoteDataSource
+import com.example.data.repositories.AddToFavoritesRepositories
+import com.example.domain.repositories.IAddToFavoritesRepositories
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -24,4 +25,10 @@ abstract class PlacesDataModule {
     abstract fun bindPlacesRepository(
         placesRepository: com.example.data.repositories.PlacesRepository
     ): com.example.domain.repositories.IPlacesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAddToFavoritesRepository(
+        impl: AddToFavoritesRepositories
+    ): IAddToFavoritesRepositories
 }

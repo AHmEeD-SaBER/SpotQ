@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
             }
 
             is MainContract.Event.AuthenticationCompleted -> {
-                handleAuthenticationCompleted()
+                handleAuthenticationCompleted(event.userId)
             }
 
             is MainContract.Event.NavigateToAuth -> {
@@ -64,6 +64,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val isFirstTimeLaunch = userPreferencesRepository.isFirstTimeLaunch()
             val isUserAuthenticated = userPreferencesRepository.isUserAuthenticated()
+            val savedUserId = userPreferencesRepository.getUserId()
 
             when {
                 isFirstTimeLaunch -> {
@@ -81,6 +82,7 @@ class MainViewModel @Inject constructor(
                         copy(
                             isLoading = false,
                             isUserAuthenticated = true,
+                            userId = savedUserId,
                             currentDestination = MainContract.Destination.MAIN
                         )
                     }
@@ -111,11 +113,13 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleAuthenticationCompleted() {
+    private fun handleAuthenticationCompleted(userId: Int) {
         viewModelScope.launch {
             userPreferencesRepository.setUserAuthenticated(true)
+            userPreferencesRepository.setUserId(userId)
             setState {
                 copy(
+                    userId = userId,
                     isUserAuthenticated = true,
                     currentDestination = MainContract.Destination.MAIN
                 )

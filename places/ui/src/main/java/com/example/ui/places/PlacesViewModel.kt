@@ -34,6 +34,10 @@ class PlacesViewModel @Inject constructor(
         return PlacesContract.State()
     }
 
+    init {
+        handleEvent(PlacesContract.Events.CheckPermissions)
+    }
+
     override fun handleEvent(event: PlacesContract.Events) {
         when (event) {
             PlacesContract.Events.LoadPlaces -> handleLoadPlaces()

@@ -6,19 +6,17 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 import androidx.core.content.edit
+import com.example.core_ui.utils.Constants.KEY_FIRST_TIME_LAUNCH
+import com.example.core_ui.utils.Constants.KEY_USER_AUTHENTICATED
+import com.example.core_ui.utils.Constants.KEY_USER_EMAIL
+import com.example.core_ui.utils.Constants.KEY_USER_ID
+import com.example.core_ui.utils.Constants.KEY_USER_NAME
 import com.example.spotq.domain.repositories.UserPreferencesRepository
 
 @Singleton
 class UserPreferencesRepositoryImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : UserPreferencesRepository {
-
-    companion object {
-        private const val KEY_FIRST_TIME_LAUNCH = "first_time_launch"
-        private const val KEY_USER_AUTHENTICATED = "user_authenticated"
-        private const val KEY_USER_NAME = "user_name"
-        private const val KEY_USER_EMAIL = "user_email"
-    }
 
     override suspend fun isFirstTimeLaunch(): Boolean = withContext(Dispatchers.IO) {
         sharedPreferences.getBoolean(KEY_FIRST_TIME_LAUNCH, true)
@@ -32,9 +30,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         sharedPreferences.getBoolean(KEY_USER_AUTHENTICATED, false)
     }
 
-    override suspend fun setUserAuthenticated(isAuthenticated: Boolean) = withContext(Dispatchers.IO) {
-        sharedPreferences.edit { putBoolean(KEY_USER_AUTHENTICATED, isAuthenticated) }
-    }
+    override suspend fun setUserAuthenticated(isAuthenticated: Boolean) =
+        withContext(Dispatchers.IO) {
+            sharedPreferences.edit { putBoolean(KEY_USER_AUTHENTICATED, isAuthenticated) }
+        }
 
     override suspend fun resetAllPreferences() = withContext(Dispatchers.IO) {
         sharedPreferences.edit { clear() }
@@ -62,5 +61,16 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             remove(KEY_USER_EMAIL)
             putBoolean(KEY_USER_AUTHENTICATED, false)
         }
+    }
+
+    override suspend fun setUserId(userId: Int) = withContext(Dispatchers.IO) {
+        sharedPreferences.edit { putInt(KEY_USER_ID, userId) }
+    }
+
+    override suspend fun getUserId(): Int? = withContext(Dispatchers.IO) {
+        if (sharedPreferences.contains(KEY_USER_ID)) sharedPreferences.getInt(
+            KEY_USER_ID,
+            -1
+        ) else null
     }
 }

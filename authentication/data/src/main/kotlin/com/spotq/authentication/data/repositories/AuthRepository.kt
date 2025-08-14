@@ -25,6 +25,7 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
 
                 if (userEntity != null) {
                     val user = User(
+                        id = userEntity.id,
                         name = userEntity.name,
                         email = userEntity.email,
                     )
@@ -56,6 +57,7 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
                     localDataSource.insertUser(newUserEntity)
 
                     val user = User(
+                        id = newUserEntity.id,
                         name = newUserEntity.name,
                         email = newUserEntity.email,
                     )

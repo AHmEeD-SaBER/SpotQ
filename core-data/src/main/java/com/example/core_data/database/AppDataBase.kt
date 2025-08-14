@@ -2,6 +2,7 @@ package com.example.core_data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(
     entities = [
@@ -11,9 +12,11 @@ import androidx.room.RoomDatabase
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
     abstract fun placesDao(): PlacesDao
     abstract fun favoritesDao(): FavoritesDao
 

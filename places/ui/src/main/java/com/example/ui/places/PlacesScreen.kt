@@ -41,9 +41,9 @@ fun PlacesScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
-        onEvent(PlacesContract.Events.CheckPermissions)
-    }
+//    LaunchedEffect(Unit) {
+//        onEvent(PlacesContract.Events.CheckPermissions)
+//    }
 
     LaunchedEffect(state.hasPermission) {
         if (!state.hasPermission && !state.isLoadingLocation) {
@@ -80,16 +80,20 @@ fun PlacesScreen(
                             )
                         }
                     },
-                    showSearchBar = true
-                ) {
-                    com.example.ui.components.SearchBar(
-                        modifier = Modifier,
-                        value = "",
-                        onSearch = {
-                        }
-                    )
-                }
+                    showSearchBar = true,
+                    showNavigation = false,
+                    navigationIcon = null,
+                    searchBar = {
+                        com.example.ui.components.SearchBar(
+                            modifier = Modifier,
+                            value = "",
+                            onSearch = {
+                            }
+                        )
+                    }
+                )
             }
+
 
         }
     ) { padding ->

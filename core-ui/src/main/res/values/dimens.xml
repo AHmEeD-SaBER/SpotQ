@@ -34,7 +34,7 @@
     <!-- Icon Sizes -->
     <dimen name="icon_size_xs">16dp</dimen>
     <dimen name="icon_size_sm">24dp</dimen>
-    <dimen name="icon_size_md">32dp</dimen>
+    <dimen name="icon_size_md">44dp</dimen>
     <dimen name="icon_size_lg">48dp</dimen>
     <dimen name="icon_size_xl">64dp</dimen>
     <dimen name="icon_size_xxl">80dp</dimen>
@@ -103,4 +103,5 @@
     <dimen name="tag_corner_radius">6dp</dimen>
     <dimen name="padding_xxs">2dp</dimen>
     <dimen name="title_max_width">180dp</dimen>
+    <dimen name="place_image_height">500dp</dimen>
 </resources>

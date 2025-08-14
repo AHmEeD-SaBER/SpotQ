@@ -11,9 +11,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import com.example.domain.dto.PlaceDto
 import com.example.ui.places.PlacesScreen
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
+import com.example.ui.place_details.PlaceDetailsContract
+import com.example.ui.place_details.PlaceDetailsScreen
+import com.example.ui.place_details.PlaceDetailsViewModel
 import com.example.ui.places.PlacesContract
 import com.example.ui.places.PlacesViewModel
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
@@ -28,7 +33,7 @@ import com.spotq.authentication.ui.signup.SignupViewModel
 import com.spotq.onboarding.OnboardingScreen
 import kotlinx.serialization.Serializable
 
-// Sealed class for type-safe navigation
+// Sealed class for type-safe navigation (except PlaceDetails)
 @Serializable
 sealed class Screen {
     @Serializable
@@ -48,7 +53,6 @@ sealed class Screen {
 
     @Serializable
     data object ForgotPassword : Screen()
-
 }
 
 @Composable
@@ -56,7 +60,7 @@ fun AppNavigation(
     navController: NavHostController,
     mainState: MainContract.State,
     onSplashFinished: () -> Unit = {},
-    onAuthComplete: () -> Unit = {},
+    onAuthComplete: (userId: Int) -> Unit = {},
     onOnboardingComplete: () -> Unit = {},
 ) {
     NavHost(
@@ -64,11 +68,9 @@ fun AppNavigation(
         startDestination = Screen.Splash
     ) {
 
-
         composable<Screen.Splash> {
             SplashScreen(
                 onSplashFinished = onSplashFinished
-
             )
             LaunchedEffect(mainState.currentDestination) {
                 when (mainState.currentDestination) {
@@ -79,13 +81,13 @@ fun AppNavigation(
                     }
 
                     MainContract.Destination.AUTH -> {
-                        navController.navigate(Screen.Login){
+                        navController.navigate(Screen.Login) {
                             popUpTo<Screen.Splash> { inclusive = true }
                         }
                     }
 
                     MainContract.Destination.MAIN -> {
-                        navController.navigate(Screen.Places){
+                        navController.navigate(Screen.Places) {
                             popUpTo<Screen.Splash> { inclusive = true }
                         }
                     }
@@ -122,7 +124,7 @@ fun AppNavigation(
                 loginViewModel.effect.collect { effect ->
                     when (effect) {
                         is LoginContract.Effect.NavigateToMain -> {
-                            onAuthComplete()
+                            onAuthComplete(effect.userId)
                             navController.navigate(Screen.Places) {
                                 popUpTo<Screen.Login> { inclusive = true }
                             }
@@ -212,7 +214,7 @@ fun AppNavigation(
                 signupViewModel.effect.collect { effect ->
                     when (effect) {
                         is SignupContract.Effect.NavigateToMain -> {
-                            onAuthComplete()
+                            onAuthComplete(effect.userId)
                             navController.navigate(Screen.Places) {
                                 popUpTo<Screen.Signup> { inclusive = true }
                             }
@@ -255,7 +257,12 @@ fun AppNavigation(
             LaunchedEffect(placesViewModel) {
                 placesViewModel.effect.collect { effect ->
                     when (effect) {
-                        is PlacesContract.Effects.NavigateToPlaceDetails -> {}
+                        is PlacesContract.Effects.NavigateToPlaceDetails -> {
+                            // Store the place in savedStateHandle and navigate
+                            navController.currentBackStackEntry?.savedStateHandle?.set("place", effect.place)
+                            navController.navigate("place_details")
+                        }
+
                         is PlacesContract.Effects.RequestLocationPermission -> { // handled at the screen
                         }
 
@@ -269,7 +276,35 @@ fun AppNavigation(
                     }
                 }
             }
+        }
 
+        // Simple string-based navigation for PlaceDetails using savedStateHandle
+        composable("place_details") {
+            val place = navController.previousBackStackEntry?.savedStateHandle?.get<PlaceDto>("place")
+            place?.let {
+                val placeDetailsViewModel: PlaceDetailsViewModel = hiltViewModel()
+                val state by placeDetailsViewModel.uiState.collectAsState()
+                mainState.userId?.let { userId ->
+                    PlaceDetailsScreen(
+                        place = place,
+                        state = state,
+                        onEvent = placeDetailsViewModel::handleEvent,
+                        modifier = Modifier,
+                        userId = userId
+                    )
+                }
+
+                val context = LocalContext.current
+                LaunchedEffect(placeDetailsViewModel) {
+                    placeDetailsViewModel.effect.collect { effect ->
+                        when (effect) {
+                            is PlaceDetailsContract.Effect.NavigateUp -> {
+                                navController.popBackStack()
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
