@@ -15,11 +15,14 @@ interface UserDao {
     suspend fun getUserByEmail(email: String): UserEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: UserEntity)
+    suspend fun insertUser(user: UserEntity) : Long
 
     @Query("SELECT COUNT(*) FROM users WHERE email = :email")
     suspend fun isEmailExists(email: String): Int
 
     @Query("DELETE FROM users")
     suspend fun deleteAllUsers()
+
+    @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+    suspend fun getUserById(userId: Int): UserEntity?
 }

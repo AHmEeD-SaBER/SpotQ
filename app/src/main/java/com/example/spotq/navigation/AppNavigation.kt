@@ -259,7 +259,10 @@ fun AppNavigation(
                     when (effect) {
                         is PlacesContract.Effects.NavigateToPlaceDetails -> {
                             // Store the place in savedStateHandle and navigate
-                            navController.currentBackStackEntry?.savedStateHandle?.set("place", effect.place)
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "place",
+                                effect.place
+                            )
                             navController.navigate("place_details")
                         }
 
@@ -280,7 +283,8 @@ fun AppNavigation(
 
         // Simple string-based navigation for PlaceDetails using savedStateHandle
         composable("place_details") {
-            val place = navController.previousBackStackEntry?.savedStateHandle?.get<PlaceDto>("place")
+            val place =
+                navController.previousBackStackEntry?.savedStateHandle?.get<PlaceDto>("place")
             place?.let {
                 val placeDetailsViewModel: PlaceDetailsViewModel = hiltViewModel()
                 val state by placeDetailsViewModel.uiState.collectAsState()
@@ -300,6 +304,22 @@ fun AppNavigation(
                         when (effect) {
                             is PlaceDetailsContract.Effect.NavigateUp -> {
                                 navController.popBackStack()
+                            }
+
+                            is PlaceDetailsContract.Effect.ShowError -> {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(effect.messageRes),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            is PlaceDetailsContract.Effect.ShowSuccess -> {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(effect.messageRes),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
