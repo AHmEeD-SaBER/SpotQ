@@ -1,7 +1,7 @@
 package com.example.domain.usecases.get_places
 
 import android.util.Log
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.repositories.IPlacesRepository
 import com.example.domain.usecases.IGetPlacesUseCase
 import kotlinx.coroutines.flow.Flow

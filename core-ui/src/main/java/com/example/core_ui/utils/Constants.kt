@@ -31,6 +31,7 @@ object Constants {
     // UI Constants
     const val ALPHA_DISABLED = 0.38f
     const val ALPHA_MEDIUM = 0.54f
+    const val ALPHA_LOW = 0.13f
     const val ALPHA_HIGH = 0.87f
     const val ALPHA_FULL = 1.0f
     const val ALPHA_TRANSPARENT = 0.0f

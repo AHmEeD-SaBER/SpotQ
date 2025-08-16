@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_no_network_title">لا يوجد اتصال بالإنترنت</string>
+    <string name="error_no_network_subtitle">يرجى التحقق من اتصالك بالإنترنت ثم المحاولة مرة أخرى</string>
+
+    <string name="error_no_data_title">لا توجد بيانات</string>
+    <string name="error_no_data_subtitle">لم نتمكن من العثور على أي أماكن في هذه المنطقة. حاول توسيع نطاق البحث أو اختيار فئة مختلفة</string>
+
+    <string name="error_unknown_title">حدث خطأ ما</string>
+    <string name="error_unknown_subtitle">حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقاً</string>
+
+    <string name="error_no_fav_data_subtitle">أضف المزيد من الأماكن</string>
+</resources>

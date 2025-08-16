@@ -51,7 +51,7 @@ import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.theme.Yellow
 import com.example.core_ui.utils.Constants
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.core_ui.R as coreUiR
 import com.example.ui.R
 import kotlinx.coroutines.channels.ticker

@@ -4,7 +4,7 @@ package com.example.spotq.navigation
 import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.NavType
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import kotlinx.serialization.json.Json
 
 val PlaceDtoNavType = object : NavType<PlaceDto>(isNullableAllowed = false) {

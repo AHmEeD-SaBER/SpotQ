@@ -2,7 +2,7 @@ package com.example.ui.place_details
 
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.models.AddToFavoritesResponse
 import com.example.domain.usecases.add_to_favorites.IAddToFavoritesUseCase
 import com.example.domain.usecases.is_favorite.IsFavoriteUseCase

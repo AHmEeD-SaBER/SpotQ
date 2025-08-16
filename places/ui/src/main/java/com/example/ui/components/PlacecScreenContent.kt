@@ -25,6 +25,7 @@ fun PlacesScreenContent(
         modifier
             .fillMaxSize()
             .padding(horizontal = dimensionResource(coreUiR.dimen.padding_md))
+
     ) {
         val (firstGroup, secondGroup) = state.places.partition { it.rate < 3 }
 
@@ -69,6 +70,9 @@ fun PlacesScreenContent(
                 },
                 onEvent = onEvent,
             )
+        }
+        item {
+            Spacer(modifier = Modifier.padding(vertical = dimensionResource(coreUiR.dimen.padding_xxl)))
         }
 
 

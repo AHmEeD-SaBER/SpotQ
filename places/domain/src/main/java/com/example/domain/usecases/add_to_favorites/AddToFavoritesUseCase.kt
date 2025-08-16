@@ -1,6 +1,6 @@
 package com.example.domain.usecases.add_to_favorites
 
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.models.AddToFavoritesResponse
 import com.example.domain.repositories.IAddToFavoritesRepositories
 import javax.inject.Inject

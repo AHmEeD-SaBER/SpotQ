@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.core_ui.R
 import com.example.core_ui.components.CustomTag
 import com.example.core_ui.components.DistanceContainer

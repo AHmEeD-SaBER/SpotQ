@@ -40,6 +40,7 @@ dependencies {
     implementation(Core.coreKtx)
     implementation(Coroutines.core)
     implementation(Coroutines.android)
+    api(project(Modules.coreDomain))
 
     // Hilt for dependency injection
     implementation(Hilt.android)

@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.core_ui.components.CustomAppBar
 import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.theme.SpotQTheme
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.ui.R
 import com.example.ui.components.PlacesScreenContent
 import com.example.core_ui.R.string as coreUiString

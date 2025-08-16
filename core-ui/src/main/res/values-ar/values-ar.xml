@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Information -->
+    <string name="app_name">سبوت كيو</string>
+    <string name="app_version">1.0.0</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">موافق</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_yes">نعم</string>
+    <string name="action_no">لا</string>
+    <string name="action_continue">متابعة</string>
+    <string name="action_back">رجوع</string>
+    <string name="action_next">التالي</string>
+    <string name="action_done">تم</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_refresh">تحديث</string>
+    <string name="action_search">بحث</string>
+    <string name="action_filter">تصفية</string>
+    <string name="action_sort">ترتيب</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_copy">نسخ</string>
+    <string name="action_paste">لصق</string>
+    <string name="action_select_all">تحديد الكل</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_settings">الإعدادات</string>
+    <string name="nav_about">حول</string>
+    <string name="nav_help">المساعدة</string>
+
+    <!-- Common Labels -->
+    <string name="label_username">اسم المستخدم</string>
+    <string name="label_password">كلمة المرور</string>
+    <string name="label_email">البريد الإلكتروني</string>
+    <string name="label_name">الاسم</string>
+    <string name="label_description">الوصف</string>
+    <string name="label_title">العنوان</string>
+    <string name="label_date">التاريخ</string>
+    <string name="label_time">الوقت</string>
+    <string name="label_category">الفئات</string>
+    <string name="label_tags">العلامات</string>
+    <string name="label_location">الموقع</string>
+    <string name="label_full_name">الاسم الكامل</string>
+
+    <!-- Status Messages -->
+    <string name="status_loading">جاري التحميل…</string>
+    <string name="status_success">نجح</string>
+    <string name="status_error">خطأ</string>
+    <string name="status_no_data">لا توجد بيانات متاحة</string>
+    <string name="status_no_results">لم يتم العثور على نتائج</string>
+    <string name="status_empty_list">القائمة فارغة</string>
+    <string name="status_offline">أنت غير متصل</string>
+    <string name="status_connecting">جاري الاتصال…</string>
+    <string name="status_completed">مكتمل</string>
+    <string name="status_pending">قيد الانتظار</string>
+    <string name="login_success">أهلاً بعودتك!</string>
+    <string name="login_failed">فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.</string>
+    <string name="signup_success">تم إنشاء الحساب بنجاح!</string>
+    <string name="signup_failed">فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى.</string>
+    <string name="forgot_password_success">تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح.</string>
+    <string name="forgot_password_email_not_exist">البريد الإلكتروني غير موجود.</string>
+    <string name="forgot_password_invalid_form">يرجى إصلاح الأخطاء قبل الإرسال.</string>
+    <string name="unexpected_error">حدث خطأ غير متوقع</string>
+    <string name="location_permission_denied">مطلوب أذونات الموقع لإظهار الأماكن.</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">حدث خطأ ما</string>
+    <string name="error_network">خطأ في الشبكة. يرجى التحقق من الاتصال.</string>
+    <string name="error_server">خطأ في الخادم. يرجى المحاولة لاحقاً.</string>
+    <string name="error_timeout">انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.</string>
+    <string name="error_invalid_input">إدخال غير صحيح</string>
+    <string name="error_required_field">هذا الحقل مطلوب</string>
+    <string name="error_invalid_email">يرجى إدخال عنوان بريد إلكتروني صحيح</string>
+    <string name="error_password_too_short">يجب أن تكون كلمة المرور 6 أحرف على الأقل</string>
+    <string name="error_passwords_dont_match">كلمات المرور غير متطابقة</string>
+    <string name="error_file_not_found">الملف غير موجود</string>
+    <string name="error_permission_denied">تم رفض الإذن</string>
+
+    <!-- Success Messages -->
+    <string name="success_saved">تم الحفظ بنجاح</string>
+    <string name="success_deleted">تم الحذف بنجاح</string>
+    <string name="success_updated">تم التحديث بنجاح</string>
+    <string name="success_created">تم الإنشاء بنجاح</string>
+    <string name="success_copied">تم النسخ إلى الحافظة</string>
+
+    <!-- Confirmation Messages -->
+    <string name="confirm_delete">هل أنت متأكد من حذف هذا العنصر؟</string>
+    <string name="confirm_exit">هل أنت متأكد من الخروج؟</string>
+    <string name="confirm_discard_changes">تجاهل التغييرات غير المحفوظة؟</string>
+    <string name="confirm_logout">هل أنت متأكد من تسجيل الخروج؟</string>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="cd_logo">شعار التطبيق</string>
+    <string name="cd_profile_picture">صورة الملف الشخصي</string>
+    <string name="cd_menu">القائمة</string>
+    <string name="cd_search">بحث</string>
+    <string name="cd_settings">الإعدادات</string>
+    <string name="cd_close">إغلاق</string>
+    <string name="cd_back">العودة</string>
+    <string name="cd_more_options">المزيد من الخيارات</string>
+    <string name="cd_loading">مؤشر التحميل</string>
+    <string name="cd_loading_location">جاري الحصول على موقعك...</string>
+    <string name="cd_loading_places">جاري تحميل الأماكن...</string>
+    <string name="cd_grant_permission">منح الإذن</string>
+
+    <!-- Units and Formats -->
+    <string name="unit_seconds">ثواني</string>
+    <string name="unit_minutes">دقائق</string>
+    <string name="unit_hours">ساعات</string>
+    <string name="unit_days">أيام</string>
+    <string name="unit_weeks">أسابيع</string>
+    <string name="unit_months">أشهر</string>
+    <string name="unit_years">سنوات</string>
+
+    <!-- Date and Time -->
+    <string name="time_now">الآن</string>
+    <string name="time_just_now">منذ قليل</string>
+    <string name="time_today">اليوم</string>
+    <string name="time_yesterday">أمس</string>
+    <string name="time_tomorrow">غداً</string>
+
+    <!-- App Specific Strings -->
+    <string name="brand_spot">سبوت</string>
+    <string name="brand_q">كيو</string>
+    <string name="splash_welcome">أهلاً بك في سبوت كيو</string>
+
+    <!-- Common Placeholders -->
+    <string name="placeholder_search">بحث…</string>
+    <string name="placeholder_enter_text">أدخل النص</string>
+    <string name="placeholder_email">youremail@example.com</string>
+    <string name="placeholder_name">اسمك</string>
+    <string name="placeholder_password">••••••••</string>
+    <string name="placeholder_select_option">اختر خياراً</string>
+    <string name="onboarding_image">صورة التعريف</string>
+    <string name="action_skip">تخطي</string>
+    <string name="action_previous">السابق</string>
+    <string name="action_get_started">ابدأ</string>
+    <string name="action_finish">إنهاء</string>
+    <string name="onboarding_label">onboarding_page_transition</string>
+    <string name="image_content_description">صورة</string>
+    <string name="login_title">تسجيل الدخول</string>
+    <string name="login_subtitle">يرجى إدخال حساب صحيح</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="action_login">تسجيل الدخول</string>
+    <string name="or">أو</string>
+    <string name="login_with_google">تسجيل الدخول بجوجل</string>
+    <string name="login_with_x">تسجيل الدخول بإكس</string>
+    <string name="dont_have_account">لا تملك حساباً؟</string>
+    <string name="sign_up">إنشاء حساب</string>
+
+    <!-- Signup Screen Strings -->
+    <string name="signup_title">إنشاء حساب</string>
+    <string name="signup_subtitle">أنشئ حساباً، إنه مجاني</string>
+    <string name="action_signup">إنشاء حساب</string>
+    <string name="signup_with_google">إنشاء حساب بجوجل</string>
+    <string name="signup_with_x">إنشاء حساب بإكس</string>
+    <string name="already_have_account">لديك حساب بالفعل؟</string>
+    <string name="hide_password">إخفاء كلمة المرور</string>
+    <string name="show_password">إظهار كلمة المرور</string>
+    <string name="forget_password_subtitle">يرجى إدخال بريدك الإلكتروني لإرسال رسالة إعادة تعيين كلمة المرور</string>
+    <string name="action_send">إرسال</string>
+    <string name="popular_nearby">شائع قريباً</string>
+    <string name="see_all">عرض الكل</string>
+    <string name="recommended_places">موصى به</string>
+    <string name="cd_add_to_favorites">إضافة إلى المفضلة</string>
+    <string name="cd_remove_from_favorites">إزالة من المفضلة</string>
+    <string name="label_full_address">العنوان الكامل</string>
+    <string name="label_home">الرئيسية</string>
+    <string name="label_favorites">المفضلة</string>
+    <string name="label_search">بحث</string>
+    <string name="label_profile">الملف الشخصي</string>
+</resources>

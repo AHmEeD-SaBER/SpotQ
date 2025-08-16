@@ -6,7 +6,7 @@ import com.example.core_data.database.PlacesDao
 import com.example.core_data.database.UserDao
 import com.example.core_data.database.UserFavoriteCrossRef
 import com.example.data.utils.PlaceMapper
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.models.AddToFavoritesResponse
 import com.example.domain.repositories.IAddToFavoritesRepositories
 import javax.inject.Inject

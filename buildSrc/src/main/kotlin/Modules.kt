@@ -6,6 +6,8 @@ object Modules {
     const val location_provider = ":location-provider"
     const val coreData = ":core-data"
     const val errors = ":errors"
+    const val coreDomain = ":core-domain"
+    const val main_navigation = ":main-navigation"
 
     // Authentication modules
     const val authentication = ":authentication"
@@ -19,4 +21,10 @@ object Modules {
     const val placesDomain = ":places:domain"
     const val placesData = ":places:data"
     const val placesUi = ":places:ui"
+
+    // Favorites modules
+    const val favorites = ":favorites"
+    const val favoritesDomain = ":favorites:domain"
+    const val favoritesData = ":favorites:data"
+    const val favoritesUi = ":favorites:ui"
 }

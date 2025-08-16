@@ -3,7 +3,7 @@ package com.example.ui.places
 import com.example.core_ui.base.UiEffect
 import com.example.core_ui.base.UiEvent
 import com.example.core_ui.base.UiState
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 
 class PlacesContract {
     data class State(

@@ -35,7 +35,7 @@ android {
 
 dependencies {
     // Domain module dependency
-    implementation(project(Modules.placesDomain))
+    implementation(project(Modules.favoritesDomain))
     implementation(project(Modules.coreData))
     implementation(project(Modules.errors))
 

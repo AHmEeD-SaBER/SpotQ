@@ -11,16 +11,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
-import com.example.domain.dto.PlaceDto
-import com.example.ui.places.PlacesScreen
+import com.example.core_domain.dto.PlaceDto
+import com.example.core_ui.utils.Routes
+import com.example.main_navigation.BottomNavViewModel
+import com.example.main_navigation.MainNavigation
 import com.example.splash.SplashScreen
 import com.example.spotq.ui.main.MainContract
 import com.example.ui.place_details.PlaceDetailsContract
 import com.example.ui.place_details.PlaceDetailsScreen
 import com.example.ui.place_details.PlaceDetailsViewModel
-import com.example.ui.places.PlacesContract
-import com.example.ui.places.PlacesViewModel
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordContract
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordScreen
 import com.spotq.authentication.ui.forgotpassword.ForgotPasswordViewModel
@@ -31,29 +30,6 @@ import com.spotq.authentication.ui.signup.SignupContract
 import com.spotq.authentication.ui.signup.SignupScreen
 import com.spotq.authentication.ui.signup.SignupViewModel
 import com.spotq.onboarding.OnboardingScreen
-import kotlinx.serialization.Serializable
-
-// Sealed class for type-safe navigation (except PlaceDetails)
-@Serializable
-sealed class Screen {
-    @Serializable
-    data object Splash : Screen()
-
-    @Serializable
-    data object Onboarding : Screen()
-
-    @Serializable
-    data object Login : Screen()
-
-    @Serializable
-    data object Signup : Screen()
-
-    @Serializable
-    data object Places : Screen()
-
-    @Serializable
-    data object ForgotPassword : Screen()
-}
 
 @Composable
 fun AppNavigation(
@@ -65,30 +41,31 @@ fun AppNavigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash
+        startDestination = Routes.Splash
     ) {
 
-        composable<Screen.Splash> {
+        composable<Routes.Splash> {
             SplashScreen(
                 onSplashFinished = onSplashFinished
             )
             LaunchedEffect(mainState.currentDestination) {
                 when (mainState.currentDestination) {
                     MainContract.Destination.ONBOARDING -> {
-                        navController.navigate(Screen.Onboarding) {
-                            popUpTo<Screen.Splash> { inclusive = true }
+                        navController.navigate(Routes.Onboarding) {
+                            popUpTo<Routes.Splash> { inclusive = true }
                         }
                     }
 
                     MainContract.Destination.AUTH -> {
-                        navController.navigate(Screen.Login) {
-                            popUpTo<Screen.Splash> { inclusive = true }
+                        navController.navigate(Routes.Login) {
+                            popUpTo<Routes.Splash> { inclusive = true }
                         }
                     }
 
                     MainContract.Destination.MAIN -> {
-                        navController.navigate(Screen.Places) {
-                            popUpTo<Screen.Splash> { inclusive = true }
+                        // Navigate to Main, not directly to Places
+                        navController.navigate(Routes.Main(userId = mainState.userId ?: -1)) {
+                            popUpTo<Routes.Splash> { inclusive = true }
                         }
                     }
 
@@ -98,18 +75,18 @@ fun AppNavigation(
             }
         }
 
-        composable<Screen.Onboarding> {
+        composable<Routes.Onboarding> {
             OnboardingScreen(
                 onOnboardingComplete = {
                     onOnboardingComplete()
-                    navController.navigate(Screen.Login) {
-                        popUpTo<Screen.Onboarding> { inclusive = true }
+                    navController.navigate(Routes.Login) {
+                        popUpTo<Routes.Onboarding> { inclusive = true }
                     }
                 }
             )
         }
 
-        composable<Screen.Login> {
+        composable<Routes.Login> {
             val loginViewModel: LoginViewModel = hiltViewModel()
             val state by loginViewModel.uiState.collectAsState()
 
@@ -125,20 +102,21 @@ fun AppNavigation(
                     when (effect) {
                         is LoginContract.Effect.NavigateToMain -> {
                             onAuthComplete(effect.userId)
-                            navController.navigate(Screen.Places) {
-                                popUpTo<Screen.Login> { inclusive = true }
+                            // Navigate to Main, not directly to Places
+                            navController.navigate(Routes.Main(userId = effect.userId)) {
+                                popUpTo<Routes.Login> { inclusive = true }
                             }
                         }
 
                         is LoginContract.Effect.NavigateToSignup -> {
-                            navController.navigate(Screen.Signup) {
-                                popUpTo<Screen.Login> { inclusive = false }
+                            navController.navigate(Routes.Signup) {
+                                popUpTo<Routes.Login> { inclusive = false }
                             }
                         }
 
                         is LoginContract.Effect.NavigateToForgotPassword -> {
-                            navController.navigate(Screen.ForgotPassword) {
-                                popUpTo<Screen.Login> { inclusive = false }
+                            navController.navigate(Routes.ForgotPassword) {
+                                popUpTo<Routes.Login> { inclusive = false }
                             }
                         }
 
@@ -164,7 +142,7 @@ fun AppNavigation(
             }
         }
 
-        composable<Screen.ForgotPassword> {
+        composable<Routes.ForgotPassword> {
             val forgotPasswordViewModel: ForgotPasswordViewModel = hiltViewModel()
             val state by forgotPasswordViewModel.uiState.collectAsState()
             ForgotPasswordScreen(
@@ -176,7 +154,7 @@ fun AppNavigation(
                 forgotPasswordViewModel.effect.collect { effect ->
                     when (effect) {
                         ForgotPasswordContract.Effect.NavigateToLogin -> {
-                            navController.navigate(Screen.Login)
+                            navController.navigate(Routes.Login)
                         }
 
                         ForgotPasswordContract.Effect.None -> TODO()
@@ -200,7 +178,7 @@ fun AppNavigation(
             }
         }
 
-        composable<Screen.Signup> {
+        composable<Routes.Signup> {
             val signupViewModel: SignupViewModel = hiltViewModel()
             val state by signupViewModel.uiState.collectAsState()
 
@@ -215,8 +193,9 @@ fun AppNavigation(
                     when (effect) {
                         is SignupContract.Effect.NavigateToMain -> {
                             onAuthComplete(effect.userId)
-                            navController.navigate(Screen.Places) {
-                                popUpTo<Screen.Signup> { inclusive = true }
+                            // Navigate to Main, not directly to Places
+                            navController.navigate(Routes.Main(userId = effect.userId)) {
+                                popUpTo<Routes.Signup> { inclusive = true }
                             }
                         }
 
@@ -244,47 +223,9 @@ fun AppNavigation(
             }
         }
 
-        composable<Screen.Places> {
-            val placesViewModel: PlacesViewModel = hiltViewModel()
-            val state by placesViewModel.uiState.collectAsState()
-
-            PlacesScreen(
-                state = state,
-                onEvent = placesViewModel::handleEvent
-            )
-            val context = LocalContext.current
-
-            LaunchedEffect(placesViewModel) {
-                placesViewModel.effect.collect { effect ->
-                    when (effect) {
-                        is PlacesContract.Effects.NavigateToPlaceDetails -> {
-                            // Store the place in savedStateHandle and navigate
-                            navController.currentBackStackEntry?.savedStateHandle?.set(
-                                "place",
-                                effect.place
-                            )
-                            navController.navigate("place_details")
-                        }
-
-                        is PlacesContract.Effects.RequestLocationPermission -> { // handled at the screen
-                        }
-
-                        is PlacesContract.Effects.ShowError -> {
-                            Toast.makeText(
-                                context,
-                                context.getString(effect.title) + " " + context.getString(effect.subtitle),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                }
-            }
-        }
-
-        // Simple string-based navigation for PlaceDetails using savedStateHandle
-        composable("place_details") {
-            val place =
-                navController.previousBackStackEntry?.savedStateHandle?.get<PlaceDto>("place")
+        // PlaceDetails at the main navigation level
+        composable<Routes.PlaceDetails> {
+            val place = navController.previousBackStackEntry?.savedStateHandle?.get<PlaceDto>("place")
             place?.let {
                 val placeDetailsViewModel: PlaceDetailsViewModel = hiltViewModel()
                 val state by placeDetailsViewModel.uiState.collectAsState()
@@ -324,6 +265,18 @@ fun AppNavigation(
                         }
                     }
                 }
+            }
+        }
+
+        composable<Routes.Main> {
+            val mainViewModel : BottomNavViewModel = hiltViewModel()
+            val state by mainViewModel.uiState.collectAsState()
+            mainState.userId?.let {
+                MainNavigation(
+                    navController = navController,
+                    state = state,
+                    onEvent = mainViewModel::handleEvent,
+                )
             }
         }
     }
