@@ -114,11 +114,13 @@ class LoginViewModel @Inject constructor(
         when (result) {
             is AuthResult.Loading -> {
                 setState { copy(isLoading = true) }
+                Log.d("LoginViewModel", "Loading state")
             }
             is AuthResult.Success -> {
                 setState { copy(isLoading = false) }
                 setEffect { LoginContract.Effect.ShowSuccess(R.string.login_success) }
                 val userId = result.data.user.id
+                Log.d("LoginViewModel", "User ID: $userId")
                 setEffect { LoginContract.Effect.NavigateToMain(userId) }
             }
             is AuthResult.Error -> {
@@ -126,6 +128,7 @@ class LoginViewModel @Inject constructor(
                 setEffect {
                     LoginContract.Effect.ShowError(R.string.login_failed)
                 }
+                Log.e("LoginViewModel", "Login failed: ")
             }
         }
     }

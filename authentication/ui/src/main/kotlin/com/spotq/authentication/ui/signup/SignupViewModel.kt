@@ -1,5 +1,6 @@
 package com.spotq.authentication.ui.signup
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
 import com.spotq.authentication.domain.model.AuthResult
@@ -115,12 +116,14 @@ class SignupViewModel @Inject constructor(
                     when (result) {
                         is AuthResult.Loading -> {
                             setState { copy(isLoading = true) }
+                            Log.d("SignupViewModel", "Loading...")
                         }
 
                         is AuthResult.Success -> {
                             setState { copy(isLoading = false) }
                             setEffect { SignupContract.Effect.ShowSuccess(R.string.signup_success) }
                             val userId = result.data.user.id
+                            Log.d("SignupViewModel", "User ID: $userId")
                             setEffect { SignupContract.Effect.NavigateToMain(userId) }
                         }
 
@@ -129,6 +132,7 @@ class SignupViewModel @Inject constructor(
                             setEffect {
                                 SignupContract.Effect.ShowError(R.string.signup_failed)
                             }
+                            Log.e("SignupViewModel", "Error: ${result.exception.message}")
                         }
                     }
                 }

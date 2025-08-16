@@ -11,13 +11,15 @@ class PlaceDetailsContract {
     ) : UiState
 
     sealed class Events : UiEvent {
-        data class AddToFavorites(val place: PlaceDto) : Events()
-        data class RemoveFromFavorites(val placeId: String) : Events()
-        data class IsFavorite(val placeId: String) : Events()
+        data class AddToFavorites(val place: PlaceDto, val userId: Int) : Events()
+        data class RemoveFromFavorites(val placeId: String, val userId: Int) : Events()
+        data class IsFavorite(val placeId: String, val userId: Int) : Events()
         data object NavigateUp : Events()
     }
 
     sealed class Effect : UiEffect {
         data object NavigateUp : Effect()
+        data class ShowError(val messageRes: Int) : Effect()
+        data class ShowSuccess(val messageRes: Int) : Effect()
     }
 }
