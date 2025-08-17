@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.R
+import com.example.core_ui.theme.SpotQTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +37,6 @@ fun CustomAppBar(
         Icon(
             painter = painterResource(id = R.drawable.arrow_back),
             contentDescription = "Back",
-            modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_sm))
         )
     },
     showNavigation: Boolean = true
@@ -76,12 +76,14 @@ fun CustomAppBar(
 @Preview
 @Composable
 fun CustomAppBarPreview() {
-    CustomAppBar(
-        title = { Text(text = "Title") },
-        actions = {
-        },
-        showSearchBar = false
-    )
+    SpotQTheme {
+        CustomAppBar(
+            title = { Text(text = "Title") },
+            actions = {
+            },
+            showSearchBar = false
+        )
+    }
 }
 
 @Preview

@@ -1,21 +1,11 @@
 package com.example.main_navigation
 
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -28,10 +18,12 @@ import com.example.core_ui.utils.Routes
 import com.example.ui.FavoritesContract
 import com.example.ui.FavoritesScreen
 import com.example.ui.FavoritesViewModel
+import com.example.ui.ProfileContract
+import com.example.ui.ProfileScreen
+import com.example.ui.ProfileViewModel
 import com.example.ui.places.PlacesContract
 import com.example.ui.places.PlacesScreen
 import com.example.ui.places.PlacesViewModel
-import com.example.core_ui.R as CoreUiR
 
 @Composable
 fun MainNavigation(
@@ -153,13 +145,35 @@ fun MainNavigation(
             }
 
             composable<Routes.Profile> {
-                // ProfileScreen()
-
-                // Placeholder for now
-                Text(
-                    text = "Profile Screen",
-                    modifier = Modifier.padding(16.dp)
+                val args = it.toRoute<Routes.Profile>()
+                val profileViewModel: ProfileViewModel = hiltViewModel()
+                val state by profileViewModel.uiState.collectAsState()
+                ProfileScreen(
+                    state = state,
+                    onEvent = profileViewModel::handleEvent
                 )
+
+                val context = LocalContext.current
+                LaunchedEffect(profileViewModel) {
+                    profileViewModel.effect.collect { effect ->
+                        when (effect) {
+                            ProfileContract.Effect.NavigateToLogin -> {
+                                navController.navigate(Routes.Login) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        inclusive = true
+                                    }
+                                }
+                            }
+                            is ProfileContract.Effect.ShowError -> {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(effect.message),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
+                }
             }
         }
     }

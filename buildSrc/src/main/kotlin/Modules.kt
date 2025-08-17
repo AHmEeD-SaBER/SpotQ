@@ -27,4 +27,10 @@ object Modules {
     const val favoritesDomain = ":favorites:domain"
     const val favoritesData = ":favorites:data"
     const val favoritesUi = ":favorites:ui"
+
+    // Profile modules
+    const val profile = ":profile"
+    const val profileDomain = ":profile:domain"
+    const val profileData = ":profile:data"
+    const val profileUi = ":profile:ui"
 }

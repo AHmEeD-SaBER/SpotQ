@@ -165,6 +165,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+string added_to_favorites
 string androidx_startup
 string call_notification_answer_action
 string call_notification_answer_video_action
@@ -173,7 +174,10 @@ string call_notification_hang_up_action
 string call_notification_incoming_text
 string call_notification_ongoing_text
 string call_notification_screening_text
+string error_adding_to_favorites
+string removed_from_favorites
 string status_bar_notification_info_overflow
+string user_not_found
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
 style TextAppearance_Compat_Notification_Line2

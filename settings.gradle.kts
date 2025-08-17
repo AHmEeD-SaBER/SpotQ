@@ -41,3 +41,8 @@ include(":favorites:domain")
 include(":favorites:ui")
 include(":core-domain")
 include(":main-navigation")
+include(":profile")
+
+include(":profile:data")
+include(":profile:domain")
+include(":profile:ui")

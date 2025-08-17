@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="action_back">رجوع</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_continue">متابعة</string>
+    <string name="action_copy">نسخ</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_done">تم</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_filter">تصفية</string>
+    <string name="action_finish">إنهاء</string>
+    <string name="action_get_started">ابدأ</string>
+    <string name="action_login">تسجيل الدخول</string>
+    <string name="action_next">التالي</string>
+    <string name="action_no">لا</string>
+    <string name="action_ok">موافق</string>
+    <string name="action_paste">لصق</string>
+    <string name="action_previous">السابق</string>
+    <string name="action_refresh">تحديث</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_search">بحث</string>
+    <string name="action_select_all">تحديد الكل</string>
+    <string name="action_send">إرسال</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_signup">إنشاء حساب</string>
+    <string name="action_skip">تخطي</string>
+    <string name="action_sort">ترتيب</string>
+    <string name="action_yes">نعم</string>
+    <string name="already_have_account">لديك حساب بالفعل؟</string>
+    <string name="app_name">سبوت كيو</string>
+    <string name="app_version">1.0.0</string>
     <string msgid="389117264260014992" name="autofill">"الملء التلقائي"</string>
+    <string name="brand_q">كيو</string>
+    <string name="brand_spot">سبوت</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"ردّ"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"فيديو"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"رفض"</string>
@@ -8,13 +41,74 @@
     <string msgid="6107532579223922871" name="call_notification_incoming_text">"مكالمة واردة"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"مكالمة جارية"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"يتم فحص المكالمة الواردة"</string>
+    <string name="cd_add_to_favorites">إضافة إلى المفضلة</string>
+    <string name="cd_back">العودة</string>
+    <string name="cd_close">إغلاق</string>
+    <string name="cd_grant_permission">منح الإذن</string>
+    <string name="cd_loading">مؤشر التحميل</string>
+    <string name="cd_loading_location">جاري الحصول على موقعك...</string>
+    <string name="cd_loading_places">جاري تحميل الأماكن...</string>
+    <string name="cd_logo">شعار التطبيق</string>
+    <string name="cd_menu">القائمة</string>
+    <string name="cd_more_options">المزيد من الخيارات</string>
+    <string name="cd_profile_picture">صورة الملف الشخصي</string>
+    <string name="cd_remove_from_favorites">إزالة من المفضلة</string>
+    <string name="cd_search">بحث</string>
+    <string name="cd_settings">الإعدادات</string>
     <string msgid="406453423630273620" name="close_drawer">"إغلاق قائمة التنقل"</string>
     <string msgid="7573152094250666567" name="close_sheet">"إغلاق الورقة"</string>
+    <string name="confirm_delete">هل أنت متأكد من حذف هذا العنصر؟</string>
+    <string name="confirm_discard_changes">تجاهل التغييرات غير المحفوظة؟</string>
+    <string name="confirm_exit">هل أنت متأكد من الخروج؟</string>
+    <string name="confirm_logout">هل أنت متأكد من تسجيل الخروج؟</string>
     <string msgid="8038256446254964252" name="default_error_message">"إدخال غير صالح"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"نافذة منبثقة"</string>
+    <string name="dont_have_account">لا تملك حساباً؟</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"قائمة منسدلة"</string>
+    <string name="error_file_not_found">الملف غير موجود</string>
+    <string name="error_generic">حدث خطأ ما</string>
+    <string name="error_invalid_email">يرجى إدخال عنوان بريد إلكتروني صحيح</string>
+    <string name="error_invalid_input">إدخال غير صحيح</string>
+    <string name="error_network">خطأ في الشبكة. يرجى التحقق من الاتصال.</string>
+    <string name="error_password_too_short">يجب أن تكون كلمة المرور 6 أحرف على الأقل</string>
+    <string name="error_passwords_dont_match">كلمات المرور غير متطابقة</string>
+    <string name="error_permission_denied">تم رفض الإذن</string>
+    <string name="error_required_field">هذا الحقل مطلوب</string>
+    <string name="error_server">خطأ في الخادم. يرجى المحاولة لاحقاً.</string>
+    <string name="error_timeout">انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="forget_password_subtitle">يرجى إدخال بريدك الإلكتروني لإرسال رسالة إعادة تعيين كلمة المرور</string>
+    <string name="forgot_password_email_not_exist">البريد الإلكتروني غير موجود.</string>
+    <string name="forgot_password_invalid_form">يرجى إصلاح الأخطاء قبل الإرسال.</string>
+    <string name="forgot_password_success">تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح.</string>
+    <string name="hide_password">إخفاء كلمة المرور</string>
+    <string name="image_content_description">صورة</string>
     <string msgid="6827826412747255547" name="in_progress">"قيد التقدم"</string>
     <string msgid="7933458017204019916" name="indeterminate">"تم وضع علامة في المربّع بشكل جزئي"</string>
+    <string name="label_category">الفئات</string>
+    <string name="label_date">التاريخ</string>
+    <string name="label_description">الوصف</string>
+    <string name="label_email">البريد الإلكتروني</string>
+    <string name="label_favorites">المفضلة</string>
+    <string name="label_full_address">العنوان الكامل</string>
+    <string name="label_full_name">الاسم الكامل</string>
+    <string name="label_home">الرئيسية</string>
+    <string name="label_location">الموقع</string>
+    <string name="label_name">الاسم</string>
+    <string name="label_password">كلمة المرور</string>
+    <string name="label_profile">الملف الشخصي</string>
+    <string name="label_search">بحث</string>
+    <string name="label_tags">العلامات</string>
+    <string name="label_time">الوقت</string>
+    <string name="label_title">العنوان</string>
+    <string name="label_username">اسم المستخدم</string>
+    <string name="location_permission_denied">مطلوب أذونات الموقع لإظهار الأماكن.</string>
+    <string name="login_failed">فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.</string>
+    <string name="login_subtitle">يرجى إدخال حساب صحيح</string>
+    <string name="login_success">أهلاً بعودتك!</string>
+    <string name="login_title">تسجيل الدخول</string>
+    <string name="login_with_google">تسجيل الدخول بجوجل</string>
+    <string name="login_with_x">تسجيل الدخول بإكس</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"تصغير البطاقة السفلية"</string>
     <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"إغلاق البطاقة السفلية"</string>
     <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"مقبض السحب"</string>
@@ -82,19 +176,85 @@
     <string msgid="6564222473543418073" name="m3c_wide_navigation_rail_close_rail">"إغلاق الشريط"</string>
     <string msgid="8350283435461615411" name="m3c_wide_navigation_rail_pane_title">"شريط التنقّل"</string>
     <string msgid="2792228137354697160" name="mc2_snackbar_pane_title">"تنبيه"</string>
+    <string name="nav_about">حول</string>
+    <string name="nav_help">المساعدة</string>
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_settings">الإعدادات</string>
     <string msgid="542007171693138492" name="navigation_menu">"قائمة تنقل"</string>
     <string msgid="6610465462668679431" name="not_selected">"غير محدّد"</string>
+    <string name="onboarding_1_description">
+        أنشئ رحلتك المثالية بسهولة. اختر الوجهة، وابحث عن مكان الإقامة المناسب، وضع جدولاً زمنياً يناسب تفضيلاتك.
+    </string>
+    <string name="onboarding_1_title">خطط لرحلتك</string>
+    <string name="onboarding_2_description">
+        قم بتشغيل الوصول إلى الموقع للحصول على توصيات مخصصة لأشهر الأماكن والمعالم المخفية من حولك.
+    </string>
+    <string name="onboarding_2_title">تفعيل خدمات الموقع</string>
+    <string name="onboarding_3_description">
+        اكتشف جمال الأماكن المحلية التي قد لم تزُرها من قبل. عِش التجارب المحلية الأصيلة واستمتع بالحياة في كل وجهة.
+    </string>
+    <string name="onboarding_3_title">استكشف المعالم المحلية</string>
+    <string name="onboarding_image">صورة التعريف</string>
+    <string name="onboarding_label">onboarding_page_transition</string>
+    <string name="or">أو</string>
+    <string name="placeholder_email">youremail@example.com</string>
+    <string name="placeholder_enter_text">أدخل النص</string>
+    <string name="placeholder_name">اسمك</string>
+    <string name="placeholder_password">••••••••</string>
+    <string name="placeholder_search">بحث…</string>
+    <string name="placeholder_select_option">اختر خياراً</string>
+    <string name="popular_nearby">شائع قريباً</string>
     <string msgid="5941395253238309765" name="range_end">"نهاية النطاق"</string>
     <string msgid="7097486360902471446" name="range_start">"بداية النطاق"</string>
+    <string name="recommended_places">موصى به</string>
+    <string name="see_all">عرض الكل</string>
     <string msgid="6043586758067023" name="selected">"محدّد"</string>
+    <string name="show_password">إظهار كلمة المرور</string>
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="signup_failed">فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى.</string>
+    <string name="signup_subtitle">أنشئ حساباً، إنه مجاني</string>
+    <string name="signup_success">تم إنشاء الحساب بنجاح!</string>
+    <string name="signup_title">إنشاء حساب</string>
+    <string name="signup_with_google">إنشاء حساب بجوجل</string>
+    <string name="signup_with_x">إنشاء حساب بإكس</string>
     <string msgid="2792228137354697160" name="snackbar_pane_title">"تنبيه"</string>
+    <string name="splash_welcome">أهلاً بك في سبوت كيو</string>
     <string msgid="4139871816613051306" name="state_empty">"حقل فارغ"</string>
     <string msgid="5834637030682409883" name="state_off">"غير مفعَّل"</string>
     <string msgid="1490883874751719580" name="state_on">"مفعَّل"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="status_completed">مكتمل</string>
+    <string name="status_connecting">جاري الاتصال…</string>
+    <string name="status_empty_list">القائمة فارغة</string>
+    <string name="status_error">خطأ</string>
+    <string name="status_loading">جاري التحميل…</string>
+    <string name="status_no_data">لا توجد بيانات متاحة</string>
+    <string name="status_no_results">لم يتم العثور على نتائج</string>
+    <string name="status_offline">أنت غير متصل</string>
+    <string name="status_pending">قيد الانتظار</string>
+    <string name="status_success">نجح</string>
+    <string name="success_copied">تم النسخ إلى الحافظة</string>
+    <string name="success_created">تم الإنشاء بنجاح</string>
+    <string name="success_deleted">تم الحذف بنجاح</string>
+    <string name="success_saved">تم الحفظ بنجاح</string>
+    <string name="success_updated">تم التحديث بنجاح</string>
     <string msgid="2561197295334830845" name="switch_role">"تبديل"</string>
     <string msgid="1672349317127674378" name="tab">"علامة تبويب"</string>
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> في المئة."</string>
+    <string name="time_just_now">منذ قليل</string>
+    <string name="time_now">الآن</string>
+    <string name="time_today">اليوم</string>
+    <string name="time_tomorrow">غداً</string>
+    <string name="time_yesterday">أمس</string>
     <string msgid="3765533235322692011" name="tooltip_description">"تلميح"</string>
     <string msgid="3124740595719787496" name="tooltip_label">"إظهار التلميح"</string>
+    <string name="unexpected_error">حدث خطأ غير متوقع</string>
+    <string name="unit_days">أيام</string>
+    <string name="unit_hours">ساعات</string>
+    <string name="unit_minutes">دقائق</string>
+    <string name="unit_months">أشهر</string>
+    <string name="unit_seconds">ثواني</string>
+    <string name="unit_weeks">أسابيع</string>
+    <string name="unit_years">سنوات</string>
 </resources>
