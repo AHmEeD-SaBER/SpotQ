@@ -51,6 +51,7 @@ dependencies {
     implementation(project(Modules.authenticationUi))
     implementation(project(Modules.errors))
     implementation(project(Modules.coreDomain))
+    implementation(project(Modules.profileUi))
 
     // Core Android libraries
     implementation(Core.coreKtx)

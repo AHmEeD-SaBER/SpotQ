@@ -57,12 +57,8 @@ class MainActivity : ComponentActivity() {
                             mainViewModel.handleEvent(MainContract.Event.OnboardingCompleted)
                         }
                     )
-//                    if (currentRoute != Routes.Main.toString())
-//                        Box(
-//                            modifier = Modifier.padding(dimensionResource(coreUiR.dimen.padding_lg))
-//                        ) {
-//                            LanguageSwitcher()
-//                        }
+
+
                 }
 
             }

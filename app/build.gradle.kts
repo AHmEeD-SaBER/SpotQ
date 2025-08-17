@@ -88,6 +88,11 @@ dependencies {
     implementation(project(Modules.favoritesDomain))
     implementation(project(Modules.favoritesData))
 
+    // Profile modules
+    implementation(project(Modules.profileUi))
+    implementation(project(Modules.profileDomain))
+    implementation(project(Modules.profileData))
+
     // Core Android libraries
     implementation(Core.coreKtx)
     implementation(Core.splashScreen)

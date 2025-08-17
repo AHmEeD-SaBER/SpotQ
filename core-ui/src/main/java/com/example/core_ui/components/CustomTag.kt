@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.R
 import com.example.core_ui.theme.AppTypography
@@ -43,6 +44,8 @@ fun CustomTag(modifier: Modifier = Modifier, text: String, style: TextStyle = Ap
             modifier = modifier,
             text = text,
             style =style,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
 
 
             )

@@ -42,6 +42,10 @@
             <option value="$PROJECT_DIR$/places/data" />
             <option value="$PROJECT_DIR$/places/domain" />
             <option value="$PROJECT_DIR$/places/ui" />
+            <option value="$PROJECT_DIR$/profile" />
+            <option value="$PROJECT_DIR$/profile/data" />
+            <option value="$PROJECT_DIR$/profile/domain" />
+            <option value="$PROJECT_DIR$/profile/ui" />
             <option value="$PROJECT_DIR$/splash" />
           </set>
         </option>

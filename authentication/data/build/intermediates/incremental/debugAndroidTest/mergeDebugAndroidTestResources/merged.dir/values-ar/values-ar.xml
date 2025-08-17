@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="added_to_favorites">تمت الإضافة إلى المفضلة</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"ردّ"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"فيديو"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"رفض"</string>
@@ -7,5 +8,8 @@
     <string msgid="6107532579223922871" name="call_notification_incoming_text">"مكالمة واردة"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"مكالمة جارية"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"يتم فحص المكالمة الواردة"</string>
+    <string name="error_adding_to_favorites">خطأ غير متوقع</string>
+    <string name="removed_from_favorites">تمت الإزالة من المفضلة</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="user_not_found">المستخدم غير موجود</string>
 </resources>

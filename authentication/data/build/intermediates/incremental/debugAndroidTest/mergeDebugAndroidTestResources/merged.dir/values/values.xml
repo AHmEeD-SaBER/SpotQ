@@ -93,6 +93,7 @@
     <id name="view_tree_view_model_store_owner"/>
     <item name="visible_removing_fragment_view_tag" type="id"/>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="added_to_favorites">Added To Favorites</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="call_notification_answer_action">Answer</string>
     <string name="call_notification_answer_video_action">Video</string>
@@ -101,7 +102,10 @@
     <string name="call_notification_incoming_text">Incoming call</string>
     <string name="call_notification_ongoing_text">Ongoing call</string>
     <string name="call_notification_screening_text">Screening an incoming call</string>
+    <string name="error_adding_to_favorites">Unexpected Error</string>
+    <string name="removed_from_favorites">Removed From Favorites</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="user_not_found">User Not Found</string>
     <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>
     <style name="TextAppearance.Compat.Notification.Info">
         <item name="android:textSize">12sp</item>

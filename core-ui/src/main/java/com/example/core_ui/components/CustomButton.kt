@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,14 +25,15 @@ fun CustomButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    containerColor: Color = MaterialTheme.colorScheme.tertiary,
 ) {
     Button(
         onClick = onClick,
         enabled = enabled && !isLoading,
         modifier = modifier.fillMaxWidth().height(dimensionResource(R.dimen.button_height_large)),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.tertiary,
+            containerColor = containerColor,
             contentColor = MaterialTheme.colorScheme.onTertiary,
             disabledContainerColor = MaterialTheme.colorScheme.tertiary,
             disabledContentColor = MaterialTheme.colorScheme.onTertiary

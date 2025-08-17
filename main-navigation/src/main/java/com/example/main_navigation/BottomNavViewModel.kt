@@ -46,7 +46,7 @@ class BottomNavViewModel @Inject constructor(savedStateHandle: SavedStateHandle)
                         unselectedIcon = CoreUiR.drawable.search_outlined
                     ),
                     BottomNavItem(
-                        route = Routes.Profile,
+                        route = Routes.Profile(userId),
                         label = CoreUiR.string.label_profile,
                         selectedIcon = CoreUiR.drawable.user_filled,
                         unselectedIcon = CoreUiR.drawable.user_outlined

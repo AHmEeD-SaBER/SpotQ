@@ -55,13 +55,6 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         sharedPreferences.getString(KEY_USER_EMAIL, null)
     }
 
-    override suspend fun clearUserData() = withContext(Dispatchers.IO) {
-        sharedPreferences.edit {
-            remove(KEY_USER_NAME)
-            remove(KEY_USER_EMAIL)
-            putBoolean(KEY_USER_AUTHENTICATED, false)
-        }
-    }
 
     override suspend fun setUserId(userId: Int) = withContext(Dispatchers.IO) {
         sharedPreferences.edit { putInt(KEY_USER_ID, userId) }

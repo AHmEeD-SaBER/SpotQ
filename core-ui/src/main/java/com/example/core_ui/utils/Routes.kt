@@ -41,5 +41,5 @@ sealed class Routes {
     data object Search : Routes()
 
     @Serializable
-    data object Profile : Routes()
+    data class Profile(val userId: Int) : Routes()
 }
