@@ -3,7 +3,7 @@ package com.example.data.repositories
 import android.util.Log
 import com.example.errors.CustomError
 import com.example.data.datasources.palces.IPlacesRemoteDataSource
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.repositories.IPlacesRepository
 import com.example.core_data.utils.INetworkMonitor
 import com.example.data.utils.PlaceMapper

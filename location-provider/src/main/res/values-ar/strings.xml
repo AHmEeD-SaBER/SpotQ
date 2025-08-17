@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="location_disabled">الموقع معطّل</string>
+    <string name="location_error">خطأ في الموقع</string>
+    <string name="location_permission_denied">تم رفض إذن الموقع</string>
+</resources>

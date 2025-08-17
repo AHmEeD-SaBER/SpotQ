@@ -71,6 +71,7 @@ dependencies {
     implementation(project(Modules.onboarding))
     implementation(project(Modules.location_provider))
     implementation(project(Modules.errors))
+    implementation(project(Modules.main_navigation))
 
     // Authentication modules
     implementation(project(Modules.authenticationUi))
@@ -81,6 +82,11 @@ dependencies {
     implementation(project(Modules.placesUi))
     implementation(project(Modules.placesDomain))
     implementation(project(Modules.placesData))
+
+    // Favorites modules
+    implementation(project(Modules.favoritesUi))
+    implementation(project(Modules.favoritesDomain))
+    implementation(project(Modules.favoritesData))
 
     // Core Android libraries
     implementation(Core.coreKtx)

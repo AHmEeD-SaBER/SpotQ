@@ -174,4 +174,8 @@
     <string name="cd_add_to_favorites">Add To Favorites</string>
     <string name="cd_remove_from_favorites">Remove From Favorites</string>
     <string name="label_full_address">Full Address</string>
+    <string name="label_home">Home</string>
+    <string name="label_favorites">Favorites</string>
+    <string name="label_search">Search</string>
+    <string name="label_profile">Profile</string>
 </resources>

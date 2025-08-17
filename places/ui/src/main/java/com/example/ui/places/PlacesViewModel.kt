@@ -6,7 +6,7 @@ import android.os.Build
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.domain.usecases.IGetPlacesUseCase
 import com.example.errors.CustomError
 import com.example.location_provider.LocationProvider

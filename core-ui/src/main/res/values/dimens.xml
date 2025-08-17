@@ -48,7 +48,7 @@
     <!-- Card and Container -->
     <dimen name="card_vertical_corner_radius">20dp</dimen>
     <dimen name="card_corner_radius_large">16dp</dimen>
-    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
     <dimen name="card_elevation_large">8dp</dimen>
 
     <!-- Text Sizes (complement to Typography) -->
@@ -104,4 +104,7 @@
     <dimen name="padding_xxs">2dp</dimen>
     <dimen name="title_max_width">180dp</dimen>
     <dimen name="place_image_height">500dp</dimen>
+    <dimen name="bottom_bar_corner_radius">45dp</dimen>
+    <dimen name="bottom_bar_height">70dp</dimen>
+    <dimen name="elipsed_corner_radius">50dp</dimen>
 </resources>

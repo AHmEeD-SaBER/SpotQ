@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_1_title">خطط لرحلتك</string>
+    <string name="onboarding_1_description">
+        أنشئ رحلتك المثالية بسهولة. اختر الوجهة، وابحث عن مكان الإقامة المناسب، وضع جدولاً زمنياً يناسب تفضيلاتك.
+    </string>
+
+    <string name="onboarding_2_title">تفعيل خدمات الموقع</string>
+    <string name="onboarding_2_description">
+        قم بتشغيل الوصول إلى الموقع للحصول على توصيات مخصصة لأشهر الأماكن والمعالم المخفية من حولك.
+    </string>
+
+    <string name="onboarding_3_title">استكشف المعالم المحلية</string>
+    <string name="onboarding_3_description">
+        اكتشف جمال الأماكن المحلية التي قد لم تزُرها من قبل. عِش التجارب المحلية الأصيلة واستمتع بالحياة في كل وجهة.
+    </string>
+</resources>

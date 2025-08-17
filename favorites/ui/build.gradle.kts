@@ -44,31 +44,32 @@ android {
 dependencies {
 
     // Domain module dependency
-    implementation(project(Modules.placesDomain))
+    implementation(project(Modules.favoritesDomain))
+    implementation(project(Modules.placesUi))
     // Core UI module
     implementation(project(Modules.coreUi))
     implementation(project(Modules.location_provider))
     implementation(project(Modules.errors))
 
-    // Core dependencies
-    implementation(Core.coreKtx)
-    implementation(Lifecycle.runtimeKtx)
+    // ViewModel and Lifecycle for Hilt integration
+    implementation(Lifecycle.viewModelKtx)
     implementation(Lifecycle.viewModelCompose)
+    implementation(Hilt.navigationCompose)
 
-
-    // Compose dependencies
+    // Compose BOM and UI libraries
+    implementation(platform(Compose.bom))
     implementation(Compose.ui)
     implementation(Compose.uiGraphics)
-    implementation(Compose.uiTooling)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.material3)
     implementation(Compose.materialIconsExtended)
     implementation(Compose.activity)
+    implementation(Compose.navigation)
+
 
     // Hilt
     implementation(Hilt.android)
     ksp(Hilt.ksp)
-    implementation(Hilt.navigationCompose)
 
     // Testing
     testImplementation(Test.junit)

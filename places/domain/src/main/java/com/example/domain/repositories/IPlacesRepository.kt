@@ -1,6 +1,6 @@
 package com.example.domain.repositories
 
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import kotlinx.coroutines.flow.Flow
 
 interface IPlacesRepository {

@@ -1,4 +1,4 @@
-package com.example.domain.dto
+package com.example.core_domain.dto
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

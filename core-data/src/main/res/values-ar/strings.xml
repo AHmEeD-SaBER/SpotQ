@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="added_to_favorites">تمت الإضافة إلى المفضلة</string>
+    <string name="error_adding_to_favorites">خطأ غير متوقع</string>
+    <string name="removed_from_favorites">تمت الإزالة من المفضلة</string>
+    <string name="user_not_found">المستخدم غير موجود</string>
+</resources>

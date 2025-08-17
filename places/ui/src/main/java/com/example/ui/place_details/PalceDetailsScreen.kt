@@ -3,6 +3,7 @@ package com.example.ui.place_details
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,7 +52,7 @@ import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.theme.Yellow
 import com.example.core_ui.utils.Constants
-import com.example.domain.dto.PlaceDto
+import com.example.core_domain.dto.PlaceDto
 import com.example.core_ui.R as coreUiR
 import com.example.ui.R
 import kotlinx.coroutines.channels.ticker
@@ -116,26 +117,30 @@ fun PlaceDetailsScreen(
                 CustomAppBar(
                     modifier = Modifier.padding(dimensionResource(coreUiR.dimen.padding_sm)),
                     actions = {
-                        IconButton(
-                            onClick = {
-                                if (state.isFavorite) onEvent(
-                                    PlaceDetailsContract.Events.RemoveFromFavorites(
-                                        place.xid, userId
-                                    )
-                                )
-                                else
-                                    onEvent(
-                                        PlaceDetailsContract.Events.AddToFavorites(
-                                            place,
-                                            userId
-                                        )
-                                    )
-                            }, modifier = Modifier
+                        Box(
+                            modifier = Modifier
                                 .background(
                                     MaterialTheme.colorScheme.surface,
                                     shape = CircleShape
                                 )
                                 .size(dimensionResource(coreUiR.dimen.icon_size_md))
+                                .padding( top = dimensionResource(coreUiR.dimen.padding_xxs))
+                                .clickable {
+                                    if (state.isFavorite) onEvent(
+                                        PlaceDetailsContract.Events.RemoveFromFavorites(
+                                            place.xid, userId
+                                        )
+                                    )
+                                    else
+                                        onEvent(
+                                            PlaceDetailsContract.Events.AddToFavorites(
+                                                place,
+                                                userId
+                                            )
+                                        )
+
+                                },
+                            contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 painter = if (state.isFavorite) painterResource(coreUiR.drawable.love_icon_field) else
@@ -144,7 +149,7 @@ fun PlaceDetailsScreen(
                                     if (state.isFavorite) coreUiR.string.cd_add_to_favorites else
                                         coreUiR.string.cd_remove_from_favorites
                                 ),
-                                tint = MaterialTheme.colorScheme.primary
+                                tint = MaterialTheme.colorScheme.primary,
                             )
 
                         }
