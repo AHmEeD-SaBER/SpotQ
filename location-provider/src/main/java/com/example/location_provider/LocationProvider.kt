@@ -22,17 +22,11 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
     private val fusedLocationClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(context)
 
-    /**
-     * Data class to hold location information
-     */
     data class LocationData(
         val latitude: Double,
         val longitude: Double,
     )
 
-    /**
-     * Sealed class for location results
-     */
     sealed class LocationResult {
         data class Success(val location: LocationData) : LocationResult()
         data class Error(val errorMsgId : Int) : LocationResult()
@@ -40,9 +34,6 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
         object LocationDisabled : LocationResult()
     }
 
-    /**
-     * Check if location permissions are granted
-     */
     fun hasLocationPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(
             context,
@@ -54,9 +45,7 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
                 ) == PackageManager.PERMISSION_GRANTED
     }
 
-    /**
-     * Extension function to convert Location to LocationData
-     */
+
     private fun Location.toLocationData(): LocationData {
         return LocationData(
             latitude = latitude,
@@ -64,37 +53,8 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
         )
     }
 
-    /**
-     * Get the last known location (fast but might be outdated)
-     */
-    @SuppressLint("MissingPermission")
-    suspend fun getLastLocation(): LocationResult = suspendCancellableCoroutine { continuation ->
-        if (!hasLocationPermission()) {
-            continuation.resume(LocationResult.PermissionDenied)
-            return@suspendCancellableCoroutine
-        }
 
-        try {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location ->
-                    location?.let {
-                        continuation.resume(
-                            LocationResult.Success(location.toLocationData())
-                        )
-                    }
-                        ?: continuation.resume(LocationResult.Error(R.string.location_disabled))
-                }
-                .addOnFailureListener {
-                    continuation.resume(LocationResult.Error(R.string.location_error))
-                }
-        } catch (e: SecurityException) {
-            continuation.resume(LocationResult.Error(R.string.location_permission_denied))
-        }
-    }
 
-    /**
-     * Get current location (fresh location)
-     */
     @SuppressLint("MissingPermission")
     suspend fun getCurrentLocation(
         priority: Int = Priority.PRIORITY_HIGH_ACCURACY
@@ -112,7 +72,6 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
                     if (location != null) {
                         continuation.resume(LocationResult.Success(location.toLocationData()))
                     } else {
-                        // Fallback to last known location
                         fusedLocationClient.lastLocation
                             .addOnSuccessListener { lastLocation ->
                                 if (lastLocation != null) {
@@ -135,56 +94,6 @@ class LocationProvider @Inject constructor(@ApplicationContext private val conte
             }
         } catch (e: SecurityException) {
             continuation.resume(LocationResult.Error(R.string.location_permission_denied))
-        }
-    }
-
-
-    /**
-     * Get continuous location updates
-     */
-    @SuppressLint("MissingPermission")
-    fun getLocationUpdates(
-        interval: Long = 10000L,
-        fastestInterval: Long = 5000L,
-        priority: Int = Priority.PRIORITY_HIGH_ACCURACY
-    ): Flow<LocationResult> = callbackFlow {
-        if (!hasLocationPermission()) {
-            trySend(LocationResult.PermissionDenied)
-            close()
-            return@callbackFlow
-        }
-
-        val locationRequest = LocationRequest.Builder(priority, interval)
-            .setMinUpdateIntervalMillis(fastestInterval)
-            .build()
-
-        val locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: com.google.android.gms.location.LocationResult) {
-                locationResult.locations.forEach { location ->
-                    trySend(LocationResult.Success(location.toLocationData()))
-                }
-            }
-
-            override fun onLocationAvailability(availability: LocationAvailability) {
-                if (!availability.isLocationAvailable) {
-                    trySend(LocationResult.LocationDisabled)
-                }
-            }
-        }
-
-        try {
-            fusedLocationClient.requestLocationUpdates(
-                locationRequest,
-                locationCallback,
-                Looper.getMainLooper()
-            )
-        } catch (e: SecurityException) {
-            trySend(LocationResult.Error(R.string.location_permission_denied))
-            close()
-        }
-
-        awaitClose {
-            fusedLocationClient.removeLocationUpdates(locationCallback)
         }
     }
 }
