@@ -24,37 +24,39 @@ fun PageLayout(
     imageContentDescription: String? = null,
     bottomContent: @Composable () -> Unit,
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.primary)
-    ) {
-        if (imageRes != null)
-            Image(
+    Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.primary)
+        ) {
+            if (imageRes != null)
+                Image(
+                    modifier = Modifier
+                        .padding(top = dimensionResource(R.dimen.padding_xxl))
+                        .align(Alignment.TopCenter),
+                    painter = painterResource(imageRes),
+                    contentDescription = imageContentDescription
+                        ?: stringResource(id = R.string.image_content_description)
+                )
+
+
+            Box(
+                modifier = Modifier.align(Alignment.BottomCenter)
+            ) {
+                bottomContent()
+            }
+            Box(
                 modifier = Modifier
-                    .padding(top = dimensionResource(R.dimen.padding_xxl))
-                    .align(Alignment.TopCenter),
-                painter = painterResource(imageRes),
-                contentDescription = imageContentDescription
-                    ?: stringResource(id = R.string.image_content_description)
-            )
+                    .statusBarsPadding()
+                    .padding(top = dimensionResource(R.dimen.padding_sm))
+                    .align(Alignment.TopEnd)
+            ) {
+                val context = LocalContext.current
+                val activity = context as? ComponentActivity
 
-
-        Box(
-            modifier = Modifier.align(Alignment.BottomCenter)
-        ) {
-            bottomContent()
-        }
-        Box(
-            modifier = Modifier
-                .statusBarsPadding()
-                .padding(top = dimensionResource(R.dimen.padding_sm))
-                .align(Alignment.TopEnd)
-        ) {
-            val context = LocalContext.current
-            val activity = context as? ComponentActivity
-
-            LanguageSwitcher(activityContext = activity)
+                LanguageSwitcher(activityContext = activity)
+            }
         }
     }
 }

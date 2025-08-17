@@ -1,7 +1,7 @@
 package com.example.domain.di
 
 import com.example.domain.usecases.get_places.GetPlacesUseCase
-import com.example.domain.usecases.IGetPlacesUseCase
+import com.example.domain.usecases.get_places.IGetPlacesUseCase
 import com.example.domain.usecases.add_to_favorites.AddToFavoritesUseCase
 import com.example.domain.usecases.add_to_favorites.IAddToFavoritesUseCase
 import com.example.domain.usecases.is_favorite.IsFavoriteUseCase

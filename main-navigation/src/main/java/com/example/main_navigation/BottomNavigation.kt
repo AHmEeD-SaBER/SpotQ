@@ -1,6 +1,7 @@
 package com.example.main_navigation
 
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -33,6 +34,7 @@ fun MainNavigation(
 ) {
     val bottomNavController = rememberNavController()
 
+
     Scaffold(
         bottomBar = {
             CustomBottomBar(
@@ -40,11 +42,10 @@ fun MainNavigation(
                 onItemClick = { item ->
                     onEvent(BottomNavigationContract.Event.OnTabSelected(item.route))
                     bottomNavController.navigate(item.route) {
-                        popUpTo(bottomNavController.graph.findStartDestination().id) {
-                            saveState = true
+                        popUpTo(0) {
+                            inclusive = true
                         }
                         launchSingleTop = true
-                        restoreState = true
                     }
                 }
             )

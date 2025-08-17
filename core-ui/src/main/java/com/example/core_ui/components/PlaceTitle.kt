@@ -16,6 +16,7 @@ fun PlaceTitle(
     modifier: Modifier = Modifier,
     title: String,
     style: TextStyle,
+    maxLines: Int = 1,
     maxWidth: Dp = dimensionResource(R.dimen.title_max_width)
 ) {
     Text(
@@ -24,7 +25,7 @@ fun PlaceTitle(
             max = maxWidth
         ),
         style = style,
-        maxLines = 1,
+        maxLines = maxLines,
         overflow = TextOverflow.Ellipsis
     )
 

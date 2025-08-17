@@ -192,6 +192,7 @@ fun PlaceDetailsScreen(
                         Column {
                             PlaceTitle(
                                 title = place.name,
+                                maxLines = 2,
                                 style = AppTypography.sh6.copy(color = Color.White)
                             )
                             Spacer(modifier = Modifier.padding(top = dimensionResource(coreUiR.dimen.padding_xs)))

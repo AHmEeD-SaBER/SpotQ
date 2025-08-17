@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
 import com.example.core_domain.dto.PlaceDto
-import com.example.domain.usecases.IGetPlacesUseCase
+import com.example.domain.usecases.get_places.IGetPlacesUseCase
 import com.example.errors.CustomError
 import com.example.location_provider.LocationProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,10 +41,6 @@ class PlacesViewModel @Inject constructor(
     override fun handleEvent(event: PlacesContract.Events) {
         when (event) {
             PlacesContract.Events.LoadPlaces -> handleLoadPlaces()
-            is PlacesContract.Events.LoadPlacesWithCategory -> handleLoadPlacesWithCategory(event.kinds)
-            is PlacesContract.Events.LoadPlacesWithParams -> handleLoadPlacesWithParams(
-                event.kinds, event.radius, event.limit
-            )
             is PlacesContract.Events.PlaceClicked -> handlePlaceClicked(event.place)
             PlacesContract.Events.Retry -> handleRetry()
             PlacesContract.Events.RequestLocationPermission -> handleRequestLocationPermission()
@@ -52,9 +48,6 @@ class PlacesViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Check and update permission state
-     */
     private fun handleCheckPermissions() {
         val hasPermission = locationProvider.hasLocationPermission()
         setState { copy(hasPermission = hasPermission) }
@@ -66,15 +59,11 @@ class PlacesViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Get location name from coordinates using reverse geocoding
-     */
     private suspend fun getLocationName(latitude: Double, longitude: Double): String? {
         return try {
             if (geocoder == null) return null
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                // Use the new async API for Android 13+
                 suspendCancellableCoroutine { continuation ->
                     geocoder.getFromLocation(latitude, longitude, 1) { addresses ->
                         val locationName = addresses.firstOrNull()?.let { address ->
@@ -84,7 +73,6 @@ class PlacesViewModel @Inject constructor(
                     }
                 }
             } else {
-                // Use the deprecated synchronous API for older versions
                 @Suppress("DEPRECATION")
                 val addresses = geocoder.getFromLocation(latitude, longitude, 1)
                 addresses?.firstOrNull()?.let { address ->
@@ -97,21 +85,15 @@ class PlacesViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Format the address into a readable location name
-     */
     private fun formatLocationName(address: Address): String {
         return buildString {
-            // Add city/locality
             address.locality?.let { append(it) }
 
-            // Add country
             address.countryName?.let { country ->
                 if (isNotEmpty()) append(", ")
                 append(country)
             }
 
-            // Fallback to sub-admin area if nothing else is available
             if (isEmpty()) {
                 address.subAdminArea?.let { append(it) }
             }
@@ -137,7 +119,7 @@ class PlacesViewModel @Inject constructor(
                             isLoading = true,
                             userLocation = Pair(location.latitude, location.longitude),
                             locationName = locationName,
-                            hasPermission = true // Update permission state
+                            hasPermission = true
                         )
                     }
 
@@ -159,7 +141,7 @@ class PlacesViewModel @Inject constructor(
                         copy(
                             isLoadingLocation = false,
                             error = locationStrings.location_permission_denied,
-                            hasPermission = false // Update permission state
+                            hasPermission = false
                         )
                     }
                     setEffect { PlacesContract.Effects.RequestLocationPermission }
@@ -184,14 +166,6 @@ class PlacesViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    private fun handleLoadPlacesWithCategory(kinds: String?) {
-        handleLoadPlaces(kinds = kinds)
-    }
-
-    private fun handleLoadPlacesWithParams(kinds: String?, radius: Int?, limit: Int?) {
-        handleLoadPlaces(kinds = kinds, radius = radius, limit = limit)
     }
 
     private suspend fun loadPlacesData(
@@ -251,8 +225,7 @@ class PlacesViewModel @Inject constructor(
 
     private fun handleRetry() {
         viewModelScope.launch {
-            uiState.value.userLocation?.let { (lat, lon) ->
-                // If we have coordinates but maybe missing location name, reload
+            uiState.value.userLocation?.let { (_, _) ->
                 handleLoadPlaces()
             } ?: run {
                 handleLoadPlaces()

@@ -1,4 +1,4 @@
-package com.example.domain.usecases
+package com.example.domain.usecases.get_places
 
 import com.example.core_domain.dto.PlaceDto
 import kotlinx.coroutines.flow.Flow

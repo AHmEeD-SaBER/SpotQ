@@ -7,23 +7,18 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.core_ui.components.LanguageSwitcher
 import com.example.core_ui.theme.SpotQTheme
 import com.example.core_ui.utils.LanguageManager.getSavedLanguage
 import com.example.core_ui.utils.LocaleHelper
-import com.example.core_ui.utils.Routes
 import com.example.spotq.navigation.AppNavigation
 import com.example.spotq.ui.main.MainContract
 import com.example.spotq.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.core_ui.R as coreUiR
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -18,12 +18,6 @@ class PlacesContract {
 
     sealed class Events : UiEvent {
         data object LoadPlaces : Events() // Simplified - gets location first then loads places
-        data class LoadPlacesWithCategory(val kinds: String?) : Events()
-        data class LoadPlacesWithParams(
-            val kinds: String? = null,
-            val radius: Int? = null,
-            val limit: Int? = null
-        ) : Events()
         data class PlaceClicked(val place: PlaceDto) : Events() // Use xid instead of Int
         data object Retry : Events()
         data object RequestLocationPermission : Events()
