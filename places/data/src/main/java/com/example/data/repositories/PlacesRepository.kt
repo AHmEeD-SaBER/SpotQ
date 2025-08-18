@@ -31,7 +31,6 @@ class PlacesRepository @Inject constructor(
 
         val placesWithDetails = mutableListOf<PlaceDto>()
 
-        // Step 1: Get places list
         dataSource.getPlaces(
             latitude = latitude,
             longitude = longitude,

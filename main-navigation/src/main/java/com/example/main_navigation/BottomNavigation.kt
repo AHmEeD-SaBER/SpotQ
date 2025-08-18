@@ -25,15 +25,17 @@ import com.example.ui.ProfileViewModel
 import com.example.ui.places.PlacesContract
 import com.example.ui.places.PlacesScreen
 import com.example.ui.places.PlacesViewModel
+import com.example.ui.search.SearchContract
+import com.example.ui.search.SearchScreen
+import com.example.ui.search.SearchViewModel
 
 @Composable
 fun MainNavigation(
-    navController: NavHostController, // This is the main app navController
+    navController: NavHostController,
     state: BottomNavigationContract.State,
     onEvent: (BottomNavigationContract.Event) -> Unit
 ) {
     val bottomNavController = rememberNavController()
-
 
     Scaffold(
         bottomBar = {
@@ -41,11 +43,13 @@ fun MainNavigation(
                 items = state.items,
                 onItemClick = { item ->
                     onEvent(BottomNavigationContract.Event.OnTabSelected(item.route))
+
                     bottomNavController.navigate(item.route) {
-                        popUpTo(0) {
-                            inclusive = true
+                        popUpTo(bottomNavController.graph.findStartDestination().id) {
+                            saveState = true
                         }
                         launchSingleTop = true
+                        restoreState = true
                     }
                 }
             )
@@ -69,7 +73,6 @@ fun MainNavigation(
                     placesViewModel.effect.collect { effect ->
                         when (effect) {
                             is PlacesContract.Effects.NavigateToPlaceDetails -> {
-                                // Use the main app navController to navigate to PlaceDetails
                                 navController.currentBackStackEntry?.savedStateHandle?.set(
                                     "place",
                                     effect.place
@@ -88,7 +91,19 @@ fun MainNavigation(
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+
+                            PlacesContract.Effects.NavigateToSearch -> {
+                                onEvent(BottomNavigationContract.Event.OnTabSelected(Routes.Search))
+                                bottomNavController.navigate(Routes.Search) {
+                                    popUpTo(bottomNavController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
                         }
+
                     }
                 }
             }
@@ -135,14 +150,41 @@ fun MainNavigation(
                 }
             }
 
-            composable<Routes.Search> {
-                // SearchScreen()
+            composable<Routes.Search> { backStackEntry ->
+                val searchViewModel: SearchViewModel = hiltViewModel()
+                val state by searchViewModel.uiState.collectAsState()
 
-                // Placeholder for now
-                Text(
-                    text = "Search Screen",
-                    modifier = Modifier.padding(16.dp)
+                SearchScreen(
+                    state = state,
+                    onEvent = searchViewModel::handleEvent
                 )
+
+                val context = LocalContext.current
+                LaunchedEffect(searchViewModel) {
+                    searchViewModel.effect.collect { effect ->
+                        when (effect) {
+                            is SearchContract.Effects.NavigateToPlaceDetails -> {
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    "place",
+                                    effect.place
+                                )
+                                navController.navigate(Routes.PlaceDetails)
+                            }
+
+                            is SearchContract.Effects.ShowError -> {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(effect.title) + " " + context.getString(effect.subtitle),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            SearchContract.Effects.NavigateBack -> {
+                                bottomNavController.popBackStack()
+                            }
+                        }
+                    }
+                }
             }
 
             composable<Routes.Profile> {
@@ -165,6 +207,7 @@ fun MainNavigation(
                                     }
                                 }
                             }
+
                             is ProfileContract.Effect.ShowError -> {
                                 Toast.makeText(
                                     context,
@@ -179,5 +222,3 @@ fun MainNavigation(
         }
     }
 }
-
-

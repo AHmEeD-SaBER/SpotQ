@@ -124,7 +124,7 @@ fun PlaceDetailsScreen(
                                     shape = CircleShape
                                 )
                                 .size(dimensionResource(coreUiR.dimen.icon_size_md))
-                                .padding( top = dimensionResource(coreUiR.dimen.padding_xxs))
+                                .padding(top = dimensionResource(coreUiR.dimen.padding_xxs))
                                 .clickable {
                                     if (state.isFavorite) onEvent(
                                         PlaceDetailsContract.Events.RemoveFromFavorites(
@@ -192,7 +192,7 @@ fun PlaceDetailsScreen(
                         Column {
                             PlaceTitle(
                                 title = place.name,
-                                maxLines = 2,
+                                maxLines = Constants.DEFAULT_MAX_LINES,
                                 style = AppTypography.sh6.copy(color = Color.White)
                             )
                             Spacer(modifier = Modifier.padding(top = dimensionResource(coreUiR.dimen.padding_xs)))
@@ -211,7 +211,10 @@ fun PlaceDetailsScreen(
                         RatingContainer(
 //                        modifier = Modifier.align(Alignment.CenterHorizontally),
                             rate = place.rate,
-                            style = AppTypography.bt3.copy(color = Color.White, fontSize = 20.sp),
+                            style = AppTypography.bt3.copy(
+                                color = Color.White,
+                                fontSize = Constants.DEFAULT_FONT_SIZE.sp
+                            ),
                             icon = {
                                 Icon(
                                     painter = painterResource(R.drawable.star_icon),

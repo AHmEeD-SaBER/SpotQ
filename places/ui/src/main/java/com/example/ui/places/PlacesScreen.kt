@@ -3,6 +3,7 @@ package com.example.ui.places
 import android.Manifest
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -25,7 +26,6 @@ fun PlacesScreen(
     state: PlacesContract.State,
     onEvent: (PlacesContract.Events) -> Unit
 ) {
-    // Permission launcher
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -84,12 +84,17 @@ fun PlacesScreen(
                     showNavigation = false,
                     navigationIcon = null,
                     searchBar = {
-                        com.example.ui.components.SearchBar(
-                            modifier = Modifier,
-                            value = "",
-                            onSearch = {
+                        Box(
+                            modifier = Modifier.clickable {
+                                onEvent(PlacesContract.Events.NavigateToSearch)
                             }
-                        )
+                        ) {
+                            com.example.ui.components.SearchBar(
+                                value = "",
+                                onSearch = {
+                                }
+                            )
+                        }
                     }
                 )
             }

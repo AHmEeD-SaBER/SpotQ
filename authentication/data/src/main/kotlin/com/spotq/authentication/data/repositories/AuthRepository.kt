@@ -11,6 +11,7 @@ import com.spotq.authentication.domain.repository.IAuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.singleOrNull
 import javax.inject.Inject
+import com.spotq.authentication.data.R
 
 class AuthRepository @Inject constructor(private val localDataSource: IAuthLocalDataSource) :
     IAuthRepository {
@@ -34,10 +35,10 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
                     )
                     emit(AuthResult.Success(authResponse))
                 } else {
-                    emit(AuthResult.Error(Exception("Invalid email or password")))
+                    emit(AuthResult.Error(R.string.error_invalid_credentials))
                 }
             } catch (e: Exception) {
-                emit(AuthResult.Error(e))
+                emit(AuthResult.Error(R.string.error_unknown))
             }
         }
     }
@@ -66,10 +67,10 @@ class AuthRepository @Inject constructor(private val localDataSource: IAuthLocal
                     )
                     emit(AuthResult.Success(authResponse))
                 } else {
-                    emit(AuthResult.Error(Exception("Email already exists")))
+                    emit(AuthResult.Error(R.string.error_email_exists))
                 }
             } catch (e: Exception) {
-                emit(AuthResult.Error(e))
+                emit(AuthResult.Error(R.string.error_unknown))
             }
         }
     }

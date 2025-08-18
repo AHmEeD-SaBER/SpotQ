@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_invalid_credentials">Invalid email or password</string>
+    <string name="error_unknown">Unexpected Error</string>
+    <string name="error_email_exists">Email Already Exists</string>
+</resources>

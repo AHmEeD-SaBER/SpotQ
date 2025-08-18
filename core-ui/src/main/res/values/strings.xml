@@ -179,4 +179,11 @@
     <string name="label_search">Search</string>
     <string name="label_profile">Profile</string>
     <string name="label_logout">Logout</string>
+    <string name="label_search_placeholder">Search places, categories...</string>
+    <string name="cd_clear">Clear</string>
+    <string name="cd_retry">Retry</string>
+    <string name="label_places_found">places found</string>
+    <string name="label_result_for">results for</string>
+    <string name="labelr_no_result_for">"No results found for "</string>
+    <string name="label_try_different_query">Try searching with different keywords</string>
 </resources>

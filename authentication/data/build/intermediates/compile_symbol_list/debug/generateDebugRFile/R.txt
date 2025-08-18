@@ -1,0 +1,3 @@
+int string error_email_exists 0x0
+int string error_invalid_credentials 0x0
+int string error_unknown 0x0

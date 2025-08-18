@@ -24,9 +24,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.core_ui.theme.AppTypography
 import com.example.core_ui.utils.Constants
+import com.example.core_ui.utils.Routes
 import com.example.main_navigation.models.BottomNavItem
 import com.example.core_ui.R as CoreUiR
 
@@ -89,17 +91,51 @@ fun CustomBottomBar(
                                 MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(dimensionResource(CoreUiR.dimen.icon_size_sm))
                         )
-//                        Text(
-//                            text = stringResource(item.label),
-//                            color = if (item.isSelected)
-//                                MaterialTheme.colorScheme.onSurfaceVariant
-//                            else
-//                                MaterialTheme.colorScheme.onSurfaceVariant,
-//                            style = AppTypography.bt9.copy(fontWeight = FontWeight.Bold)
-//                        )
+                        Text(
+                            text = stringResource(item.label),
+                            color = if (item.isSelected)
+                                MaterialTheme.colorScheme.onSurfaceVariant
+                            else
+                                MaterialTheme.colorScheme.onSurfaceVariant,
+                            style = AppTypography.bt9.copy(fontWeight = FontWeight.Bold)
+                        )
                     }
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun CustomBottomBarPreview() {
+    val items = listOf(
+        BottomNavItem(
+            route = Routes.Places,
+            label = CoreUiR.string.label_home,
+            selectedIcon = CoreUiR.drawable.home_icon_filled,
+            unselectedIcon = CoreUiR.drawable.home_icon_outlined,
+            isSelected = true // default
+        ),
+        BottomNavItem(
+            route = Routes.Favorites(0), // you can inject userId later
+            label = CoreUiR.string.label_favorites,
+            selectedIcon = CoreUiR.drawable.love_icon_field,
+            unselectedIcon = CoreUiR.drawable.love_icon_outlined
+        ),
+        BottomNavItem(
+            route = Routes.Search,
+            label = CoreUiR.string.label_search,
+            selectedIcon = CoreUiR.drawable.search_filled,
+            unselectedIcon = CoreUiR.drawable.search_outlined
+        ),
+        BottomNavItem(
+            route = Routes.Profile(0),
+            label = CoreUiR.string.label_profile,
+            selectedIcon = CoreUiR.drawable.user_filled,
+            unselectedIcon = CoreUiR.drawable.user_outlined
+        )
+    )
+
+    CustomBottomBar(items) {}
 }

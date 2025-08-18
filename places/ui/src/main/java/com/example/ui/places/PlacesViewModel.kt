@@ -1,8 +1,6 @@
 package com.example.ui.places
 
-import android.location.Address
-import android.location.Geocoder
-import android.os.Build
+
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.base.BaseViewModel
@@ -11,24 +9,18 @@ import com.example.domain.usecases.get_places.IGetPlacesUseCase
 import com.example.errors.CustomError
 import com.example.location_provider.LocationProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.suspendCancellableCoroutine
-import java.util.Locale
 import javax.inject.Inject
-import kotlin.coroutines.resume
-import android.content.Context
+import com.example.location_provider.IGeocoderProvider
 import com.example.location_provider.R.string as locationStrings
 
 @HiltViewModel
 class PlacesViewModel @Inject constructor(
     private val useCase: IGetPlacesUseCase,
     private val locationProvider: LocationProvider,
-    @ApplicationContext private val context: Context
+    private val geocoderProvider: IGeocoderProvider
 ) : BaseViewModel<PlacesContract.Events, PlacesContract.State, PlacesContract.Effects>() {
-
-    private val geocoder = if (Geocoder.isPresent()) Geocoder(context, Locale.getDefault()) else null
 
     override fun setInitialState(): PlacesContract.State {
         return PlacesContract.State()
@@ -44,8 +36,15 @@ class PlacesViewModel @Inject constructor(
             is PlacesContract.Events.PlaceClicked -> handlePlaceClicked(event.place)
             PlacesContract.Events.Retry -> handleRetry()
             PlacesContract.Events.RequestLocationPermission -> handleRequestLocationPermission()
-            PlacesContract.Events.CheckPermissions -> handleCheckPermissions() // Handle the new event
+            PlacesContract.Events.CheckPermissions -> handleCheckPermissions()
+            PlacesContract.Events.NavigateToSearch -> handleNavigateToSearch()
         }
+    }
+
+    private fun handleNavigateToSearch() {
+        Log.d("PlacesViewModel", "NavigateToSearch event triggered")
+        setEffect { PlacesContract.Effects.NavigateToSearch }
+        Log.d("PlacesViewModel", "NavigateToSearch effect emitted")
     }
 
     private fun handleCheckPermissions() {
@@ -56,47 +55,6 @@ class PlacesViewModel @Inject constructor(
             handleLoadPlaces()
         } else {
             setEffect { PlacesContract.Effects.RequestLocationPermission }
-        }
-    }
-
-    private suspend fun getLocationName(latitude: Double, longitude: Double): String? {
-        return try {
-            if (geocoder == null) return null
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                suspendCancellableCoroutine { continuation ->
-                    geocoder.getFromLocation(latitude, longitude, 1) { addresses ->
-                        val locationName = addresses.firstOrNull()?.let { address ->
-                            formatLocationName(address)
-                        }
-                        continuation.resume(locationName)
-                    }
-                }
-            } else {
-                @Suppress("DEPRECATION")
-                val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-                addresses?.firstOrNull()?.let { address ->
-                    formatLocationName(address)
-                }
-            }
-        } catch (e: Exception) {
-            Log.e("PlacesViewModel", "Error getting location name", e)
-            null
-        }
-    }
-
-    private fun formatLocationName(address: Address): String {
-        return buildString {
-            address.locality?.let { append(it) }
-
-            address.countryName?.let { country ->
-                if (isNotEmpty()) append(", ")
-                append(country)
-            }
-
-            if (isEmpty()) {
-                address.subAdminArea?.let { append(it) }
-            }
         }
     }
 
@@ -111,7 +69,11 @@ class PlacesViewModel @Inject constructor(
                 is LocationProvider.LocationResult.Success -> {
                     val location = locationResult.location
 
-                    val locationName = getLocationName(location.latitude, location.longitude)
+                    // Use the injected geocoder provider
+                    val locationName = geocoderProvider.getLocationName(
+                        location.latitude,
+                        location.longitude
+                    )
 
                     setState {
                         copy(
@@ -191,7 +153,6 @@ class PlacesViewModel @Inject constructor(
                                 )
                             }
                         }
-
                         is CustomError.NoData -> {
                             setState { copy(isLoading = false, error = error.title) }
                             setEffect {
@@ -201,7 +162,6 @@ class PlacesViewModel @Inject constructor(
                                 )
                             }
                         }
-
                         is CustomError.Unknown -> {
                             setState { copy(isLoading = false, error = error.title) }
                             setEffect {

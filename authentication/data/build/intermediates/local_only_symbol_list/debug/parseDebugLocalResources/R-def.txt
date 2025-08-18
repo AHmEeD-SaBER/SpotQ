@@ -1,2 +1,5 @@
 R_DEF: Internal format may change without notice
 local
+string error_email_exists
+string error_invalid_credentials
+string error_unknown
