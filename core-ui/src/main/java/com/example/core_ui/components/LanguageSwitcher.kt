@@ -31,7 +31,7 @@ fun LanguageSwitcher(
         ),
     ) {
         val currentLang = LanguageManager.getSavedLanguage(context)
-        val displayText = if (currentLang == "ar") "🌐 English" else "🌐 العربية"
+        val displayText = if (currentLang == "ar") "English" else "العربية"
 
 
 
