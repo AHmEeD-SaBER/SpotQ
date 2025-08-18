@@ -17,16 +17,18 @@ class PlacesContract {
     ) : UiState
 
     sealed class Events : UiEvent {
-        data object LoadPlaces : Events() // Simplified - gets location first then loads places
-        data class PlaceClicked(val place: PlaceDto) : Events() // Use xid instead of Int
+        data object LoadPlaces : Events()
+        data class PlaceClicked(val place: PlaceDto) : Events()
         data object Retry : Events()
         data object RequestLocationPermission : Events()
         data object CheckPermissions : Events()
+        data object NavigateToSearch : Events()
     }
 
     sealed class Effects : UiEffect {
         data class NavigateToPlaceDetails(val place: PlaceDto) : Effects()
         data object RequestLocationPermission : Effects()
         data class ShowError(val title: Int, val subtitle: Int) : Effects()
+        data object NavigateToSearch : Effects()
     }
 }

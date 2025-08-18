@@ -7,6 +7,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.components.PageLayout
 import com.example.core_ui.theme.SpotQTheme
+import com.example.core_ui.utils.Constants
 import com.spotq.onboarding.components.OnboardingBottomSurface
 import com.example.core_ui.R as CoreUiR
 
@@ -18,7 +19,7 @@ fun OnboardingPage(
     @DrawableRes drawableRes: Int,
     buttonText: String = stringResource(id = CoreUiR.string.action_next),
     currentPage: Int = 0,
-    totalPages: Int = 3,
+    totalPages: Int = Constants.ONBOARDING_PAGES_COUNT,
     onButtonClick: () -> Unit = {},
 ) {
     PageLayout(

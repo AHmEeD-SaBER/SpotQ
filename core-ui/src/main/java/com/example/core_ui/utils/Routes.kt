@@ -22,7 +22,6 @@ sealed class Routes {
     @Serializable
     data object ForgotPassword : Routes()
 
-
     @Serializable
     data class Main(
         val userId: Int
@@ -31,14 +30,13 @@ sealed class Routes {
     @Serializable
     data object PlaceDetails : Routes()
 
-
     @Serializable
     data class Favorites(
         val userId: Int
     ) : Routes()
 
     @Serializable
-    data object Search : Routes()
+    data object Search: Routes()
 
     @Serializable
     data class Profile(val userId: Int) : Routes()

@@ -47,9 +47,6 @@ class MainViewModel @Inject constructor(
                 navigateToMain()
             }
 
-            is MainContract.Event.Logout -> {
-                handleLogout()
-            }
         }
     }
 
@@ -122,17 +119,6 @@ class MainViewModel @Inject constructor(
                     userId = userId,
                     isUserAuthenticated = true,
                     currentDestination = MainContract.Destination.MAIN
-                )
-            }
-        }
-    }
-
-    private fun handleLogout() {
-        viewModelScope.launch {
-            setState {
-                copy(
-                    isUserAuthenticated = false,
-                    currentDestination = MainContract.Destination.AUTH
                 )
             }
         }

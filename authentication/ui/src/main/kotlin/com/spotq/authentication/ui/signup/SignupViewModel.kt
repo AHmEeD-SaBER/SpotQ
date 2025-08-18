@@ -130,9 +130,10 @@ class SignupViewModel @Inject constructor(
                         is AuthResult.Error -> {
                             setState { copy(isLoading = false) }
                             setEffect {
-                                SignupContract.Effect.ShowError(R.string.signup_failed)
+                                SignupContract.Effect.ShowError(
+                                    result.exceptionRes
+                                )
                             }
-                            Log.e("SignupViewModel", "Error: ${result.exception.message}")
                         }
                     }
                 }

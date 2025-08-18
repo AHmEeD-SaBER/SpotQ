@@ -176,4 +176,12 @@
     <string name="label_search">بحث</string>
     <string name="label_profile">الملف الشخصي</string>
     <string name="label_logout">تسجيل الخروج</string>
+    <string name="label_search_placeholder">ابحث عن أماكن أو فئات...</string>
+    <string name="cd_clear">مسح</string>
+    <string name="cd_retry">إعادة المحاولة</string>
+    <string name="label_places_found">أماكن تم العثور عليها</string>
+    <string name="label_result_for">نتائج لـ</string>
+    <string name="labelr_no_result_for">لم يتم العثور على نتائج لـ </string>
+    <string name="label_try_different_query">جرّب البحث باستخدام كلمات مفتاحية مختلفة</string>
+
 </resources>

@@ -27,21 +27,27 @@ class LoginViewModel @Inject constructor(
             is LoginContract.Event.EmailChanged -> {
                 handleEmailChanged(event.email)
             }
+
             is LoginContract.Event.PasswordChanged -> {
                 handlePasswordChanged(event.password)
             }
+
             is LoginContract.Event.TogglePasswordVisibility -> {
                 handleTogglePasswordVisibility()
             }
+
             is LoginContract.Event.LoginClicked -> {
                 handleLoginClicked()
             }
+
             is LoginContract.Event.NavigateToSignup -> {
                 handleNavigateToSignup()
             }
+
             is LoginContract.Event.ForgotPasswordClicked -> {
                 handleForgotPasswordClicked()
             }
+
             is LoginContract.Event.ClearErrors -> {
                 handleClearErrors()
             }
@@ -116,6 +122,7 @@ class LoginViewModel @Inject constructor(
                 setState { copy(isLoading = true) }
                 Log.d("LoginViewModel", "Loading state")
             }
+
             is AuthResult.Success -> {
                 setState { copy(isLoading = false) }
                 setEffect { LoginContract.Effect.ShowSuccess(R.string.login_success) }
@@ -123,10 +130,11 @@ class LoginViewModel @Inject constructor(
                 Log.d("LoginViewModel", "User ID: $userId")
                 setEffect { LoginContract.Effect.NavigateToMain(userId) }
             }
+
             is AuthResult.Error -> {
                 setState { copy(isLoading = false) }
                 setEffect {
-                    LoginContract.Effect.ShowError(R.string.login_failed)
+                    LoginContract.Effect.ShowError(result.exceptionRes)
                 }
                 Log.e("LoginViewModel", "Login failed: ")
             }

@@ -30,9 +30,6 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val mainViewModel: MainViewModel = hiltViewModel()
                 val state by mainViewModel.uiState.collectAsState()
-
-                val currentRoute = navController.currentBackStackEntry?.destination?.route
-
                 Box(modifier = Modifier.fillMaxSize()) {
 
                     AppNavigation(
@@ -61,7 +58,7 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun attachBaseContext(newBase: Context) {
-        val lang = getSavedLanguage(newBase) // e.g., from SharedPreferences
+        val lang = getSavedLanguage(newBase)
         super.attachBaseContext(LocaleHelper.setLocale(newBase, lang))
     }
 

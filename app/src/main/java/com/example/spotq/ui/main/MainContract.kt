@@ -4,7 +4,6 @@ import com.example.core_ui.base.*
 
 class MainContract {
 
-    // UI State
     data class State(
         val isLoading: Boolean = true,
         val isUserAuthenticated: Boolean = false,
@@ -13,7 +12,6 @@ class MainContract {
         val userId: Int? = null,
     ) : UiState
 
-    // UI Events
     sealed class Event : UiEvent {
         object SplashFinished : Event()
         object CheckInitialState : Event()
@@ -21,17 +19,11 @@ class MainContract {
         data class AuthenticationCompleted(val userId: Int) : Event()
         object NavigateToAuth : Event()
         object NavigateToMain : Event()
-        object Logout : Event()
     }
 
-    // UI Effects
     sealed class Effect : UiEffect {
-//        object NavigateToOnboarding : Effect()
-//        object NavigateToAuth : Effect()
-//        object NavigateToMainScreen : Effect()
     }
 
-    // Destinations
     enum class Destination {
         SPLASH,
         LOADING,

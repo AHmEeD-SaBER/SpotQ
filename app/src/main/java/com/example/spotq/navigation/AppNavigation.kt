@@ -17,7 +17,6 @@ import com.example.spotq.navigation.components.PlaceDetailsRoute
 import com.example.spotq.navigation.components.SignupRoute
 import com.example.spotq.navigation.components.SplashRoute
 
-// ------------------ Root NavHost ------------------
 @Composable
 fun AppNavigation(
     navController: NavHostController,

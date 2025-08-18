@@ -1,1 +1,4 @@
 com.spotq.authentication.data
+string error_email_exists
+string error_invalid_credentials
+string error_unknown
